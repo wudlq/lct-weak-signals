@@ -140,6 +140,9 @@ class GigaChatProvider:
             json={
                 "model": self.model,
                 "temperature": 0.2,
+                # Без этого ответ обрезается на значении по умолчанию, и список
+                # кандидатов приходит незакрытым JSON.
+                "max_tokens": int(os.getenv("GIGACHAT_MAX_TOKENS", "2000")),
                 "messages": [
                     {"role": "system", "content": system},
                     {"role": "user", "content": prompt},
@@ -148,7 +151,17 @@ class GigaChatProvider:
             timeout=TIMEOUT,
         )
         response.raise_for_status()
-        text = response.json()["choices"][0]["message"]["content"]
+        payload = response.json()
+        выбор = payload["choices"][0]
+        # GigaChat сообщает причину остановки: length означает, что ответ
+        # оборван по лимиту и разбирать его как JSON бессмысленно.
+        if выбор.get("finish_reason") == "length":
+            log.warning(
+                "Ответ модели оборван по лимиту токенов. Увеличьте "
+                "GIGACHAT_MAX_TOKENS (сейчас %s)",
+                os.getenv("GIGACHAT_MAX_TOKENS", "2000"),
+            )
+        text = выбор["message"]["content"]
         return Answer(text=text, model=self.model)
 
 
@@ -240,12 +253,21 @@ def get_provider() -> Provider | None:
         return None
 
 
-def ask_json(provider: Provider, system: str, prompt: str) -> tuple[dict, str]:
+def ask_json(
+    provider: Provider,
+    system: str,
+    prompt: str,
+    raw_out: list[str] | None = None,
+) -> tuple[dict, str]:
     """Спрашивает модель и разбирает ответ как JSON.
 
     Модели любят обрамлять JSON пояснениями, поэтому вырезаем фигурные скобки.
     При неудаче возвращаем пустой словарь — тексты просто не заполнятся,
     но выдача не сломается.
+
+    В `raw_out`, если он передан, складывается сырой текст ответа. Нужно для
+    разбора случаев «модель ответила, но не то»: без сырого текста непонятно,
+    ошиблись мы в запросе или модель отказалась отвечать.
     """
     # Поставщик мог отключить себя из-за ошибки, которая от повтора не пройдёт
     # (сертификат, неверный ключ). Тогда молча работаем без модели.
@@ -265,14 +287,23 @@ def ask_json(provider: Provider, system: str, prompt: str) -> tuple[dict, str]:
             continue
 
         text = answer.text.strip()
+        if raw_out is not None:
+            raw_out.append(text)
+        log.debug("Ответ модели (%s символов): %s", len(text), text[:500])
         начало, конец = text.find("{"), text.rfind("}")
         if начало == -1 or конец == -1:
-            log.warning("Модель вернула не JSON, попытка %s из %s", attempt, RETRIES)
+            log.warning(
+                "Модель вернула не JSON, попытка %s из %s. Ответ: %.200s",
+                attempt, RETRIES, text,
+            )
             continue
         try:
             return json.loads(text[начало : конец + 1]), answer.model
-        except json.JSONDecodeError:
-            log.warning("JSON не разобрался, попытка %s из %s", attempt, RETRIES)
+        except json.JSONDecodeError as error:
+            log.warning(
+                "JSON не разобрался (%s), попытка %s из %s. Ответ: %.200s",
+                error, attempt, RETRIES, text,
+            )
 
     if последняя is not None:
         # Все попытки упали на сети. Одну случайную неудачу терпим, вторую

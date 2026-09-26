@@ -73,6 +73,11 @@ BOILERPLATE = {
     "errors", "mean", "square", "root", "average", "values", "value",
     "international", "scientific", "conference", "journal", "review",
     "survey", "overview", "introduction", "conclusion", "discussion",
+    # Обороты обзорных статей: в прогоне по кибербезопасности в кандидаты
+    # попал «систематический обзор литературы».
+    "systematic", "literature", "empirical", "evaluation", "taxonomy",
+    "mapping", "study", "studies", "novel", "towards", "case", "cases",
+    "insights", "perspective", "perspectives", "trends", "trend",
     "recent", "advances", "future", "challenges", "opportunities",
     "problem", "problems", "solution", "solutions", "application",
     "applications", "research", "work", "works", "data",
@@ -89,18 +94,9 @@ BOILERPLATE = {
     "лаборатория", "лаборатории", "академия", "факультет",
 }
 
-# Зонтичные термины. Они называют область целиком, а не технологию внутри
-# неё: «machine learning» не может быть слабым сигналом в 2026 году.
-GENERIC = {
-    "artificial", "intelligence", "machine", "learning", "deep", "neural",
-    "network", "networks", "model", "models", "algorithm", "algorithms",
-    "technology", "technologies", "emerging", "digital", "smart", "advanced",
-    "security", "cyber", "cybersecurity", "privacy", "safety", "protection",
-    "management", "detection", "analysis", "analytics", "computing",
-    "software", "hardware", "platform", "service", "services", "industry",
-    "industrial", "financial", "finance", "robot", "robotics", "edge",
-    "generative", "language", "large", "llm", "llms", "foundation",
-}
+# Зонтичные термины лежат в отдельном модуле: их же проверяет разбор
+# названий от языковой модели.
+from src.collect.vocab import GENERIC  # noqa: E402
 
 _WORD = re.compile(r"[a-zA-Zа-яА-ЯёЁ][\w\-]+", re.UNICODE)
 
@@ -388,11 +384,70 @@ def run(
         from src.texts.generate import describe_all
 
         describe_all(сигналы)
+        сигналы = _dedup_translated(сигналы)
+        результат = сигналы + отклонённые
 
     if save_to_db:
         db.save_candidates(результат, query=query)
     save_cache(query, результат)
     return результат
+
+
+_СЛУЖЕБНЫЕ_РУ = {
+    "с", "и", "в", "на", "для", "по", "использованием", "помощью",
+    "применением", "основе", "технологии", "технология", "системы", "система",
+    "методы", "метод", "подход", "подходы",
+}
+
+
+def _ключ_названия(название: str) -> frozenset[str]:
+    """Название без служебных слов и без порядка слов.
+
+    Нужно потому, что перевод сглаживает разницу: «threat detection and
+    response with AI» и «AI-based threat detection and response» после
+    перевода превращаются в «обнаружение угроз и реагирование с
+    использованием искусственного интеллекта» и «...с помощью...» —
+    для пользователя это одна и та же строка дважды.
+    """
+    слова = {w.lower() for w in _WORD.findall(название or "")}
+    return frozenset(слова - _СЛУЖЕБНЫЕ_РУ)
+
+
+def _dedup_translated(cards: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Убирает карточки, у которых после перевода совпало название.
+
+    Оставляем ту, у которой выше уверенность: карточки уже отсортированы.
+    Документы потерянной карточки дописываем к оставшейся, иначе счётчик
+    источников у неё выйдет заниженным.
+    """
+    итог: list[dict[str, Any]] = []
+    по_ключу: dict[frozenset[str], dict[str, Any]] = {}
+
+    for карточка in cards:
+        ключ = _ключ_названия(карточка.get("technology", ""))
+        if not ключ:
+            итог.append(карточка)
+            continue
+        первая = по_ключу.get(ключ)
+        if первая is None:
+            по_ключу[ключ] = карточка
+            итог.append(карточка)
+            continue
+
+        известные = {s.get("url") for s in первая.get("sources", [])}
+        for источник in карточка.get("sources", []):
+            if источник.get("url") not in известные:
+                первая.setdefault("sources", []).append(источник)
+        первая["doc_count"] = max(
+            первая.get("doc_count", 0), карточка.get("doc_count", 0)
+        )
+        первая["sources_shown"] = len(первая.get("sources", []))
+        log.info(
+            "Карточка %r совпала по названию с %r после перевода, склеиваю",
+            карточка.get("technology"), первая.get("technology"),
+        )
+
+    return итог
 
 
 def stats(candidates: list[dict[str, Any]]) -> dict[str, int]:
