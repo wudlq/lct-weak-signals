@@ -210,6 +210,7 @@ def run(
     use_cache: bool = True,
     limit_per_source: int = 100,
     save_to_db: bool = True,
+    with_texts: bool = True,
 ) -> list[dict[str, Any]]:
     """Главная функция. Интерфейс вызывает только её.
 
@@ -249,6 +250,14 @@ def run(
     )
 
     результат = сигналы + отклонённые
+
+    # Русские названия, описания и кейсы — только для ТОП-15: на отклонённых
+    # они не нужны, а обращения к языковой модели стоят лимитов.
+    if with_texts and сигналы:
+        from src.texts.generate import describe_all
+
+        describe_all(сигналы)
+
     if save_to_db:
         db.save_candidates(результат, query=query)
     save_cache(query, результат)
