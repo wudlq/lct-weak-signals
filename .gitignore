@@ -14,4 +14,6 @@ venv/
 
 # Системное
 .DS_Store
-.streamlit/secrets.toml
+
+# Кеш кладём в репозиторий только намеренно, командой git add -f
+data/cache/*.json

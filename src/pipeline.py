@@ -24,6 +24,7 @@ from typing import Any, Callable
 
 from src.collect import arxiv, openalex
 from src.collect.normalize import prepare
+from src.collect.candidates import extract as extract_by_model
 from src.collect.query import search_queries
 from src.features.build import profile_from_docs
 from src.model.predict import load_model, reject_reason, score
@@ -259,6 +260,8 @@ def _card(
     docs: list[dict[str, Any]],
     model: Any,
     docs_collected: int = 0,
+    name_en: str | None = None,
+    language: str = "en",
 ) -> dict[str, Any]:
     """Карточка кандидата в формате, о котором договорились с интерфейсом.
 
@@ -275,8 +278,8 @@ def _card(
 
     return {
         "technology": technology,
-        "technology_original": technology,
-        "technology_language": "en",
+        "technology_original": name_en or technology,
+        "technology_language": language,
         "area": "",  # область проставляется по запросу, если он её называет
         "score": оценка["score"],
         "top_features": [
@@ -328,29 +331,45 @@ def run(
     if save_to_db:
         db.save_docs(документы, query=query)
 
-    # Слова поисковых строк — это тема, а не кандидаты в сигналы.
-    слова_запроса = {
-        w.lower()
-        for строка in search_queries(query)
-        for w in _WORD.findall(строка)
-    }
-    группы = extract_candidates(документы, query_words=слова_запроса)
-
-    # Если по узкому запросу документов мало, строгие пороги оставляют
-    # два-три кандидата. Тогда ослабляем и честно пишем об этом в лог:
-    # лучше показать жюри десяток кандидатов с оговоркой, чем пустой экран.
-    if len(группы) < 8:
-        log.info("Кандидатов мало (%s), ослабляю пороги", len(группы))
-        группы = extract_candidates(
-            документы, query_words=слова_запроса, min_docs=2, max_share=0.30
-        )
-    log.info("Кандидатов до отбора: %s", len(группы))
-
     model = load_model()
-    карточки = [
-        _card(фраза, docs, model, docs_collected=len(документы))
-        for фраза, docs in группы.items()
-    ]
+
+    # Сначала пробуем выделить кандидатов языковой моделью: она называет
+    # технологии, а частотный способ — только частые пары слов. Если модель
+    # не настроена или ответила негодно, откатываемся на частотный способ.
+    от_модели = extract_by_model(документы, query)
+    if от_модели:
+        log.info("Кандидатов от модели: %s", len(от_модели))
+        карточки = [
+            _card(
+                c["name_ru"], c["docs"], model,
+                docs_collected=len(документы),
+                name_en=c["name_en"], language="ru",
+            )
+            for c in от_модели
+        ]
+    else:
+        # Слова поисковых строк — это тема, а не кандидаты в сигналы.
+        слова_запроса = {
+            w.lower()
+            for строка in search_queries(query)
+            for w in _WORD.findall(строка)
+        }
+        группы = extract_candidates(документы, query_words=слова_запроса)
+
+        # Если по узкому запросу документов мало, строгие пороги оставляют
+        # два-три кандидата. Тогда ослабляем и честно пишем об этом в лог:
+        # лучше показать жюри десяток кандидатов с оговоркой, чем пустой экран.
+        if len(группы) < 8:
+            log.info("Кандидатов мало (%s), ослабляю пороги", len(группы))
+            группы = extract_candidates(
+                документы, query_words=слова_запроса, min_docs=2, max_share=0.30
+            )
+        log.info("Кандидатов до отбора: %s", len(группы))
+
+        карточки = [
+            _card(фраза, docs, model, docs_collected=len(документы))
+            for фраза, docs in группы.items()
+        ]
 
     сигналы = sorted(
         (c for c in карточки if c["verdict"] == "сигнал"),
