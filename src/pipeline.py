@@ -35,7 +35,10 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 CACHE_DIR = ROOT / "data" / "cache"
 
 TOP_N = 15
-MIN_DOCS_PER_CANDIDATE = 2   # фраза из одного документа — это не тренд
+# Два документа — это совпадение, а не тренд: в первом живом прогоне
+# тринадцать сигналов из пятнадцати держались ровно на двух. Три — минимум,
+# при котором фраза повторяется у разных авторов.
+MIN_DOCS_PER_CANDIDATE = 3
 MAX_DOC_SHARE = 0.4          # фраза почти в каждом документе — это сам запрос
 NGRAM_SIZES = (2, 3)
 MAX_CANDIDATES = 60
@@ -69,6 +72,17 @@ BOILERPLATE = {
     "recent", "advances", "future", "challenges", "opportunities",
     "problem", "problems", "solution", "solutions", "application",
     "applications", "research", "work", "works", "data",
+    # Названия организаций. OpenAlex затягивает аффилиации в текст, и без
+    # этого списка в кандидаты попадают вузы: в первом прогоне во вкладке
+    # «Отклонено» оказались «южно-уральский государственный университет»
+    # и «федеральное государственное автономное образовательное учреждение».
+    "university", "universities", "institute", "institution", "faculty",
+    "department", "laboratory", "laboratories", "center", "centre",
+    "academy", "college", "school",
+    "университет", "университета", "институт", "института", "учреждение",
+    "учреждения", "образовательное", "государственное", "государственный",
+    "федеральное", "федеральный", "автономное", "кафедра", "кафедры",
+    "лаборатория", "лаборатории", "академия", "факультет",
 }
 
 _WORD = re.compile(r"[a-zA-Zа-яА-ЯёЁ][\w\-]+", re.UNICODE)
