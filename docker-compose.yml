@@ -1,0 +1,19 @@
+# Имя проекта задаём явно: иначе Compose берёт его из имени папки,
+# а кириллица и пробелы в имени недопустимы.
+name: gorizont
+
+services:
+  app:
+    build: .
+    container_name: gorizont-app
+    ports:
+      - "8501:8501"
+    environment:
+      # Ключ языковой модели. Если не задан — резюме строится извлечением
+      # предложений из источника, без генерации, и это помечается в выдаче.
+      - LLM_API_KEY=${LLM_API_KEY:-}
+      - LLM_PROVIDER=${LLM_PROVIDER:-none}
+    volumes:
+      # Кеш прогретых направлений переживает перезапуск контейнера
+      - ./data/cache:/app/data/cache
+    restart: unless-stopped

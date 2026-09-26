@@ -14,3 +14,4 @@ venv/
 
 # Системное
 .DS_Store
+.streamlit/secrets.toml
