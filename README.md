@@ -38,12 +38,25 @@ docker compose down
 
 ```
 LLM_PROVIDER=gigachat
-LLM_API_KEY=ваш-ключ
+GIGACHAT_AUTH_KEY=ваш-ключ
+GIGACHAT_MODEL=GigaChat-2-Pro
 ```
 
-Допустимые значения `LLM_PROVIDER`: `gigachat`, `yandexgpt`, `qwen`, `openai`, `none`.
+Допустимые значения `LLM_PROVIDER`: `gigachat`, `yandex`, `openai`, `none`.
+Имена переменных для каждого поставщика перечислены в `.env.example`.
 Список моделей ограничен техническим заданием; сторонние сервисы-посредники
 не используются.
+
+**Для GigaChat нужен корневой сертификат НУЦ Минцифры.** Домены Сбера подписаны
+им, и без него запрос падает с `CERTIFICATE_VERIFY_FAILED`. Сертификат лежит
+в репозитории (`certs/russian_trusted_ca.pem`); если его там нет, скачайте:
+
+```bash
+bash scripts/install_ru_certs.sh
+```
+
+Проверить соединение: `python -m src.texts.certs`. Проверка TLS в проекте
+нигде не отключается.
 
 ---
 
