@@ -39,7 +39,10 @@ TOP_N = 15
 # тринадцать сигналов из пятнадцати держались ровно на двух. Три — минимум,
 # при котором фраза повторяется у разных авторов.
 MIN_DOCS_PER_CANDIDATE = 3
-MAX_DOC_SHARE = 0.4          # фраза почти в каждом документе — это сам запрос
+# Фраза, которая встречается в каждой седьмой работе выборки, описывает саму
+# область, а не зарождающуюся технологию. Порог был 0.4 — с ним в ТОП-15
+# попадали «artificial intelligence» и «cyber security».
+MAX_DOC_SHARE = 0.15
 NGRAM_SIZES = (2, 3)
 MAX_CANDIDATES = 60
 
@@ -83,6 +86,19 @@ BOILERPLATE = {
     "учреждения", "образовательное", "государственное", "государственный",
     "федеральное", "федеральный", "автономное", "кафедра", "кафедры",
     "лаборатория", "лаборатории", "академия", "факультет",
+}
+
+# Зонтичные термины. Они называют область целиком, а не технологию внутри
+# неё: «machine learning» не может быть слабым сигналом в 2026 году.
+GENERIC = {
+    "artificial", "intelligence", "machine", "learning", "deep", "neural",
+    "network", "networks", "model", "models", "algorithm", "algorithms",
+    "technology", "technologies", "emerging", "digital", "smart", "advanced",
+    "security", "cyber", "cybersecurity", "privacy", "safety", "protection",
+    "management", "detection", "analysis", "analytics", "computing",
+    "software", "hardware", "platform", "service", "services", "industry",
+    "industrial", "financial", "finance", "robot", "robotics", "edge",
+    "generative", "language", "large", "llm", "llms", "foundation",
 }
 
 _WORD = re.compile(r"[a-zA-Zа-яА-ЯёЁ][\w\-]+", re.UNICODE)
@@ -161,11 +177,28 @@ def _phrases(text: str) -> set[str]:
     return found
 
 
-def extract_candidates(documents: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+def _content_words(phrase: str, query_words: set[str]) -> int:
+    """Сколько в фразе слов, которые не являются ни темой запроса, ни водой."""
+    return sum(
+        1 for w in phrase.split()
+        if w not in query_words and w not in GENERIC and w not in BOILERPLATE
+    )
+
+
+def extract_candidates(
+    documents: list[dict[str, Any]],
+    query_words: set[str] | None = None,
+    min_docs: int = MIN_DOCS_PER_CANDIDATE,
+    max_share: float = MAX_DOC_SHARE,
+) -> dict[str, list[dict[str, Any]]]:
     """Группирует документы по повторяющимся фразам.
 
     Возвращает словарь «фраза -> документы, где она встречается».
+
+    Слова самого запроса исключаются: по запросу про кибербезопасность
+    кандидат «cyber security» — это название области, а не сигнал внутри неё.
     """
+    query_words = query_words or set()
     if not documents:
         return {}
 
@@ -180,11 +213,21 @@ def extract_candidates(documents: list[dict[str, Any]]) -> dict[str, list[dict[s
         по_документам.append(фразы)
         счётчик.update(фразы)
 
-    предел = max(int(len(documents) * MAX_DOC_SHARE), MIN_DOCS_PER_CANDIDATE + 1)
+    предел = max(int(len(documents) * max_share), min_docs + 1)
     отобранные = [
         фраза for фраза, количество in счётчик.most_common()
-        if MIN_DOCS_PER_CANDIDATE <= количество <= предел
+        if min_docs <= количество <= предел
+        and _content_words(фраза, query_words) >= 1
     ]
+
+    # «privacy security» и «security privacy» — одно и то же. Схлопываем по
+    # набору слов, оставляя тот вариант, что встретился чаще.
+    по_набору: dict[frozenset[str], str] = {}
+    for фраза in отобранные:
+        ключ = frozenset(фраза.split())
+        if ключ not in по_набору:
+            по_набору[ключ] = фраза
+    отобранные = list(по_набору.values())
 
     группы_всех: dict[str, list[dict[str, Any]]] = {
         фраза: [doc for doc, фразы in zip(documents, по_документам) if фраза in фразы]
@@ -285,7 +328,22 @@ def run(
     if save_to_db:
         db.save_docs(документы, query=query)
 
-    группы = extract_candidates(документы)
+    # Слова поисковых строк — это тема, а не кандидаты в сигналы.
+    слова_запроса = {
+        w.lower()
+        for строка in search_queries(query)
+        for w in _WORD.findall(строка)
+    }
+    группы = extract_candidates(документы, query_words=слова_запроса)
+
+    # Если по узкому запросу документов мало, строгие пороги оставляют
+    # два-три кандидата. Тогда ослабляем и честно пишем об этом в лог:
+    # лучше показать жюри десяток кандидатов с оговоркой, чем пустой экран.
+    if len(группы) < 8:
+        log.info("Кандидатов мало (%s), ослабляю пороги", len(группы))
+        группы = extract_candidates(
+            документы, query_words=слова_запроса, min_docs=2, max_share=0.30
+        )
     log.info("Кандидатов до отбора: %s", len(группы))
 
     model = load_model()
@@ -352,8 +410,14 @@ if __name__ == "__main__":
     import sys
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-    запрос = sys.argv[1] if len(sys.argv) > 1 else "слабые сигналы в кибербезопасности"
-    карточки = run(запрос)
+
+    аргументы = [a for a in sys.argv[1:] if not a.startswith("--")]
+    флаги = {a for a in sys.argv[1:] if a.startswith("--")}
+
+    запрос = аргументы[0] if аргументы else "слабые сигналы в кибербезопасности"
+    # --no-cache нужен при проверках: иначе после правки кода прогон молча
+    # возвращает старый ответ из кеша и кажется, что ничего не изменилось.
+    карточки = run(запрос, use_cache="--no-cache" not in флаги)
     print(json.dumps(stats(карточки), ensure_ascii=False, indent=2))
     for card in карточки[:TOP_N]:
         предикторы = ", ".join(

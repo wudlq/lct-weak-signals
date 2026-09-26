@@ -1,0 +1,1667 @@
+[
+  {
+    "technology": "artificial intelligence",
+    "technology_original": "artificial intelligence",
+    "technology_language": "en",
+    "area": "",
+    "score": 1.0,
+    "top_features": [
+      {
+        "name": "число организаций",
+        "value": 19.0,
+        "direction": "+"
+      },
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      }
+    ],
+    "description": "As the usage of artificial intelligence (AI) grows within the field of cybersecurity, so too does the demand for secure and decentralized AI systems to protect against potential cyber threats. Blockchain technology (BT) has emerged as the ideal approach for increasing both the security and privacy of AI systems since it provides decentralized and immutable data storage. This systematic literature ",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4392303358",
+        "title": "Blockchain for secure and decentralized artificial intelligence in cybersecurity: A comprehensive review",
+        "abstract": "As the usage of artificial intelligence (AI) grows within the field of cybersecurity, so too does the demand for secure and decentralized AI systems to protect against potential cyber threats. Blockchain technology (BT) has emerged as the ideal approach for increasing both the security and privacy of AI systems since it provides decentralized and immutable data storage. This systematic literature review focuses on the integration of BT with decentralized AI within cybersecurity. It provides a comprehensive taxonomy of BT and decentralized AI for cybersecurity serving as the starting point for the study. This paper begins with an overview of BT and its possible uses in cybersecurity and also analyzes its challenges and opportunities. Decentralized AI is also covered in the study, along with its potential advantages and difficulties in decentralized AI cybersecurity. Building on that foundation, this study provides convincing findings highlighting the beneficial relationships between BT and decentralized AI for cybersecurity, contributing to a nuanced comprehension of their integration. Moreover, it offers real-world uses of blockchain-enabled decentralized AI to discuss its usefulness in tackling cybersecurity concerns. Finally, this paper discusses future research directions for blockchain-enabled decentralized AI in cybersecurity, including potential applications and implications of this technology in the field, emphasizing the potential of blockchain-enabled decentralized AI in cybersecurity to enhance security, privacy, and trust in AI systems.",
+        "url": "https://doi.org/10.1016/j.bcra.2024.100193",
+        "published": "2024-02-29",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Blockchain Research and Applications",
+        "authors": [
+          "Ahmed M. Shamsan Saleh"
+        ],
+        "orgs": [
+          "University of Tabuk"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4391843476",
+        "title": "Artificial intelligence (AI) cybersecurity dimensions: a comprehensive framework for understanding adversarial and offensive AI",
+        "abstract": "Abstract As Artificial Intelligence (AI) rapidly advances and integrates into various domains, cybersecurity emerges as a critical field grappling with both the benefits and pitfalls of AI technologies. This paper explores the multifaceted dimensions of AI-driven cyberattacks, offering insights into their implications, mitigation strategies, underlying motivations, and profound societal impacts. The research centres on developing and presenting the AI Cybersecurity Dimensions (AICD) Framework, a comprehensive, multidimensional schema designed to guide academics, policymakers, and industry professionals in understanding and combating the evolving challenges posed by AI-driven cyber threats. The research unveils the complex dynamics of offensive AI, stressing the need for adaptive defences and ethical considerations. Concurrently, the study highlights adversarial AI threats, calling for proactive measures to address their potential ramifications. Through rigorous textual analyses and extensive literature reviews, the paper underscores the urgency for interdisciplinary approaches to bridge the technology-humanity chasm traditionally observed in cybersecurity discussions. By synthesising these diverse elements, the AICD Framework emerges as an instrumental tool for holistic understanding and practical interventions in the AI-infused cybersecurity landscape. The paper concludes with an urgent call for collaborative efforts in research and practice to navigate the intricate challenges and capitalise on the opportunities borne from the convergence of AI and cybersecurity.",
+        "url": "https://doi.org/10.1007/s43681-024-00427-4",
+        "published": "2024-02-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "AI and Ethics",
+        "authors": [
+          "Masike Malatji",
+          "Alaa Tolah"
+        ],
+        "orgs": [
+          "University of South Africa",
+          "Saudi Electronic University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4399425630",
+        "title": "Artificial Intelligence, Machine Learning, and Deep Learning for Cybersecurity Solutions: A Review of Emerging Technologies and Applications",
+        "abstract": null,
+        "url": "https://doi.org/10.2139/ssrn.4855884",
+        "published": "2024-01-01",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "SSRN Electronic Journal",
+        "authors": [
+          "Mallikarjuna Paramesha",
+          "Nitin Liladhar Rane",
+          "Jayesh Rane"
+        ],
+        "orgs": [
+          "California State University System",
+          "Swami Vivekanand College of Pharmacy",
+          "K J Somaiya Medical College"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4387140220",
+        "title": "Cyberattacks in Smart Grids: Challenges and Solving the Multi-Criteria Decision-Making for Cybersecurity Options, Including Ones That Incorporate Artificial Intelligence, Using an Analytical Hierarchy Process",
+        "abstract": "Smart grids have emerged as a transformative technology in the power sector, enabling efficient energy management. However, the increased reliance on digital technologies also exposes smart grids to various cybersecurity threats and attacks. This article provides a comprehensive exploration of cyberattacks and cybersecurity in smart grids, focusing on critical components and applications. It examines various cyberattack types and their implications on smart grids, backed by real-world case studies and quantitative models. To select optimal cybersecurity options, the study proposes a multi-criteria decision-making (MCDM) approach using the analytical hierarchy process (AHP). Additionally, the integration of artificial intelligence (AI) techniques in smart-grid security is examined, highlighting the potential benefits and challenges. Overall, the findings suggest that “security effectiveness” holds the highest importance, followed by “cost-effectiveness”, “scalability”, and “Integration and compatibility”, while other criteria (i.e., “performance impact”, “manageability and usability”, “compliance and regulatory requirements”, “resilience and redundancy”, “vendor support and collaboration”, and “future readiness”) contribute to the evaluation but have relatively lower weights. Alternatives such as “access control and authentication” and “security information and event management” with high weighted sums are crucial for enhancing cybersecurity in smart grids, while alternatives such as “compliance and regulatory requirements” and “encryption” have lower weighted sums but still provide value in their respective criteria. We also find that “deep learning” emerges as the most effective AI technique for enhancing cybersecurity in smart grids, followed by “hybrid approaches”, “Bayesian networks”, “swarm intelligence”, and “machine learning”, while “fuzzy logic”, “natural language processing”, “expert systems”, and “genetic algorithms” exhibit lower effectiveness in addressing smart-grid cybersecurity. The article discusses the benefits and drawbacks of MCDM-AHP, proposes enhancements for its use in smart-grid cybersecurity, and suggests exploring alternative MCDM techniques for evaluating security options in smart grids. The approach aids decision-makers in the smart-grid field to make informed cybersecurity choices and optimize resource allocation.",
+        "url": "https://doi.org/10.3390/jcp3040031",
+        "published": "2023-09-27",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Journal of Cybersecurity and Privacy",
+        "authors": [
+          "Ayat-Allah Bouramdane"
+        ],
+        "orgs": [
+          "International University of Rabat"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4388720055",
+        "title": "Artificial Intelligence Trust, Risk and Security Management (AI TRiSM): Frameworks, applications, challenges and future research directions",
+        "abstract": null,
+        "url": "https://doi.org/10.1016/j.eswa.2023.122442",
+        "published": "2023-11-16",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Expert Systems with Applications",
+        "authors": [
+          "Adib Habbal",
+          "Mohamed Khalif Ali",
+          "Mustafa Ali Abuzaraida"
+        ],
+        "orgs": [
+          "Karabük University",
+          "Somali International University",
+          "Misurata University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 10,
+    "sources_shown": 5,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "emerging technologies",
+    "technology_original": "emerging technologies",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.999,
+    "top_features": [
+      {
+        "name": "число организаций",
+        "value": 15.0,
+        "direction": "+"
+      },
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      }
+    ],
+    "description": "As cyber threats continue to evolve, organizations are increasingly adopting advanced security frameworks such as Zero Trust Architecture (ZTA) to protect their digital assets. ZTA operates under the principle of \"never trust, always verify,\" acknowledging that both internal and external networks may be compromised. Integrated with Identity and Access Management (IAM), ZTA offers a dynamic securit",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4406385285",
+        "title": "The Role of Zero Trust Architecture in Modern Cybersecurity: Integration with IAM and Emerging Technologies",
+        "abstract": "As cyber threats continue to evolve, organizations are increasingly adopting advanced security frameworks such as Zero Trust Architecture (ZTA) to protect their digital assets. ZTA operates under the principle of \"never trust, always verify,\" acknowledging that both internal and external networks may be compromised. Integrated with Identity and Access Management (IAM), ZTA offers a dynamic security model, requiring continuous authentication and authorization for every access request. This integration ensures that sensitive resources are protected by enforcing multifactor authentication, behavioral analysis, and micro-segmentation, which collectively reduce the risk of attacks. A critical aspect of ZTA is its focus on continuous authentication and the principle of least privilege. Unlike traditional IAM systems, which grant static access, ZTA dynamically adjusts access based on real-time conditions, such as user behavior, location, and the sensitivity of data. This reduces the attack surface and minimizes lateral movement within the network. Additionally, ZTA promotes network segmentation, using IAM frameworks to enforce strict access control for each network segment. This limits the potential damage if an attacker compromises one segment. Studies have shown that ZTA is highly effective in mitigating insider threats, reducing the attack surface, and enhancing the resilience of infrastructure. While challenges remain in terms of scalability and integration complexity, the security benefits are undeniable. The increasing use of AI, machine learning, and quantum computing is expected to further strengthen ZTA's security capabilities. As organizations face more sophisticated cyber threats, ZTA is likely to become a standard in cybersecurity strategies, providing a robust, adaptable solution to protect valuable digital assets.",
+        "url": "https://doi.org/10.34117/bjdv11n1-060",
+        "published": "2025-01-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Brazilian Journal of Development",
+        "authors": [
+          "Wilson Leite Rebouças Filho"
+        ],
+        "orgs": [
+          "Military Institute of Engineering"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4388084457",
+        "title": "Managing Cybersecurity Risks in Emerging Technologies",
+        "abstract": "Nowadays, it has become increasingly important for companies to effectively manage cybersecurity risks in emerging technologies. This article presents an overview of cybersecurity in these technologies. It sheds light on the obstacles that businesses encounter when dealing with these risks. The field of cybersecurity poses challenges that need to be overcome. Technical challenges include securing communication networks and protecting data and systems from threats. Moreover, it is crucial to ensure the dependability and trustworthiness of emerging technologies. Organisational challenges involve preparing and training employees and devising effective strategies to address the unique cybersecurity issues associated with new technologies. Regulatory challenges arise due to changing compliance requirements in a global context where different countries have diverse cybersecurity laws. To effectively manage cybersecurity risks, it is essential to follow established risk management practices, such as identifying and assessing risks systematically. However, there are gaps in research and practices that should be addressed. These gaps include the lack of frameworks for conducting cost-benefit analyses, a limited understanding of the role played by error in cybersecurity incidents, and the necessity for comprehensive strategies to deal with the constantly evolving landscape of cybersecurity threats. Bridging these gaps requires investigation along with developing effective strategies for improving cybersecurity in emerging technologies.",
+        "url": "https://doi.org/10.58915/ijbt.v13i3.297",
+        "published": "2023-10-31",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "International Journal of Business and Technopreneurship (IJBT)",
+        "authors": [
+          "Mohd Noorulfakhri Yaacob",
+          "Syed Zulkarnain Syed Idrus",
+          "MARIAM IDRIS"
+        ],
+        "orgs": [
+          "Universiti Malaysia Perlis",
+          "Sultan Zainal Abidin University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4400982241",
+        "title": "Cybersecurity Awareness: Leveraging Emerging Technologies in the Security and Management of Libraries in Higher Education Institutions",
+        "abstract": "This study investigates cybersecurity awareness, particularly within the realm of higher education institutions, where emerging technologies enhance library security and management. The paper adopts a qualitative research method through a scoping review of the literature to determine cybersecurity threats in libraries, establish the role of emerging technologies in cybersecurity, identify applications of these technologies in library security and management, and address challenges associated with their implementation. Findings reveal a diverse array of cybersecurity threats faced by libraries, ranging from malware infections to data breaches, highlighting the need for robust security measures. Emerging technologies such as Artificial Intelligence (AI), Machine Learning (ML), Blockchain, Biometric Authentication, and Internet of Things (IoT) security are identified as crucial tools for mitigating these threats and enhancing library security. Applications of these technologies include AI-powered threat detection systems, blockchain-based digital asset management platforms, and biometric authentication systems for access control. However, challenges such as interoperability issues, data privacy concerns, and budget constraints are recognised as barriers to their effective implementation. The study concludes by emphasising the importance of addressing cybersecurity issues in libraries and leveraging emerging technologies to strengthen security, resilience, and innovation in library management practices.",
+        "url": "https://doi.org/10.25159/3005-4222/16671",
+        "published": "2024-07-16",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Southern African Journal of Security",
+        "authors": [
+          "Solomon Obotu Akor",
+          "Celina Jummai Nongo",
+          "Columbus O. Udofot",
+          "Bolaji David Oladokun"
+        ],
+        "orgs": [
+          "Federal University of Technology",
+          "Federal University of Technology Ikot Abasi"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4405709448",
+        "title": "Emerging Technologies for Cybersecurity in Healthcare: Evaluating Risks and Implementing Standards",
+        "abstract": "Emerging technologies in healthcare cybersecurity focus on addressing evolving threats to patient data and critical systems. AI and machine learning algorithms are being deployed for real-time threat detection and anomaly identification. Blockchain technology is utilized for secure, tamper-proof health record management. Zero-trust architectures are implemented to enhance access control and minimize breach impacts. Key challenges include securing IoT medical devices, protecting against ransomware attacks, and ensuring HIPAA compliance in cloud environments. Risk evaluation involves continuous vulnerability assessments and penetration testing. Implementation of standards like NIST Cybersecurity Framework and ISO 27001 is crucial. Advanced encryption methods, including homomorphic encryption, are being explored for secure data sharing. Biometric authentication and behavioral analytics are enhancing identity management. The integration of these technologies aims to create a robust, adaptive cybersecurity ecosystem in healthcare. This research paper proposes a framework that talks about the new emerging technologies and various aspects of cybersecurity and what responses can be proposed to avoid the attacks that have taken place in the healthcare sector till now. This is a qualitative study involving content analysis gathered from the transcript of the interview of industry experts. Experts from IoMT (Internet-of-medical-things), EHR (Electronic health records), Blockchain, Cloud computing and cyber-attack data analyst. The framework was corroborated by a few of industry experts.",
+        "url": "https://doi.org/10.1109/cybercom63683.2024.10803219",
+        "published": "2024-11-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Sparsh Jain",
+          "P Ashok",
+          "Sandeep Prabhu"
+        ],
+        "orgs": [
+          "Symbiosis International University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4399425630",
+        "title": "Artificial Intelligence, Machine Learning, and Deep Learning for Cybersecurity Solutions: A Review of Emerging Technologies and Applications",
+        "abstract": null,
+        "url": "https://doi.org/10.2139/ssrn.4855884",
+        "published": "2024-01-01",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "SSRN Electronic Journal",
+        "authors": [
+          "Mallikarjuna Paramesha",
+          "Nitin Liladhar Rane",
+          "Jayesh Rane"
+        ],
+        "orgs": [
+          "California State University System",
+          "Swami Vivekanand College of Pharmacy",
+          "K J Somaiya Medical College"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 10,
+    "sources_shown": 5,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "machine learning",
+    "technology_original": "machine learning",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.999,
+    "top_features": [
+      {
+        "name": "число организаций",
+        "value": 10.0,
+        "direction": "+"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      },
+      {
+        "name": "доля лидера",
+        "value": 0.1,
+        "direction": "+"
+      }
+    ],
+    "description": "The cybersecurity concerns get increasingly intricate as the digital world progresses. In light of the increasing complexity of cyber threats, it is imperative to develop and implement advanced and flexible security strategies. Machine Learning (ML) has become a potent tool in strengthening cybersecurity, providing the capacity to scrutinise extensive information, recognise trends, and improve thr",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4391285268",
+        "title": "Machine learning in cybersecurity: A review of threat detection and defense mechanisms",
+        "abstract": "The cybersecurity concerns get increasingly intricate as the digital world progresses. In light of the increasing complexity of cyber threats, it is imperative to develop and implement advanced and flexible security strategies. Machine Learning (ML) has become a potent tool in strengthening cybersecurity, providing the capacity to scrutinise extensive information, recognise trends, and improve threat detection and defence methods. This paper examines the significance of ML in the field of cybersecurity, with a special emphasis on the identification of threats and the implementation of protective measures. By incorporating ML algorithms into cybersecurity frameworks, organisations may automate decision-making processes, facilitating prompt responses to ever-changing threats. The initial segment explores the terrain of cyber threats, highlighting the necessity for dynamic and aggressive security methods. Conventional solutions that rely on signatures are frequently inadequate when it comes to handling sophisticated, shape-shifting attacks. ML algorithms, in contrast, have exceptional proficiency in identifying nuanced patterns and irregularities within extensive datasets, therefore offering a more efficient method of detecting potential threats. The second section delves into several ML methodologies utilised in cybersecurity, including supervised and unsupervised learning, deep learning, and reinforcement learning. Every approach is assessed based on its suitability for threat detection, demonstrating its advantages and constraints. Furthermore, the relevance of feature engineering and data pretreatment in improving machine learning models for cybersecurity applications. The versatility of ML algorithms allows them to grow with emerging threats, making them a useful tool in the ever-changing arena of cyber warfare. The final segment focuses on real-world applications of machine learning in cybersecurity, presenting successful use cases across sectors. From anomaly detection to behavior analysis, ML algorithms contribute to the discovery of dangerous activity, lowering false positives and strengthening the overall security posture. Lastly, the paper covers the obstacles and ethical issues related to the adoption of ML in cybersecurity. Issues like as adversarial assaults, skewed datasets, and the interpretability of ML models are examined, highlighting the necessity for a holistic strategy that integrates modern technology with ethical considerations. The fusion of human expertise and machine intelligence offers a formidable defense against evolving cyber threats, paving the way for a more resilient and secure digital future.",
+        "url": "https://doi.org/10.30574/wjarr.2024.21.1.0315",
+        "published": "2024-01-27",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "World Journal of Advanced Research and Reviews",
+        "authors": [
+          "Ugochukwu Ikechukwu Okoli",
+          "Ogugua Chimezie Obi",
+          "Adebunmi Okechukwu Adewusi",
+          "Temitayo Oluwaseun Abrahams"
+        ],
+        "orgs": [
+          "University of Ilorin"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4399425630",
+        "title": "Artificial Intelligence, Machine Learning, and Deep Learning for Cybersecurity Solutions: A Review of Emerging Technologies and Applications",
+        "abstract": null,
+        "url": "https://doi.org/10.2139/ssrn.4855884",
+        "published": "2024-01-01",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "SSRN Electronic Journal",
+        "authors": [
+          "Mallikarjuna Paramesha",
+          "Nitin Liladhar Rane",
+          "Jayesh Rane"
+        ],
+        "orgs": [
+          "California State University System",
+          "Swami Vivekanand College of Pharmacy",
+          "K J Somaiya Medical College"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4415918357",
+        "title": "A comprehensive survey on intrusion detection systems with advances in machine learning, deep learning and emerging cybersecurity challenges",
+        "abstract": "Abstract Recent advancements in technology, particularly in artificial intelligence (AI) and machine learning (ML), have significantly enhanced connectivity and efficiency in various domains. However, these developments have also led to increased threats and concerns regarding cyberattacks which have significantly challenged governments, businesses, and societies. An Intrusion Detection System (IDS) is a critical component of a cybersecurity architecture that is designed to monitor and analyze network traffic for signs of malicious activity and plays an essential role in detecting and responding to security threats. The increasing complexity of security attacks has led researchers to use machine learning (ML) and deep learning (DL) methods to enhance IDS performance. These cutting-edge systems are designed to detect emerging cyberthreats. The current study investigates and compares various types of IDS and AI-based techniques that use ML and DL algorithms to protect data against malicious threats. It also provides an overview of the architecture and operation of IDS and examines popular datasets such as CIC-IDS2017, KDDCup99 and UNSW-NB15 used to evaluate IDS models. These datasets offer a diverse range of attack scenarios and normal traffic and help create a more reliable and effective IDS which improves the overall network security. The study concludes by emphasizing constant progress in IDS technologies to combat evolving cyberthreats and enhance network security.",
+        "url": "https://doi.org/10.1007/s44163-025-00578-1",
+        "published": "2025-11-05",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Discover Artificial Intelligence",
+        "authors": [
+          "Ali Hozouri",
+          "Abbas Mirzaei",
+          "Mehdi Effatparvar"
+        ],
+        "orgs": [
+          "Islamic Azad University Ardabil"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4402915134",
+        "title": "Security and Privacy in E-Health Systems: A Review of AI and Machine Learning Techniques",
+        "abstract": "The adoption of electronic health (e-health) systems has transformed healthcare delivery by harnessing digital technologies to enhance patient care, optimize operations, and improve health outcomes. This paper provides a comprehensive overview of the current state of e-health systems, tracing their evolution from traditional paper-based records to advanced Electronic Health Record Systems(EHRs) and examining the diverse components and applications that support healthcare providers and patients. A key focus is on the emerging trends in AI-driven cybersecurity for e-health, which are essential for protecting sensitive health data. AI’s capabilities in continuous monitoring, advanced pattern recognition, real-time threat response, predictive analytics, and scalability fundamentally change the security landscape of e-health systems. The paper discusses how AI strengthens data security through techniques like anomaly detection, automated countermeasures, and adaptive learning algorithms, enhancing the efficiency and accuracy of threat detection and response. Furthermore, the paper delves into future directions and research opportunities in AI-driven cybersecurity for e-health. These include the development of advanced threat detection systems that adapt through continuous learning, quantum-resistant encryption to safeguard against future threats, and privacy-preserving AI techniques that protect patient confidentiality while ensuring data remains useful for analysis. The importance of automating regulatory compliance, securing data interoperability via blockchain, and prioritizing ethical AI development are also highlighted as critical research areas. By emphasizing innovative security solutions, collaborative efforts, ongoing research, and ethical practices, the e-health sector can build resilient and secure healthcare infrastructures, ultimately enhancing patient care and health outcomes.",
+        "url": "https://doi.org/10.1109/access.2024.3469215",
+        "published": "2024-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "IEEE Access",
+        "authors": [
+          "Mary Nankya",
+          "Allan Mugisa",
+          "Yusuf Usman",
+          "Aadesh Upadhyay",
+          "Robin Chataut"
+        ],
+        "orgs": [
+          "Fitchburg State University",
+          "Quinnipiac University",
+          "University of North Texas",
+          "Texas Christian University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4390561469",
+        "title": "Machine learning techniques for IoT security: Current research and future vision with generative AI and large language models",
+        "abstract": "Despite providing unparalleled connectivity and convenience, the exponential growth of the Internet of Things (IoT) ecosystem has triggered significant cybersecurity concerns. These concerns stem from various factors, including the heterogeneity of IoT devices, widespread deployment, and inherent computational limitations. Integrating emerging technologies to address these concerns becomes imperative as the dynamic IoT landscape evolves. Machine Learning (ML), a rapidly advancing technology, has shown considerable promise in addressing IoT security issues. It has significantly influenced and advanced research in cyber threat detection. This survey provides a comprehensive overview of current trends, methodologies, and challenges in applying machine learning for cyber threat detection in IoT environments. Specifically, we further perform a comparative analysis of state-of-the-art ML-based Intrusion Detection Systems (IDSs) in the landscape of IoT security. In addition, we shed light on the pressing unresolved issues and challenges within this dynamic field. We provide a future vision with Generative AI and large language models to enhance IoT security. The discussions present an in-depth understanding of different cyber threat detection methods, enhancing the knowledge base of researchers and practitioners alike. This paper is a valuable resource for those keen to delve into the evolving world of cyber threat detection leveraging ML and IoT security.",
+        "url": "https://doi.org/10.1016/j.iotcps.2023.12.003",
+        "published": "2024-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Internet of Things and Cyber-Physical Systems",
+        "authors": [
+          "Fatima Alwahedi",
+          "Alyazia Aldhaheri",
+          "Mohamed Amine Ferrag",
+          "Ammar Ayman Battah",
+          "Norbert Tihanyi"
+        ],
+        "orgs": [
+          "Technology Innovation Institute"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 5,
+    "sources_shown": 5,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "global food security",
+    "technology_original": "global food security",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.998,
+    "top_features": [
+      {
+        "name": "число организаций",
+        "value": 13.0,
+        "direction": "+"
+      },
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      }
+    ],
+    "description": "The issue of food security continues to be a prominent global concern, affecting a significant number of individuals who experience the adverse effects of hunger and malnutrition. The finding of a solution of this intricate issue necessitates the implementation of novel and paradigm-shifting methodologies in agriculture and food sector. In recent times, the domain of artificial intelligence (AI) h",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4396520619",
+        "title": "Towards sustainable agriculture: Harnessing AI for global food security",
+        "abstract": "The issue of food security continues to be a prominent global concern, affecting a significant number of individuals who experience the adverse effects of hunger and malnutrition. The finding of a solution of this intricate issue necessitates the implementation of novel and paradigm-shifting methodologies in agriculture and food sector. In recent times, the domain of artificial intelligence (AI) has emerged as a potent tool capable of instigating a profound influence on the agriculture and food sectors. AI technologies provide significant advantages by optimizing crop cultivation practices, enabling the use of predictive modelling and precision agriculture techniques, and aiding efficient crop monitoring and disease identification. Additionally, AI has the potential to optimize supply chain operations, storage management, transportation systems, and quality assurance processes. It also tackles the problem of food loss and waste through post-harvest loss reduction, predictive analytics, and smart inventory management. This study highlights that how by utilizing the power of AI, we could transform the way we produce, distribute, and manage food, ultimately creating a more secure and sustainable future for all.",
+        "url": "https://doi.org/10.1016/j.aiia.2024.04.003",
+        "published": "2024-04-30",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Artificial Intelligence in Agriculture",
+        "authors": [
+          "Dhananjay Kumar Pandey",
+          "Richa Mishra"
+        ],
+        "orgs": [
+          "Institute of Chartered Financial Analysts of India"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4395466652",
+        "title": "AI can empower agriculture for global food security: challenges and prospects in developing nations",
+        "abstract": "Food and nutrition are a steadfast essential to all living organisms. With specific reference to humans, the sufficient and efficient supply of food is a challenge as the world population continues to grow. Artificial Intelligence (AI) could be identified as a plausible technology in this 5th industrial revolution in bringing us closer to achieving zero hunger by 2030-Goal 2 of the United Nations Sustainable Development Goals (UNSDG). This goal cannot be achieved unless the digital divide among developed and underdeveloped countries is addressed. Nevertheless, developing and underdeveloped regions fall behind in economic resources; however, they harbor untapped potential to effectively address the impending demands posed by the soaring world population. Therefore, this study explores the in-depth potential of AI in the agriculture sector for developing and under-developed countries. Similarly, it aims to emphasize the proven efficiency and spin-off applications of AI in the advancement of agriculture. Currently, AI is being utilized in various spheres of agriculture, including but not limited to crop surveillance, irrigation management, disease identification, fertilization practices, task automation, image manipulation, data processing, yield forecasting, supply chain optimization, implementation of decision support system (DSS), weed control, and the enhancement of resource utilization. Whereas AI supports food safety and security by ensuring higher crop yields that are acquired by harnessing the potential of multi-temporal remote sensing (RS) techniques to accurately discern diverse crop phenotypes, monitor land cover dynamics, assess variations in soil organic matter, predict soil moisture levels, conduct plant biomass modeling, and enable comprehensive crop monitoring. The present study identifies various challenges, including financial, infrastructure, experts, data availability, customization, regulatory framework, cultural norms and attitudes, access to market, and interdisciplinary collaboration, in the adoption of AI for developing nations with their subsequent remedies. The identification of challenges and opportunities in the implementation of AI could ignite further research and actions in these regions; thereby supporting sustainable development.",
+        "url": "https://doi.org/10.3389/frai.2024.1328530",
+        "published": "2024-04-25",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Frontiers in Artificial Intelligence",
+        "authors": [
+          "Ahmad Ali",
+          "Anderson X. W. Liew",
+          "Francesca Venturini",
+          "Athanasios P. Kalogeras",
+          "Alessandro Candiani",
+          "Giacomo Di Benedetto",
+          "Segun Ajibola",
+          "P. Cartujo",
+          "Pablo Romero",
+          "Aspasia Lykoudi",
+          "Michelangelo Mastrorocco De Grandis",
+          "Christos Xouris",
+          "Riccardo Lo Bianco",
+          "Irawan Doddy",
+          "Isa Olalekan Elegbede",
+          "Giuseppe Falvo D’Urso Labate",
+          "Luis F. García del Moral",
+          "Vanessa Martos"
+        ],
+        "orgs": [
+          "Universitat Politècnica de València",
+          "International Space University",
+          "ZHAW Zurich University of Applied Sciences",
+          "Industrial Systems Institute",
+          "BioLife Solutions (United States)",
+          "Universidade Nova de Lisboa",
+          "Universidad de Granada",
+          "University of Palermo",
+          "Universitas Muhammadiyah Pontianak",
+          "Lagos State Health Service Commission"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      },
+      {
+        "source_id": "openalex:W4402350609",
+        "title": "Applications of artificial intelligence (AI) in managing food quality and ensuring global food security",
+        "abstract": "The food industry uses artificial intelligence (AI) to enhance food quality and security while proposing significant capital savings and resource optimization. Additionally, understanding machine learning (ML) techniques is essential for their effectiveness. Therefore, the gap lies in examining how industrial automation plays a crucial role in successfully implementing this new technology. To address this gap, this review explores AI’s potential to significantly enhance food safety by creating a more transparent supply chain management system. Therefore, the primary focus is exploring potential AI applications, such as artificial neural networks (ANN) and convolutional neural networks (CNN), for detecting food and agricultural product quality. The primary goal of utilizing these AI applications is to reduce human intervention and effort. These methodologies have advantages and disadvantages regarding theoretical knowledge and model interpretation.",
+        "url": "https://doi.org/10.1080/19476337.2024.2393287",
+        "published": "2024-09-09",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "CyTA - Journal of Food",
+        "authors": [
+          "Ali Ikram",
+          "Hassan Mehmood",
+          "Muhammad Tayyab Arshad",
+          "Areeba Rasheed",
+          "Sana Noreen",
+          "Kodjo Théodore Gnedeka"
+        ],
+        "orgs": [
+          "University of Lahore",
+          "University of Lomé"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 3,
+    "sources_shown": 3,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "security management",
+    "technology_original": "security management",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.998,
+    "top_features": [
+      {
+        "name": "число организаций",
+        "value": 8.0,
+        "direction": "+"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      },
+      {
+        "name": "слова ранней стадии",
+        "value": 0.0,
+        "direction": "-"
+      }
+    ],
+    "description": "This study investigates cybersecurity awareness, particularly within the realm of higher education institutions, where emerging technologies enhance library security and management. The paper adopts a qualitative research method through a scoping review of the literature to determine cybersecurity threats in libraries, establish the role of emerging technologies in cybersecurity, identify applicat",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4400982241",
+        "title": "Cybersecurity Awareness: Leveraging Emerging Technologies in the Security and Management of Libraries in Higher Education Institutions",
+        "abstract": "This study investigates cybersecurity awareness, particularly within the realm of higher education institutions, where emerging technologies enhance library security and management. The paper adopts a qualitative research method through a scoping review of the literature to determine cybersecurity threats in libraries, establish the role of emerging technologies in cybersecurity, identify applications of these technologies in library security and management, and address challenges associated with their implementation. Findings reveal a diverse array of cybersecurity threats faced by libraries, ranging from malware infections to data breaches, highlighting the need for robust security measures. Emerging technologies such as Artificial Intelligence (AI), Machine Learning (ML), Blockchain, Biometric Authentication, and Internet of Things (IoT) security are identified as crucial tools for mitigating these threats and enhancing library security. Applications of these technologies include AI-powered threat detection systems, blockchain-based digital asset management platforms, and biometric authentication systems for access control. However, challenges such as interoperability issues, data privacy concerns, and budget constraints are recognised as barriers to their effective implementation. The study concludes by emphasising the importance of addressing cybersecurity issues in libraries and leveraging emerging technologies to strengthen security, resilience, and innovation in library management practices.",
+        "url": "https://doi.org/10.25159/3005-4222/16671",
+        "published": "2024-07-16",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Southern African Journal of Security",
+        "authors": [
+          "Solomon Obotu Akor",
+          "Celina Jummai Nongo",
+          "Columbus O. Udofot",
+          "Bolaji David Oladokun"
+        ],
+        "orgs": [
+          "Federal University of Technology",
+          "Federal University of Technology Ikot Abasi"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4388720055",
+        "title": "Artificial Intelligence Trust, Risk and Security Management (AI TRiSM): Frameworks, applications, challenges and future research directions",
+        "abstract": null,
+        "url": "https://doi.org/10.1016/j.eswa.2023.122442",
+        "published": "2023-11-16",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Expert Systems with Applications",
+        "authors": [
+          "Adib Habbal",
+          "Mohamed Khalif Ali",
+          "Mustafa Ali Abuzaraida"
+        ],
+        "orgs": [
+          "Karabük University",
+          "Somali International University",
+          "Misurata University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W7133236347",
+        "title": "TRiSM for Agentic AI: A review of Trust, Risk, and Security Management in LLM-based Agentic Multi-Agent Systems",
+        "abstract": "Agentic AI systems, built upon large language models (LLMs) and deployed in multi-agent configurations, are redefining intelligence, autonomy, collaboration, and decision-making across enterprise and societal domains. This review presents a structured analysis of Trust, Risk, and Security Management (TRiSM) in the context of LLM-based Agentic Multi-Agent Systems (AMAS). We begin by examining the conceptual foundations of Agentic AI and highlight its architectural distinctions from traditional AI agents. We then adapt and extend the AI TRiSM framework for Agentic AI, structured around key pillars: Explainability, ModelOps, Security, Privacy and their Lifecycle Governance , each contextualized to the challenges of AMAS. A risk taxonomy is proposed to capture the unique threats and vulnerabilities of Agentic AI, ranging from coordination failures to prompt-based adversarial manipulation. To make coordination and tool use measurable in practice, we propose two metrics: the Component Synergy Score (CSS), which captures inter-agent enablement, and the Tool Utilization Efficacy (TUE), which evaluates whether tools are invoked correctly and efficiently. We further discuss strategies for improving explainability in Agentic AI, as well as approaches to enhancing security and privacy through encryption, adversarial robustness, and regulatory compliance. The review concludes with a research roadmap for the responsible development and deployment of Agentic AI, highlighting key directions to align emerging systems with TRiSM principles-ensuring safety, transparency, and accountability in their operation.",
+        "url": "https://doi.org/10.1016/j.aiopen.2026.02.006",
+        "published": "2026-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "AI Open",
+        "authors": [
+          "Shaina Raza",
+          "Ranjan Sapkota",
+          "Manoj Karkee",
+          "Christos Emmanouilidis"
+        ],
+        "orgs": [
+          "Vector Institute",
+          "Cornell University",
+          "University of Groningen"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 3,
+    "sources_shown": 3,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "trends cybersecurity",
+    "technology_original": "trends cybersecurity",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.997,
+    "top_features": [
+      {
+        "name": "число организаций",
+        "value": 11.0,
+        "direction": "+"
+      },
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      }
+    ],
+    "description": null,
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4408960860",
+        "title": "Trends in Cybersecurity: A Comprehensive Bibliometric Review",
+        "abstract": null,
+        "url": "https://doi.org/10.1007/978-3-031-77925-1_22",
+        "published": "2025-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Studies in computational intelligence",
+        "authors": [
+          "Ala’a M. Al-Momani",
+          "Anber Abraheem Shlash Mohammad",
+          "Sulieman Ibraheem Mohammad",
+          "Asokan Vasudevan",
+          "Abdullah Ibrahim Mohammad",
+          "Ruba Jafar Kutieshat",
+          "Muhammad Turki Alshurideh",
+          "Mazen S. Alzyoud",
+          "Dheifallah Ibrahim Mohammad"
+        ],
+        "orgs": [
+          "Amman Arab University",
+          "INTI International University",
+          "Petra University",
+          "Zarqa University",
+          "Al-Balqa Applied University",
+          "University of Jordan",
+          "University of Sharjah",
+          "Al al-Bayt University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4392312642",
+        "title": "Emerging Trends in Cybersecurity for Health Technologies",
+        "abstract": "The paper delves into the intricate relationship between technological advancements in healthcare and the pressing need for robust cybersecurity measures. It explores the escalating vulnerability of sensitive medical data due to the sector's digital transformation and the increased susceptibility to cyber threats. The interconnectedness of healthcare systems, from wearable devices to complex electronic health record systems, exposes healthcare organizations to relentless cyberattacks. Within this context, the article meticulously examines emerging trends and innovative solutions aimed at fortifying cybersecurity infrastructure and safeguarding sensitive medical data. It scrutinizes ten cybersecurity risks prevalent within the healthcare domain, highlighting the multifaceted nature of data security challenges faced by healthcare entities. Furthermore, the paper meticulously dissects ten AI-driven security mechanisms, ranging from behavioral analytics to AI-powered compliance management, showcasing their pivotal role in ensuring data integrity and confidentiality. Collaboration emerges as a pivotal strategy, with the article outlining ten collaborative initiatives that underscore the significance of joint efforts among healthcare institutions, technology providers, and cybersecurity experts. Collectively, these insights illuminate the imperative for proactive and adaptive cybersecurity strategies within the evolving landscape of healthcare technology integration.",
+        "url": "https://doi.org/10.36982/jiig.v14i3.3530",
+        "published": "2023-12-07",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Jurnal Ilmiah Informatika Global",
+        "authors": [
+          "Ahmad Sanmorino"
+        ],
+        "orgs": [
+          "Universitas Indo Global Mandiri"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4405896723",
+        "title": "Navigating Emerging AI Technologies and Future Trends in Cybersecurity and Forensics",
+        "abstract": "Artificial Intelligence (AI) has transformed digital forensics and cybersecurity, enhancing efficiency and accuracy in combating cybercrime and analyzing evidence. This chapter will explore AI's capabilities in handling vast data, identifying patterns, reconstructing crime scenes, and detecting anomalies that have revolutionized investigations.. However, these technologies also pose challenges, including ethical concerns, algorithmic bias, privacy issues, and potential misuse. In cybersecurity, AI facilitates real-time threat detection, fraud prevention, and cross-border cooperation against cyberattacks. Despite these advancements, addressing challenges like international legal inconsistencies, transparency, and ethical implications is critical. As AI evolves, its integration into forensic science and cybersecurity holds immense potential to uphold justice and security, demanding balanced governance to ensure ethical and lawful applications.",
+        "url": "https://doi.org/10.4018/979-8-3373-0857-9.ch012",
+        "published": "2024-12-30",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Advances in digital crime, forensics, and cyber terrorism book series",
+        "authors": [
+          "Pranjal Khare",
+          "Vishambhar Raghuwanshi"
+        ],
+        "orgs": [
+          "O. P. Jindal Global University",
+          "Manipal Academy of Higher Education"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 3,
+    "sources_shown": 3,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "intrusion detection",
+    "technology_original": "intrusion detection",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.997,
+    "top_features": [
+      {
+        "name": "число организаций",
+        "value": 8.0,
+        "direction": "+"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      },
+      {
+        "name": "слова ранней стадии",
+        "value": 0.0,
+        "direction": "-"
+      }
+    ],
+    "description": "Abstract Recent advancements in technology, particularly in artificial intelligence (AI) and machine learning (ML), have significantly enhanced connectivity and efficiency in various domains. However, these developments have also led to increased threats and concerns regarding cyberattacks which have significantly challenged governments, businesses, and societies. An Intrusion Detection System (ID",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4415918357",
+        "title": "A comprehensive survey on intrusion detection systems with advances in machine learning, deep learning and emerging cybersecurity challenges",
+        "abstract": "Abstract Recent advancements in technology, particularly in artificial intelligence (AI) and machine learning (ML), have significantly enhanced connectivity and efficiency in various domains. However, these developments have also led to increased threats and concerns regarding cyberattacks which have significantly challenged governments, businesses, and societies. An Intrusion Detection System (IDS) is a critical component of a cybersecurity architecture that is designed to monitor and analyze network traffic for signs of malicious activity and plays an essential role in detecting and responding to security threats. The increasing complexity of security attacks has led researchers to use machine learning (ML) and deep learning (DL) methods to enhance IDS performance. These cutting-edge systems are designed to detect emerging cyberthreats. The current study investigates and compares various types of IDS and AI-based techniques that use ML and DL algorithms to protect data against malicious threats. It also provides an overview of the architecture and operation of IDS and examines popular datasets such as CIC-IDS2017, KDDCup99 and UNSW-NB15 used to evaluate IDS models. These datasets offer a diverse range of attack scenarios and normal traffic and help create a more reliable and effective IDS which improves the overall network security. The study concludes by emphasizing constant progress in IDS technologies to combat evolving cyberthreats and enhance network security.",
+        "url": "https://doi.org/10.1007/s44163-025-00578-1",
+        "published": "2025-11-05",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Discover Artificial Intelligence",
+        "authors": [
+          "Ali Hozouri",
+          "Abbas Mirzaei",
+          "Mehdi Effatparvar"
+        ],
+        "orgs": [
+          "Islamic Azad University Ardabil"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4400574640",
+        "title": "Advancing Network Security in Industrial IoT: A Deep Dive into AI-Enabled Intrusion Detection Systems",
+        "abstract": null,
+        "url": "https://doi.org/10.1016/j.aei.2024.102685",
+        "published": "2024-07-12",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Advanced Engineering Informatics",
+        "authors": [
+          "Mohammad Shahin",
+          "Mazdak Maghanaki",
+          "Ali Hosseinzadeh",
+          "F. Frank Chen"
+        ],
+        "orgs": [
+          "The University of Texas at San Antonio"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4396647962",
+        "title": "Strategizing IoT Network Layer Security Through Advanced Intrusion Detection Systems and AI-Driven Threat Analysis",
+        "abstract": "This research introduces an algorithmic framework for enhancing the security of Internet of Things (IoT) networks. The Enhanced Anomaly Detection (EAD) algorithm initiates the process by detecting anomalies in real-time IoT data, serving as the foundational layer. The Behavior Analysis for Profiling (BAP) algorithm builds upon EAD, adding behavior analysis for profiling and adaptive identification of abnormal behavior. Signature-Based Detection (SBD) involves pre-identified attack signatures, which supports detection of known attacks and provides proactive defense measures against documented threats. The MLID, or the Machine Learning-Based Intrusion Detection, algorithm uses trained machine learning models in order to detect anomalies and the adaptability to changing security risks. The Real-Time Threat Intelligence Integration (RTI) algorithm integrates updated threat intelligence feeds, which improves the framework's responsiveness to emerging threats. The visual representations illustrate once again the idea of the new framework being very accurate at intergration, applicability, and overal security effectiveness. The research makes a standard solution which proves to be a smart and responsive way guarding the IoT networks reducing and even fighting known and potential threats in a real-time mode.",
+        "url": "https://doi.org/10.54216/jisiot.120215",
+        "published": "2024-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Journal of Intelligent Systems and Internet of Things",
+        "authors": [
+          "Piyush Piyush",
+          "Akhilesh A. Waoo",
+          "Murlidhar Prasad Singh",
+          "Piyush Kumar Pareek",
+          "Shoaib Kamal",
+          "Shraddha V. Pandit"
+        ],
+        "orgs": [],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4390482350",
+        "title": "Enhancing Residential Security with AI-Powered Intrusion Detection Systems",
+        "abstract": "Using Intrusion Detection Systems (IDS) powered by artificial intelligence is presented in the proposed work as a novel method for enhancing residential security. The overarching goal of the study is to design, develop, and evaluate a system that employs artificial intelligence techniques for real-time detection and prevention of unauthorized access in response to the rising demand for such measures. Using anomaly detection, neural networks, and decision trees, which are all examples of machine learning algorithms that benefit from the incorporation of data from multiple sensors, the proposed system guarantees the accurate identification of suspicious activities. Proposed work examines large datasets and compares them to conventional security measures to demonstrate the system's superior performance and prospective impact on reducing home intrusions. Proposed work contributes to the field of residential security by proposing a dependable, adaptable, and intelligent method for protecting homes against the ever-changing types of infiltration threats that exist today.",
+        "url": "https://doi.org/10.1109/icscna58489.2023.10370042",
+        "published": "2023-11-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Jeneetha Jebanazer J",
+          "B. Sathya Prabha",
+          "B. Yasotha",
+          "J Jaisudha",
+          "C. Senthilkumar",
+          "V. Samuthira Pandi"
+        ],
+        "orgs": [
+          "Vel Tech Rangarajan Dr. Sagunthala R&D Institute of Science and Technology",
+          "Shri Venkateshwara University",
+          "Intel (India)",
+          "Jeppiaar Institute of Technology",
+          "SRM Institute of Science and Technology",
+          "Saveetha University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 4,
+    "sources_shown": 4,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "cyber security",
+    "technology_original": "cyber security",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.99,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "число организаций",
+        "value": 8.0,
+        "direction": "+"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      }
+    ],
+    "description": "The advancements in Cyber-Physical Systems (CPSs) have also increased their vulnerability to various cyber-attacks. Therefore, it is crucial to develop strong cybersecurity mechanisms, shielding these critical systems from potential cyber intrusions. Among many AI technologies, Generative AI (GenAI) has gained significant attention in the last couple of years. This is due to its distinctive capabi",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4401453194",
+        "title": "Generative AI in Cyber Security of Cyber Physical Systems: Benefits and Threats",
+        "abstract": "The advancements in Cyber-Physical Systems (CPSs) have also increased their vulnerability to various cyber-attacks. Therefore, it is crucial to develop strong cybersecurity mechanisms, shielding these critical systems from potential cyber intrusions. Among many AI technologies, Generative AI (GenAI) has gained significant attention in the last couple of years. This is due to its distinctive capability to autonomously generate original and diverse content across different domains, offering potential for novel advancements in several applications. Given the massive success of GenAI, it is essential to explore its role in ensuring the cybersecurity of CPSs. Therefore, in this paper, we present: 1) the evolution and current state of GenAI, 2) benefits of GenAI on the cybersecurity of CPS, 3) threats of GenAI on the cybersecurity of CPS, 4) defense strategies against threats and 5) future research opportunities. We hope this systematic survey will help the community prioritize research efforts to address pressing issues in cybersecurity of CPSs.",
+        "url": "https://doi.org/10.1109/hsi61632.2024.10613562",
+        "published": "2024-07-08",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Harindra S. Mavikumbure",
+          "Victor Cobilean",
+          "Chathurika S. Wickramasinghe",
+          "Devin Drake",
+          "Milos Manic"
+        ],
+        "orgs": [
+          "Virginia Commonwealth University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4387396224",
+        "title": "Cyber security: State of the art, challenges and future directions",
+        "abstract": "Cyber security has become a very critical concern that needs the attention of researchers, academicians, and organizations to confidentially ensure the protection and security of information systems. Due to the increasing demand for digitalization, every individual and organization faces continually shifting cyber threats. This article provides an overview of the state of the art in cyber security, challenges, and tactics, current conditions, and global trends of cyber security. To stay ahead of the curve in cyber security, we conducted a systematic review to uncover the latest trends, challenges, and state-of-the-art in cyber security. Moreover, we address the future direction of cyber security, presenting the possible strategies and approaches to addressing the increasing cyber security threat landscapes, the emerging trends, and innovations like Artificial Intelligence (AI) and machine learning (ML) to detect and automate cyber threat responses. Additionally, this article underlines the importance of ongoing adoption along with collaboration among stakeholders in the cyber ecosystem.",
+        "url": "https://doi.org/10.1016/j.csa.2023.100031",
+        "published": "2023-10-06",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Cyber Security and Applications",
+        "authors": [
+          "Wasyihun Sema Admass",
+          "Yirga Yayeh Munaye",
+          "Abebe Abeshu Diro"
+        ],
+        "orgs": [
+          "Asossa University",
+          "Jigjiga University",
+          "Injibara University",
+          "RMIT University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4394564352",
+        "title": "Generative AI for Cyber Security: Analyzing the Potential of ChatGPT, DALL-E, and Other Models for Enhancing the Security Space",
+        "abstract": "This research paper intends to provide real-life applications of Generative AI (GAI) in the cybersecurity domain. The frequency, sophistication and impact of cyber threats have continued to rise in today’s world. This ever-evolving threat landscape poses challenges for organizations and security professionals who continue looking for better solutions to tackle these threats. GAI technology provides an effective way for them to address these issues in an automated manner with increasing efficiency. It enables them to work on more critical security aspects which require human intervention, while GAI systems deal with general threat situations. Further, GAI systems can better detect novel malware and threatening situations than humans. This feature of GAI, when leveraged, can lead to higher robustness of the security system. Many tech giants like Google, Microsoft etc., are motivated by this idea and are incorporating elements of GAI in their cybersecurity systems to make them more efficient in dealing with ever-evolving threats. Many cybersecurity tools like Google Cloud Security AI Workbench, Microsoft Security Copilot, SentinelOne Purple AI etc., have come into the picture, which leverage GAI to develop more straightforward and robust ways to deal with emerging cybersecurity perils. With the advent of GAI in the cybersecurity domain, one also needs to take into account the limitations and drawbacks that such systems have. This paper also provides some of the limitations of GAI, like periodically giving wrong results, costly training, the potential of GAI being used by malicious actors for illicit activities etc.",
+        "url": "https://doi.org/10.1109/access.2024.3385107",
+        "published": "2024-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "IEEE Access",
+        "authors": [
+          "Siva Sai",
+          "Utkarsh Yashvardhan",
+          "Vinay Chamola",
+          "Biplab Sikdar"
+        ],
+        "orgs": [
+          "Birla Institute of Technology and Science, Pilani",
+          "National University of Singapore"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      },
+      {
+        "source_id": "openalex:W4392106982",
+        "title": "AI hype as a cyber security risk: the moral responsibility of implementing generative AI in business",
+        "abstract": "Abstract This paper examines the ethical obligations companies have when implementing generative Artificial Intelligence (AI). We point to the potential cyber security risks companies are exposed to when rushing to adopt generative AI solutions or buying into “AI hype”. While the benefits of implementing generative AI solutions for business have been widely touted, the inherent risks associated have been less well publicised. There are growing concerns that the race to integrate generative AI is not being accompanied by adequate safety measures. The rush to buy into the hype of generative AI and not fall behind the competition is potentially exposing companies to broad and possibly catastrophic cyber-attacks or breaches. In this paper, we outline significant cyber security threats generative AI models pose, including potential ‘backdoors’ in AI models that could compromise user data or the risk of ‘poisoned’ AI models producing false results. In light of these the cyber security concerns, we discuss the moral obligations of implementing generative AI into business by considering the ethical principles of beneficence, non-maleficence, autonomy, justice, and explicability. We identify two examples of ethical concern, overreliance and over-trust in generative AI, both of which can negatively influence business decisions, leaving companies vulnerable to cyber security threats. This paper concludes by recommending a set of checklists for ethical implementation of generative AI in business environment to minimise cyber security risk based on the discussed moral responsibilities and ethical concern.",
+        "url": "https://doi.org/10.1007/s43681-024-00443-4",
+        "published": "2024-02-23",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "AI and Ethics",
+        "authors": [
+          "Declan Humphreys",
+          "Abigail Koay",
+          "Dennis Desmond",
+          "Erica Mealy"
+        ],
+        "orgs": [
+          "University of the Sunshine Coast"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 4,
+    "sources_shown": 4,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "enhancing security",
+    "technology_original": "enhancing security",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.985,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      },
+      {
+        "name": "число организаций",
+        "value": 7.0,
+        "direction": "+"
+      }
+    ],
+    "description": null,
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4410111879",
+        "title": "AI-Driven Optimization of Intelligent Supply Chains and Payment Systems: Enhancing Security, Tax Compliance, and Audit Efficiency in Financial Operations",
+        "abstract": null,
+        "url": "https://doi.org/10.2139/ssrn.5205072",
+        "published": "2025-01-01",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "SSRN Electronic Journal",
+        "authors": [
+          "Murali Malempati",
+          "Harish Kumar Sriram",
+          "Srinivasa Rao Challa",
+          "Avinash Pamisetty",
+          "Someshwar Mashetty"
+        ],
+        "orgs": [],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4406417908",
+        "title": "Enhancing the Security of Industrial Cyber-Physical Systems using AI Algorithms",
+        "abstract": "Industrial cyber-physical systems (CPS) must be secure at a time when automation and linkages are crucial to business. This study uses powerful AI to make industrial CPS safer than previous approaches. The proposed response improves speed metrics, making it a good alternative for protecting these vital systems. RNNs detect unusual things, Kmeans grouping finds patterns, and Q-learning changes our responses. These systems are adept at identifying odd behavior, grouping tendencies, and altering threat responses. Our solution outperforms traditional security approaches in many key performance areas. The new method’s threat detection accuracy is $\\mathbf{9 8. 2 \\%}$, up from $\\mathbf{9 4. 5 \\%}$. The false positive rate drops by $\\mathbf{4 0. 0 \\%}$, reducing needless warnings and issues. This reduces the false negative rate by $\\mathbf{4 3. 8 \\%}$, making threat identification more sensitive. Our method’s response time has fallen by $\\mathbf{3 3. 3} \\%$, making it responsive to new threats. We utilize system resources more efficiently by $\\mathbf{2 1. 4 \\%}$. Scalability is “high,” meaning it adapts to business changes. We proposed a cutting-edge way to make commercial CPS safer. Its excellent AI algorithms defend critical industrial equipment from cyber-physical attacks. Threat detection outperforms previous techniques in accuracy, false alarms, reaction time, resource use, and growth. As businesses employ connected systems, our technique protects industrial operations effectively and preventatively.",
+        "url": "https://doi.org/10.1109/icisaa62385.2024.10828934",
+        "published": "2024-10-25",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Amarjeet Kumar Ghosh",
+          "Hari Prasad Bhupathi",
+          "L. Bhagyalakshmi",
+          "Hitha Poddar",
+          "Tejal K. Gandhi",
+          "Juhi Jain"
+        ],
+        "orgs": [
+          "Fiat Chrysler Automobiles (United States)",
+          "Stellantis North America (United States)",
+          "Rajalakshmi Engineering College",
+          "Easwari Engineering College",
+          "Rani Durgavati University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4394564352",
+        "title": "Generative AI for Cyber Security: Analyzing the Potential of ChatGPT, DALL-E, and Other Models for Enhancing the Security Space",
+        "abstract": "This research paper intends to provide real-life applications of Generative AI (GAI) in the cybersecurity domain. The frequency, sophistication and impact of cyber threats have continued to rise in today’s world. This ever-evolving threat landscape poses challenges for organizations and security professionals who continue looking for better solutions to tackle these threats. GAI technology provides an effective way for them to address these issues in an automated manner with increasing efficiency. It enables them to work on more critical security aspects which require human intervention, while GAI systems deal with general threat situations. Further, GAI systems can better detect novel malware and threatening situations than humans. This feature of GAI, when leveraged, can lead to higher robustness of the security system. Many tech giants like Google, Microsoft etc., are motivated by this idea and are incorporating elements of GAI in their cybersecurity systems to make them more efficient in dealing with ever-evolving threats. Many cybersecurity tools like Google Cloud Security AI Workbench, Microsoft Security Copilot, SentinelOne Purple AI etc., have come into the picture, which leverage GAI to develop more straightforward and robust ways to deal with emerging cybersecurity perils. With the advent of GAI in the cybersecurity domain, one also needs to take into account the limitations and drawbacks that such systems have. This paper also provides some of the limitations of GAI, like periodically giving wrong results, costly training, the potential of GAI being used by malicious actors for illicit activities etc.",
+        "url": "https://doi.org/10.1109/access.2024.3385107",
+        "published": "2024-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "IEEE Access",
+        "authors": [
+          "Siva Sai",
+          "Utkarsh Yashvardhan",
+          "Vinay Chamola",
+          "Biplab Sikdar"
+        ],
+        "orgs": [
+          "Birla Institute of Technology and Science, Pilani",
+          "National University of Singapore"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 3,
+    "sources_shown": 3,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "security cyber",
+    "technology_original": "security cyber",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.98,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "число организаций",
+        "value": 8.0,
+        "direction": "+"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      }
+    ],
+    "description": "Internet-of-Things (IoT) refers to low-memory connected devices used in various new technologies, including drones, autonomous machines, and robotics. The article aims to understand better cyber risks in low-memory devices and the challenges in IoT risk management. The article includes a critical reflection on current risk methods and their level of appropriateness for IoT. We present a dependency",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4403313129",
+        "title": "AI security and cyber risk in IoT systems",
+        "abstract": "Internet-of-Things (IoT) refers to low-memory connected devices used in various new technologies, including drones, autonomous machines, and robotics. The article aims to understand better cyber risks in low-memory devices and the challenges in IoT risk management. The article includes a critical reflection on current risk methods and their level of appropriateness for IoT. We present a dependency model tailored in context toward current challenges in data strategies and make recommendations for the cybersecurity community. The model can be used for cyber risk estimation and assessment and generic risk impact assessment. The model is developed for cyber risk insurance for new technologies (e.g., drones, robots). Still, practitioners can apply it to estimate and assess cyber risks in organizations and enterprises. Furthermore, this paper critically discusses why risk assessment and management are crucial in this domain and what open questions on IoT risk assessment and risk management remain areas for further research. The paper then presents a more holistic understanding of cyber risks in the IoT. We explain how the industry can use new risk assessment, and management approaches to deal with the challenges posed by emerging IoT cyber risks. We explain how these approaches influence policy on cyber risk and data strategy. We also present a new approach for cyber risk assessment that incorporates IoT risks through dependency modeling. The paper describes why this approach is well suited to estimate IoT risks.",
+        "url": "https://doi.org/10.3389/fdata.2024.1402745",
+        "published": "2024-10-10",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Frontiers in Big Data",
+        "authors": [
+          "Petar Radanliev",
+          "David De Roure",
+          "Carsten R. Maple",
+          "Jason R. C. Nurse",
+          "Răzvan Nicolescu",
+          "Uchenna Ani"
+        ],
+        "orgs": [
+          "University of Huddersfield",
+          "University of Oxford",
+          "Science Oxford",
+          "University of Warwick",
+          "University of Kent",
+          "University College London",
+          "Keele University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4401453194",
+        "title": "Generative AI in Cyber Security of Cyber Physical Systems: Benefits and Threats",
+        "abstract": "The advancements in Cyber-Physical Systems (CPSs) have also increased their vulnerability to various cyber-attacks. Therefore, it is crucial to develop strong cybersecurity mechanisms, shielding these critical systems from potential cyber intrusions. Among many AI technologies, Generative AI (GenAI) has gained significant attention in the last couple of years. This is due to its distinctive capability to autonomously generate original and diverse content across different domains, offering potential for novel advancements in several applications. Given the massive success of GenAI, it is essential to explore its role in ensuring the cybersecurity of CPSs. Therefore, in this paper, we present: 1) the evolution and current state of GenAI, 2) benefits of GenAI on the cybersecurity of CPS, 3) threats of GenAI on the cybersecurity of CPS, 4) defense strategies against threats and 5) future research opportunities. We hope this systematic survey will help the community prioritize research efforts to address pressing issues in cybersecurity of CPSs.",
+        "url": "https://doi.org/10.1109/hsi61632.2024.10613562",
+        "published": "2024-07-08",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Harindra S. Mavikumbure",
+          "Victor Cobilean",
+          "Chathurika S. Wickramasinghe",
+          "Devin Drake",
+          "Milos Manic"
+        ],
+        "orgs": [
+          "Virginia Commonwealth University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4400721813",
+        "title": "Redefining Security With Cyber AI",
+        "abstract": null,
+        "url": "https://doi.org/10.4018/979-8-3693-6517-5",
+        "published": "2024-07-17",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Advances in information security, privacy, and ethics book series",
+        "authors": [],
+        "orgs": [],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 3,
+    "sources_shown": 3,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "deep learning",
+    "technology_original": "deep learning",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.98,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "число организаций",
+        "value": 8.0,
+        "direction": "+"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      }
+    ],
+    "description": null,
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4399425630",
+        "title": "Artificial Intelligence, Machine Learning, and Deep Learning for Cybersecurity Solutions: A Review of Emerging Technologies and Applications",
+        "abstract": null,
+        "url": "https://doi.org/10.2139/ssrn.4855884",
+        "published": "2024-01-01",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "SSRN Electronic Journal",
+        "authors": [
+          "Mallikarjuna Paramesha",
+          "Nitin Liladhar Rane",
+          "Jayesh Rane"
+        ],
+        "orgs": [
+          "California State University System",
+          "Swami Vivekanand College of Pharmacy",
+          "K J Somaiya Medical College"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4415918357",
+        "title": "A comprehensive survey on intrusion detection systems with advances in machine learning, deep learning and emerging cybersecurity challenges",
+        "abstract": "Abstract Recent advancements in technology, particularly in artificial intelligence (AI) and machine learning (ML), have significantly enhanced connectivity and efficiency in various domains. However, these developments have also led to increased threats and concerns regarding cyberattacks which have significantly challenged governments, businesses, and societies. An Intrusion Detection System (IDS) is a critical component of a cybersecurity architecture that is designed to monitor and analyze network traffic for signs of malicious activity and plays an essential role in detecting and responding to security threats. The increasing complexity of security attacks has led researchers to use machine learning (ML) and deep learning (DL) methods to enhance IDS performance. These cutting-edge systems are designed to detect emerging cyberthreats. The current study investigates and compares various types of IDS and AI-based techniques that use ML and DL algorithms to protect data against malicious threats. It also provides an overview of the architecture and operation of IDS and examines popular datasets such as CIC-IDS2017, KDDCup99 and UNSW-NB15 used to evaluate IDS models. These datasets offer a diverse range of attack scenarios and normal traffic and help create a more reliable and effective IDS which improves the overall network security. The study concludes by emphasizing constant progress in IDS technologies to combat evolving cyberthreats and enhance network security.",
+        "url": "https://doi.org/10.1007/s44163-025-00578-1",
+        "published": "2025-11-05",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Discover Artificial Intelligence",
+        "authors": [
+          "Ali Hozouri",
+          "Abbas Mirzaei",
+          "Mehdi Effatparvar"
+        ],
+        "orgs": [
+          "Islamic Azad University Ardabil"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:11+00:00"
+      },
+      {
+        "source_id": "openalex:W4404127725",
+        "title": "Robustness in deep learning models for medical diagnostics: security and adversarial challenges towards robust AI applications",
+        "abstract": "The current study investigates the robustness of deep learning models for accurate medical diagnosis systems with a specific focus on their ability to maintain performance in the presence of adversarial or noisy inputs. We examine factors that may influence model reliability, including model complexity, training data quality, and hyperparameters; we also examine security concerns related to adversarial attacks that aim to deceive models along with privacy attacks that seek to extract sensitive information. Researchers have discussed various defenses to these attacks to enhance model robustness, such as adversarial training and input preprocessing, along with mechanisms like data augmentation and uncertainty estimation. Tools and packages that extend the reliability features of deep learning frameworks such as TensorFlow and PyTorch are also being explored and evaluated. Existing evaluation metrics for robustness are additionally being discussed and evaluated. This paper concludes by discussing limitations in the existing literature and possible future research directions to continue enhancing the status of this research topic, particularly in the medical domain, with the aim of ensuring that AI systems are trustworthy, reliable, and stable.",
+        "url": "https://doi.org/10.1007/s10462-024-11005-9",
+        "published": "2024-11-07",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Artificial Intelligence Review",
+        "authors": [
+          "Haseeb Javed",
+          "Shaker El–Sappagh",
+          "Tamer Abuhmed"
+        ],
+        "orgs": [
+          "Sungkyunkwan University",
+          "Suez University",
+          "Benha University",
+          "Galala University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 3,
+    "sources_shown": 3,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "privacy security",
+    "technology_original": "privacy security",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.968,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      },
+      {
+        "name": "число организаций",
+        "value": 7.0,
+        "direction": "+"
+      }
+    ],
+    "description": "As advances in artificial intelligence (AI) continue to transform and revolutionize the field of medicine, understanding the potential uses of generative AI in health care becomes increasingly important. Generative AI, including models such as generative adversarial networks and large language models, shows promise in transforming medical diagnostics, research, treatment planning, and patient care",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4392599656",
+        "title": "Generative AI in Medical Practice: In-Depth Exploration of Privacy and Security Challenges",
+        "abstract": "As advances in artificial intelligence (AI) continue to transform and revolutionize the field of medicine, understanding the potential uses of generative AI in health care becomes increasingly important. Generative AI, including models such as generative adversarial networks and large language models, shows promise in transforming medical diagnostics, research, treatment planning, and patient care. However, these data-intensive systems pose new threats to protected health information. This Viewpoint paper aims to explore various categories of generative AI in health care, including medical diagnostics, drug discovery, virtual health assistants, medical research, and clinical decision support, while identifying security and privacy threats within each phase of the life cycle of such systems (ie, data collection, model development, and implementation phases). The objectives of this study were to analyze the current state of generative AI in health care, identify opportunities and privacy and security challenges posed by integrating these technologies into existing health care infrastructure, and propose strategies for mitigating security and privacy risks. This study highlights the importance of addressing the security and privacy threats associated with generative AI in health care to ensure the safe and effective use of these systems. The findings of this study can inform the development of future generative AI systems in health care and help health care organizations better understand the potential benefits and risks associated with these systems. By examining the use cases and benefits of generative AI across diverse domains within health care, this paper contributes to theoretical discussions surrounding AI ethics, security vulnerabilities, and data privacy regulations. In addition, this study provides practical insights for stakeholders looking to adopt generative AI solutions within their organizations.",
+        "url": "https://doi.org/10.2196/53008",
+        "published": "2024-03-08",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Journal of Medical Internet Research",
+        "authors": [
+          "Yan Chen",
+          "Pouyan Esmaeilzadeh"
+        ],
+        "orgs": [
+          "Florida International University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4393170828",
+        "title": "Privacy and Security Concerns in Generative AI: A Comprehensive Survey",
+        "abstract": "Generative Artificial Intelligence (GAI) has sparked a transformative wave across various domains, including machine learning, healthcare, business, and entertainment, owing to its remarkable ability to generate lifelike data. This comprehensive survey offers a meticulous examination of the privacy and security challenges inherent to GAI. It provides five pivotal perspectives essential for a comprehensive understanding of these intricacies. The paper encompasses discussions on GAI architectures, diverse generative model types, practical applications, and recent advancements within the field. In addition, it highlights current security strategies and proposes sustainable solutions, emphasizing user, developer, institutional, and policymaker involvement.",
+        "url": "https://doi.org/10.1109/access.2024.3381611",
+        "published": "2024-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "IEEE Access",
+        "authors": [
+          "Abenezer Golda",
+          "Kidus Abebe Mekonen",
+          "Amit Pandey",
+          "Anushka Singh",
+          "Vikas Hassija",
+          "Vinay Chamola",
+          "Biplab Sikdar"
+        ],
+        "orgs": [
+          "KIIT University",
+          "Bennett University",
+          "Birla Institute of Technology and Science, Pilani",
+          "National University of Singapore"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4399771211",
+        "title": "Evaluating privacy, security, and trust perceptions in conversational AI: A systematic review",
+        "abstract": "Conversational AI (CAI) systems which encompass voice- and text-based assistants are on the rise and have been largely integrated into people’s everyday lives. Despite their widespread adoption, users voice concerns regarding privacy, security and trust in these systems. However, the composition of these perceptions, their impact on technology adoption and usage and the relationship between privacy, security and trust perceptions in the CAI context remain open research challenges. This study contributes to the field by conducting a Systematic Literature Review and offers insights into the current state of research on privacy, security and trust perceptions in the context of CAI systems. The review covers application fields and user groups and sheds light on empirical methods and tools used for assessment. Moreover, it provides insights into the reliability and validity of privacy, security and trust scales, as well as extensively investigating the subconstructs of each item as well as additional concepts which are concurrently collected. We point out that the perceptions of trust, privacy and security overlap based on the subconstructs we identified. While the majority of studies investigate one of these concepts, only a few studies were found exploring privacy, security and trust perceptions jointly. Our research aims to inform on directions to develop and use reliable scales for users’ privacy, security and trust perceptions and contribute to the development of trustworthy CAI systems.",
+        "url": "https://doi.org/10.1016/j.chb.2024.108344",
+        "published": "2024-06-18",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Computers in Human Behavior",
+        "authors": [
+          "Anna Leschanowsky",
+          "Silas Rech",
+          "Birgit Popp",
+          "Tom Bäckström"
+        ],
+        "orgs": [
+          "Fraunhofer Institute for Integrated Circuits",
+          "Aalto University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 3,
+    "sources_shown": 3,
+    "docs_collected": 179,
+    "text_model": null
+  },
+  {
+    "technology": "security privacy",
+    "technology_original": "security privacy",
+    "technology_language": "en",
+    "area": "",
+    "score": 0.966,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "доля доверенных источников",
+        "value": 1.0,
+        "direction": "+"
+      },
+      {
+        "name": "число организаций",
+        "value": 7.0,
+        "direction": "+"
+      }
+    ],
+    "description": "The adoption of electronic health (e-health) systems has transformed healthcare delivery by harnessing digital technologies to enhance patient care, optimize operations, and improve health outcomes. This paper provides a comprehensive overview of the current state of e-health systems, tracing their evolution from traditional paper-based records to advanced Electronic Health Record Systems(EHRs) an",
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4402915134",
+        "title": "Security and Privacy in E-Health Systems: A Review of AI and Machine Learning Techniques",
+        "abstract": "The adoption of electronic health (e-health) systems has transformed healthcare delivery by harnessing digital technologies to enhance patient care, optimize operations, and improve health outcomes. This paper provides a comprehensive overview of the current state of e-health systems, tracing their evolution from traditional paper-based records to advanced Electronic Health Record Systems(EHRs) and examining the diverse components and applications that support healthcare providers and patients. A key focus is on the emerging trends in AI-driven cybersecurity for e-health, which are essential for protecting sensitive health data. AI’s capabilities in continuous monitoring, advanced pattern recognition, real-time threat response, predictive analytics, and scalability fundamentally change the security landscape of e-health systems. The paper discusses how AI strengthens data security through techniques like anomaly detection, automated countermeasures, and adaptive learning algorithms, enhancing the efficiency and accuracy of threat detection and response. Furthermore, the paper delves into future directions and research opportunities in AI-driven cybersecurity for e-health. These include the development of advanced threat detection systems that adapt through continuous learning, quantum-resistant encryption to safeguard against future threats, and privacy-preserving AI techniques that protect patient confidentiality while ensuring data remains useful for analysis. The importance of automating regulatory compliance, securing data interoperability via blockchain, and prioritizing ethical AI development are also highlighted as critical research areas. By emphasizing innovative security solutions, collaborative efforts, ongoing research, and ethical practices, the e-health sector can build resilient and secure healthcare infrastructures, ultimately enhancing patient care and health outcomes.",
+        "url": "https://doi.org/10.1109/access.2024.3469215",
+        "published": "2024-01-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "IEEE Access",
+        "authors": [
+          "Mary Nankya",
+          "Allan Mugisa",
+          "Yusuf Usman",
+          "Aadesh Upadhyay",
+          "Robin Chataut"
+        ],
+        "orgs": [
+          "Fitchburg State University",
+          "Quinnipiac University",
+          "University of North Texas",
+          "Texas Christian University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4402292262",
+        "title": "Security, privacy, and robustness for trustworthy AI systems: A review",
+        "abstract": null,
+        "url": "https://doi.org/10.1016/j.compeleceng.2024.109643",
+        "published": "2024-09-06",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Computers & Electrical Engineering",
+        "authors": [
+          "Mozamel M. Saeed",
+          "Mohammed Alsharidah"
+        ],
+        "orgs": [
+          "Prince Sattam Bin Abdulaziz University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4402064751",
+        "title": "Security and Privacy Issues in AI-based Biometric Systems",
+        "abstract": "As technology advances, it&s;s becoming increasingly important to address security and privacy concerns related to AI-based biometric systems. The risks of adversarial attacks, information security breaches, and identity theft are significant threats to individuals&s; confidentiality. To ensure data protection, it&s;s essential to have ongoing surveillance and robust validation measures in place. The need for user authorization, safeguarding data integrity, and the potential consequences of widespread surveillance are all critical aspects that raise privacy concerns. Balancing the benefits of these systems with the rights of individuals and societal interests requires careful consideration of ethical standards and regulations. This book chapter provides a comprehensive analysis of the privacy and security risks associated with AI-based biometric systems. It delves deeply into the security-related challenges such as data integrity breaches, identity theft risks, and adversarial attacks, underscoring the need for constant monitoring and authentication. The chapter also examines privacy concerns such as obtaining user consent, safeguarding data, and addressing the implications of widespread surveillance. Additionally, it discusses the ethical and legal considerations, highlighting the importance of striking a fair balance between the system&s;s benefits and individual and societal rights. The chapter ultimately stresses the significance of handling these issues appropriately to deploy AI-based biometric technologies in a manner that preserves individual rights in our increasingly interconnected world.",
+        "url": "https://doi.org/10.1201/9781032702377-5",
+        "published": "2024-08-30",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Mani Deepak Choudhry",
+          "M. Sundarrajan",
+          "S. Jeevanandham",
+          "V. Saravanan"
+        ],
+        "orgs": [],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:17+00:00"
+      },
+      {
+        "source_id": "openalex:W4387461693",
+        "title": "Artificial Intelligence (AI) Trust Framework and Maturity Model: Applying an Entropy Lens to Improve Security, Privacy, and Ethical AI",
+        "abstract": "Recent advancements in artificial intelligence (AI) technology have raised concerns about the ethical, moral, and legal safeguards. There is a pressing need to improve metrics for assessing security and privacy of AI systems and to manage AI technology in a more ethical manner. To address these challenges, an AI Trust Framework and Maturity Model is proposed to enhance trust in the design and management of AI systems. Trust in AI involves an agreed-upon understanding between humans and machines about system performance. The framework utilizes an \"entropy lens\" to root the study in information theory and enhance transparency and trust in \"black box\" AI systems, which lack ethical guardrails. High entropy in AI systems can decrease human trust, particularly in uncertain and competitive environments. The research draws inspiration from entropy studies to improve trust and performance in autonomous human-machine teams and systems, including interconnected elements in hierarchical systems. Applying this lens to improve trust in AI also highlights new opportunities to optimize performance in teams. Two use cases are described to validate the AI framework's ability to measure trust in the design and management of AI systems.",
+        "url": "https://doi.org/10.3390/e25101429",
+        "published": "2023-10-09",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Entropy",
+        "authors": [
+          "Michael Mylrea",
+          "Nikki S. Robinson"
+        ],
+        "orgs": [
+          "University of Miami",
+          "Capitol Technology University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-26T19:08:55+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 4,
+    "sources_shown": 4,
+    "docs_collected": 179,
+    "text_model": null
+  }
+]
