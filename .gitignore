@@ -1,0 +1,16 @@
+# Ключи и локальные настройки
+.env
+
+# База и временные файлы
+data/*.db
+data/smoke.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Системное
+.DS_Store
