@@ -24,6 +24,7 @@ from typing import Any, Callable
 
 from src.collect import arxiv, openalex
 from src.collect.normalize import prepare
+from src.collect.query import search_queries
 from src.features.build import profile_from_docs
 from src.model.predict import load_model, reject_reason, score
 from src.storage import db
@@ -52,6 +53,22 @@ STOPWORDS = {
     "implementation", "preliminary", "experimental", "feasibility",
     "deployment", "demonstrated", "evaluation", "framework", "case",
     "early", "stage", "first", "initial", "towards", "part",
+}
+
+# Академические обороты. В живом прогоне из-за них в ТОП-15 попали
+# «consistently outperforms», «has been observed» и «root mean square» —
+# это язык статьи, а не название технологии.
+BOILERPLATE = {
+    "outperforms", "state", "art", "baseline", "baselines", "benchmark",
+    "benchmarks", "dataset", "datasets", "accuracy", "performance",
+    "experiments", "experiment", "observed", "consistently", "significantly",
+    "compared", "comparison", "improvement", "improvements", "error",
+    "errors", "mean", "square", "root", "average", "values", "value",
+    "international", "scientific", "conference", "journal", "review",
+    "survey", "overview", "introduction", "conclusion", "discussion",
+    "recent", "advances", "future", "challenges", "opportunities",
+    "problem", "problems", "solution", "solutions", "application",
+    "applications", "research", "work", "works", "data",
 }
 
 _WORD = re.compile(r"[a-zA-Zа-яА-ЯёЁ][\w\-]+", re.UNICODE)
@@ -83,30 +100,50 @@ def save_cache(query: str, candidates: list[dict[str, Any]]) -> None:
 
 
 def collect(query: str, limit_per_source: int = 100) -> list[dict[str, Any]]:
-    """Собирает документы из всех источников. Падение одного не ломает остальные."""
+    """Собирает документы из всех источников. Падение одного не ломает остальные.
+
+    Русский запрос сначала превращается в английские поисковые строки:
+    OpenAlex и arXiv индексируют англоязычные тексты и по кириллице
+    возвращают документы не по теме.
+    """
+    строки = search_queries(query)
+    log.info("Поисковые строки: %s", строки)
+
     documents: list[dict[str, Any]] = []
     источники: list[tuple[str, Callable[..., list[dict[str, Any]]]]] = [
         ("OpenAlex", openalex.search),
         ("arXiv", arxiv.search),
     ]
-    for name, search_fn in источники:
-        try:
-            batch = search_fn(query, limit=limit_per_source)
-            log.info("%s: %s документов", name, len(batch))
-            documents.extend(batch)
-        except Exception as error:  # источник не должен ронять пайплайн
-            log.warning("%s недоступен: %s", name, error)
+    на_строку = max(limit_per_source // max(len(строки), 1), 20)
+
+    for строка in строки:
+        for name, search_fn in источники:
+            try:
+                batch = search_fn(строка, limit=на_строку)
+                log.info("%s по %r: %s документов", name, строка, len(batch))
+                documents.extend(batch)
+            except Exception as error:  # источник не должен ронять пайплайн
+                log.warning("%s недоступен: %s", name, error)
     return prepare(documents)
 
 
 def _phrases(text: str) -> set[str]:
-    """Осмысленные словосочетания из текста."""
+    """Осмысленные словосочетания из текста.
+
+    Фраза принимается, только если в ней есть хотя бы одно содержательное
+    слово: иначе в кандидаты лезут обороты вроде «consistently outperforms».
+    """
     words = [w.lower() for w in _WORD.findall(text or "")]
     words = [w for w in words if w not in STOPWORDS and len(w) > 2]
     found: set[str] = set()
     for size in NGRAM_SIZES:
         for i in range(len(words) - size + 1):
-            found.add(" ".join(words[i : i + size]))
+            кусок = words[i : i + size]
+            if all(w in BOILERPLATE for w in кусок):
+                continue
+            if кусок[0] in BOILERPLATE or кусок[-1] in BOILERPLATE:
+                continue
+            found.add(" ".join(кусок))
     return found
 
 
@@ -118,11 +155,14 @@ def extract_candidates(documents: list[dict[str, Any]]) -> dict[str, list[dict[s
     if not documents:
         return {}
 
+    # Названия технологий живут в заголовках. Аннотации дают язык статьи —
+    # в первом живом прогоне именно из них полезли обрывки вроде
+    # «has been observed». Поэтому кандидатов берём только из заголовков,
+    # а аннотации остаются для признаков.
     по_документам: list[set[str]] = []
     счётчик: collections.Counter[str] = collections.Counter()
     for doc in documents:
-        текст = f"{doc.get('title') or ''} {doc.get('abstract') or ''}"
-        фразы = _phrases(текст)
+        фразы = _phrases(doc.get("title") or "")
         по_документам.append(фразы)
         счётчик.update(фразы)
 
