@@ -1,0 +1,783 @@
+[
+  {
+    "technology": "Верификация моделей ИИ третьей стороной посредством вызова и ответа",
+    "technology_original": "secure AI model verification",
+    "technology_language": "ru",
+    "area": "",
+    "score": 0.948,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 2.0,
+        "direction": "+"
+      },
+      {
+        "name": "есть научные публикации",
+        "value": 0.0,
+        "direction": "+"
+      },
+      {
+        "name": "доля лидера",
+        "value": 1.0,
+        "direction": "-"
+      }
+    ],
+    "description": "Технология TP-CRIV предназначена для проверки подлинности модели искусственного интеллекта третьей стороной без доступа к исходному коду или API модели.",
+    "advantage": "Позволяет верифицировать владение моделью и возможность ее использования без необходимости раскрывать внутренние данные модели.",
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "arxiv:2609.29264v1",
+        "title": "TP-CRIV: A Framework for Third-Party Challenge-Response Identity Verification of AI Models",
+        "abstract": "Artificial intelligence (AI) models are increasingly deployed through remote services, making model misappropriation a growing concern. Existing approaches, including watermarking, fingerprinting, and model similarity analysis, primarily rely on predefined evidence or direct behavioral comparison and do not explicitly evaluate whether the claimant currently possesses and can utilize model-dependent information relevant to the claimed model identity. In this paper, we propose Third-Party Challenge-Response Identity Verification (TP-CRIV) for AI models. TP-CRIV targets a third-party verification setting in which the verifier has neither white-box nor API access to the claimant's model, can interact with the suspicious deployed service only through its ordinary black-box inference interface, and does not require protocol-specific cooperation from the service provider. Under these constraints, the framework enables the verifier to obtain empirical evidence as to whether the claimant locally possesses a model satisfying a predeclared identity relative to the deployed model. Verification is conducted under fresh, previously undisclosed requirements and network isolation, so that the demonstrated capability cannot rely on online external assistance after challenge disclosure. The resulting evidence is interpreted relative to independently specified and calibrated matching and non-matching operating situations and is statistical rather than cryptographic. We instantiate TP-CRIV for CNN image classifiers using probability-control-based witness generation. Experiments on ten ImageNet-pretrained TorchVision models demonstrate clear same/cross-model separation and finite-challenge verification using independently calibrated thresholds.",
+        "url": "https://arxiv.org/abs/2609.29264v1",
+        "published": "2026-09-24",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Teruki Sano",
+          "Minoru Kuribayashi",
+          "Masao Sakai",
+          "Shuji Isobe",
+          "Eisuke Koizumi",
+          "Zhang Zhang",
+          "Satoru Matsumoto"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Предложен метод TP-CRIV для независимой проверки подлинности моделей ИИ через вызов и ответ без доступа к их внутреннему содержимому.",
+        "collected_at": "2026-09-28T16:02:41+00:00"
+      },
+      {
+        "source_id": "openalex:W4392624368",
+        "title": "INTEGRATING AI WITH BLOCKCHAIN FOR ENHANCED FINANCIAL SERVICES SECURITY",
+        "abstract": "Integrating artificial intelligence (AI) with blockchain technology presents a transformative approach to enhancing security in financial services. This fusion leverages the strengths of both AI and blockchain to mitigate various security risks, including fraud, data breaches, and identity theft, thereby bolstering trust and confidence in financial transactions. This abstract explores the synergies between AI and blockchain, highlighting their combined capabilities, applications, and potential benefits for the financial services industry. AI algorithms, including machine learning and natural language processing, empower financial institutions to analyze vast amounts of data in real-time, identifying patterns, anomalies, and suspicious activities indicative of fraudulent behavior. By integrating AI-powered fraud detection systems with blockchain-based transactional networks, organizations can enhance security and transparency throughout the entire financial ecosystem. Blockchain's immutable ledger ensures the integrity and traceability of transactions, while AI algorithms provide advanced analytics and predictive insights to detect and prevent fraudulent activities effectively. Furthermore, AI-driven identity verification and authentication systems enhance security in digital transactions by accurately verifying user identities and detecting unauthorized access attempts. By integrating AI-based biometric authentication with blockchain-based identity management solutions, financial institutions can streamline customer onboarding processes, enhance security, and protect sensitive information from unauthorized access. Moreover, AI-powered smart contracts automate and enforce the execution of contractual agreements, reducing the risk of fraud, errors, and disputes in financial transactions. By combining AI-driven smart contract platforms with blockchain technology, organizations can facilitate secure, transparent, and tamper-proof transactions, eliminating intermediaries and reducing transaction costs. The integration of AI with blockchain also offers opportunities for regulatory compliance and risk management in financial services. AI-powered regulatory compliance solutions analyze vast amounts of regulatory data, identify compliance risks, and ensure adherence to regulatory requirements. By integrating these solutions with blockchain-based regulatory reporting systems, financial institutions can enhance transparency, auditability, and regulatory oversight, fostering trust and compliance in the financial ecosystem. In conclusion, the integration of AI with blockchain technology holds immense potential for enhancing security in financial services. By harnessing the combined capabilities of AI and blockchain, organizations can detect and prevent fraudulent activities, enhance identity verification and authentication, streamline transaction processes, and ensure regulatory compliance. This abstract underscores the transformative impact of integrating AI with blockchain on security in financial services, paving the way for a more secure, efficient, and trusted financial ecosystem.. Keywords: Al, Blockchain, Enhanced, Financial, Services Security.",
+        "url": "https://doi.org/10.51594/farj.v6i3.855",
+        "published": "2024-03-09",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Finance & Accounting Research Journal",
+        "authors": [
+          "Olubusola Odeyemi",
+          "Chinwe Chinazo Okoye",
+          "Onyeka Chrisanctus Ofodile",
+          "Omotayo Bukola Adeoye",
+          "Wilhelmina Afua Addy",
+          "Adeola Olusola Ajayi-Nifise"
+        ],
+        "orgs": [
+          "Trevecca Nazarene University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Рассмотрены преимущества интеграции технологий блокчейн и ИИ для повышения безопасности финансовых услуг.",
+        "collected_at": "2026-09-28T16:02:41+00:00"
+      },
+      {
+        "source_id": "arxiv:2602.19021v2",
+        "title": "Trustworthy AI LLM Scalability Risk Index (LSRI): A Cybersecurity Framework Assessing Agentic-AI Security & Software Model Supply Chain Safety Boosting AI-Generated Malware Defense & Explainability Mitigating Emerging Risks of Generative AI",
+        "abstract": "As AI shifts from human-in-the-loop interfaces to autonomous multi-agent systems capable of real-time code execution and tool integration through protocols like the Model Context Protocol (MCP), traditional SAST, DAST, and legacy AI safety methods fail to detect modern agentic-AI threats. This paper introduces the LLM Scalability Risk Index (LSRI), a parametric framework and cybersecurity standard for stress-testing autonomous orchestration pipelines. LSRI measures the operational thresholds where load, compounding hallucinations, data poisoning, and adversarial prompt injections including jailbreaking and indirect prompt injection cause security boundaries to fail. Beyond RLHF and RLAIF, we present a Verifiable Root of Trust architecture using cryptographic attestation, semantic policy enforcement, and continuous runtime verification to secure the AI software supply chain. LSRI defends against malicious LoRA adapters, weight tampering, dependency typosquatting, and unsafe model artifacts from public registries such as Hugging Face and GitHub. By replacing post-hoc alignment with verifiable runtime controls, LSRI provides scalable API defense, safer agentic orchestration under heavy cloud workloads, stronger polymorphic malware detection, automated red-teaming, and improved system explainability. Aligned with NIST AI RMF, OWASP Top 10 for LLMs, and ISO 42001, LSRI establishes a deployable compliance baseline for securing generative AI ecosystems including ChatGPT, GPT-4o, Claude 3.5 Sonnet, Copilot, LLaMA, Gemini, and Bedrock. LSRI also supports capital market risk analysis by reducing exposure across technology portfolios linked to indices such as NASDAQ-100, QQQ, and semiconductor-driven supply chains.",
+        "url": "https://arxiv.org/abs/2602.19021v2",
+        "published": "2026-02-22",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Kiarash Ahi",
+          "Vaibhav Agrawal",
+          "Saeed Valizadeh"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Представлен индекс риска масштабируемости языковых моделей LSRI для оценки рисков автономных систем ИИ и защиты от вредоносного ПО.",
+        "collected_at": "2026-09-28T16:02:30+00:00"
+      },
+      {
+        "source_id": "arxiv:2601.19234v1",
+        "title": "iFAN Ecosystem: A Unified AI, Digital Twin, Cyber-Physical Security, and Robotics Environment for Advanced Nuclear Simulation and Operations",
+        "abstract": "As nuclear facilities experience digital transformation and advanced reactor development, AI integration, cyber-physical security, and other emerging technologies such as autonomous robot operations are increasingly developed. However, evaluation and deployment is challenged by the lack of dedicated virtual testbeds. The Immersive Framework for Advanced Nuclear (iFAN) ecosystem is developed, a comprehensive digital twin framework with a realistic 3D environment with physics-based simulations. The iFAN ecosystem serves as a high-fidelity virtual testbed for plant operation, cybersecurity, physical security, and robotic operation, as it provides real-time data exchange for pre-deployment verification. Core features include virtual reality, reinforcement learning, radiation simulation, and cyber-physical security. In addition, the paper investigates various applications through potential operational scenarios. The iFAN ecosystem provides a versatile and secure architecture for validating the next generation of autonomous and cyber-resilient nuclear operations.",
+        "url": "https://arxiv.org/abs/2601.19234v1",
+        "published": "2026-01-27",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Youndo Do",
+          "Chad Meece",
+          "Marc Zebrowitz",
+          "Spencer Banks",
+          "Myeongjun Choi",
+          "Xiaoxu Diao",
+          "Kai Tan",
+          "Michael Doran",
+          "Jason Reed",
+          "Fan Zhang"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Создан виртуальный тестовый стенд iFAN для безопасного моделирования операций ядерных объектов с использованием цифровых двойников и робототехники.",
+        "collected_at": "2026-09-28T16:02:30+00:00"
+      },
+      {
+        "source_id": "arxiv:2508.16662v1",
+        "title": "Bridging the Mobile Trust Gap: A Zero Trust Framework for Consumer-Facing Applications",
+        "abstract": "Zero Trust Architecture (ZTA) has become a widely adopted model for securing enterprise environments, promoting continuous verification and minimal trust across systems. However, its application in mobile contexts remains limited, despite mobile applications now accounting for most global digital interactions and being increasingly targeted by sophisticated threats. Existing Zero Trust frameworks developed by organisations such as the National Institute of Standards and Technology (NIST) and the Cybersecurity and Infrastructure Security Agency (CISA) primarily focus on enterprise-managed infrastructure, assuming organisational control over devices, networks, and identities. This paper addresses a critical gap by proposing an extended Zero Trust model designed for mobile applications operating in untrusted, user-controlled environments. Using a design science methodology, the study introduced a six-pillar framework that supports runtime enforcement of trust through controls including device integrity, user identity validation, data protection, secure application programming interface (API) usage, behavioural monitoring, and live application protection. Each pillar was mapped to relevant regulatory and security standards to support compliance. A phased implementation roadmap and maturity assessment model were also developed to guide adoption across varying organisational contexts. The proposed model offers a practical and standards-aligned approach to securing mobile applications beyond pre-deployment controls, aligning real-time enforcement with Zero Trust principles. This contribution expands the operational boundaries of ZTA and provides organisations with a deployable path to reduce fraud, enhance compliance, and address emerging mobile security challenges. Future research may include empirical validation of the framework and cross-sector application testing.",
+        "url": "https://arxiv.org/abs/2508.16662v1",
+        "published": "2025-08-20",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Alexander Tabalipa"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Разработана концепция нулевого доверия для мобильных приложений, обеспечивающая повышенную безопасность в потребительских приложениях.",
+        "collected_at": "2026-09-28T16:02:30+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 6,
+    "sources_shown": 5,
+    "docs_collected": 167,
+    "text_model": "GigaChat-2-Pro"
+  },
+  {
+    "technology": "Этический искусственный интеллект (Ethical AI)",
+    "technology_original": "ethical AI",
+    "technology_language": "ru",
+    "area": "",
+    "score": 0.934,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "число организаций",
+        "value": 33.0,
+        "direction": "+"
+      },
+      {
+        "name": "есть научные публикации",
+        "value": 0.0,
+        "direction": "+"
+      }
+    ],
+    "description": "Этический ИИ предполагает разработку и оценку систем искусственного интеллекта с учетом аспектов конфиденциальности и безопасности, а также этических норм и правовых требований.",
+    "advantage": "Позволяет организациям адаптироваться к быстро меняющемуся ландшафту технологий ИИ, обеспечивая контроль над развитием и применением ИИ-систем.",
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4392828253",
+        "title": "Towards a Privacy and Security-Aware Framework for Ethical AI: Guiding the Development and Assessment of AI Systems",
+        "abstract": "As artificial intelligence (AI) continues its unprecedented global expansion, accompanied by a proliferation of benefits, an increasing apprehension about the privacy and security implications of AI-enabled systems emerges. The pivotal question of effectively controlling AI development at both jurisdictional and organizational levels has become a prominent theme in contemporary discourse. While the European Commission has taken a decisive step by reaching a political agreement on the EU AI Act, the world’s first comprehensive AI law, organizations still find it challenging to adapt to the fast-evolving AI landscape, lacking a universal tool for evaluating the privacy and security dimensions of their AI models and systems. In response to this challenge, this study conducts a systematic literature review (SLR) with a primary focus on establishing a unified definition of key concepts in AI Ethics, particularly emphasizing the domains of privacy and security. Through the synthesis of knowledge extracted from the SLR, this study presents a conceptual framework tailored for privacy- and security-aware AI systems. This framework is designed to assist diverse stakeholders, including organizations, academic institutions, and governmental bodies, in the development and critical assessment of AI systems. Essentially, the proposed framework serves as a guide for ethical decision-making, fostering an environment wherein AI is developed and utilized with a strong commitment to ethical principles. In addition, the study unravels the key issues and challenges surrounding the privacy and security dimensions, delineating promising avenues for future research, thereby contributing to the ongoing dialogue on the globalization and democratization of AI ethics.",
+        "url": "https://doi.org/10.1145/3657054.3657141",
+        "published": "2024-06-01",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Daria Korobenko",
+          "Anastasija Nikiforova",
+          "Rajesh R. Sharma"
+        ],
+        "orgs": [
+          "University of Tartu"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Рассматривается подход к созданию рамки, учитывающей конфиденциальность и безопасность при разработке и оценке этического ИИ.",
+        "collected_at": "2026-09-28T16:02:35+00:00"
+      },
+      {
+        "source_id": "openalex:W4392557956",
+        "title": "The Role of AI in Cybersecurity: Addressing Threats in the Digital Age",
+        "abstract": "In the contemporary digital landscape, cybersecurity stands as a paramount concern due to the increasing sophistication and frequency of cyber threats. Artificial Intelligence (AI) has emerged as a potent tool in fortifying defenses against these evolving threats. This paper examines the multifaceted role of AI in cybersecurity, elucidating its applications in threat detection, vulnerability assessment, incident response, and predictive analysis. By leveraging machine learning algorithms, AI systems can swiftly analyze vast troves of data to identify anomalous patterns indicative of potential security breaches. Moreover, AI-driven technologies enable proactive defense mechanisms, empowering organizations to preemptively mitigate risks and safeguard sensitive information. However, the deployment of AI in cybersecurity also raises pertinent ethical and privacy considerations, necessitating a balanced approach towards its implementation. Through a comprehensive analysis, this paper underscores the imperative of integrating AI into cybersecurity frameworks to effectively mitigate threats in the digital age.",
+        "url": "https://doi.org/10.60087/jaigs.v3i1.75",
+        "published": "2024-03-06",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Journal of Artificial Intelligence General science (JAIGS) ISSN 3006-4023",
+        "authors": [
+          "Nicolas Guzman Camacho"
+        ],
+        "orgs": [
+          "Universidad de La Sabana"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Исследуется роль ИИ в кибербезопасности, включая обнаружение угроз, оценку уязвимости, реагирование на инциденты и прогнозный анализ.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4391843476",
+        "title": "Artificial intelligence (AI) cybersecurity dimensions: a comprehensive framework for understanding adversarial and offensive AI",
+        "abstract": "Abstract As Artificial Intelligence (AI) rapidly advances and integrates into various domains, cybersecurity emerges as a critical field grappling with both the benefits and pitfalls of AI technologies. This paper explores the multifaceted dimensions of AI-driven cyberattacks, offering insights into their implications, mitigation strategies, underlying motivations, and profound societal impacts. The research centres on developing and presenting the AI Cybersecurity Dimensions (AICD) Framework, a comprehensive, multidimensional schema designed to guide academics, policymakers, and industry professionals in understanding and combating the evolving challenges posed by AI-driven cyber threats. The research unveils the complex dynamics of offensive AI, stressing the need for adaptive defences and ethical considerations. Concurrently, the study highlights adversarial AI threats, calling for proactive measures to address their potential ramifications. Through rigorous textual analyses and extensive literature reviews, the paper underscores the urgency for interdisciplinary approaches to bridge the technology-humanity chasm traditionally observed in cybersecurity discussions. By synthesising these diverse elements, the AICD Framework emerges as an instrumental tool for holistic understanding and practical interventions in the AI-infused cybersecurity landscape. The paper concludes with an urgent call for collaborative efforts in research and practice to navigate the intricate challenges and capitalise on the opportunities borne from the convergence of AI and cybersecurity.",
+        "url": "https://doi.org/10.1007/s43681-024-00427-4",
+        "published": "2024-02-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "AI and Ethics",
+        "authors": [
+          "Masike Malatji",
+          "Alaa Tolah"
+        ],
+        "orgs": [
+          "University of South Africa",
+          "Saudi Electronic University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Представлен фреймворк для понимания и противодействия киберугрозам, основанным на ИИ, с акцентом на их последствия и стратегии смягчения рисков.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4391285268",
+        "title": "Machine learning in cybersecurity: A review of threat detection and defense mechanisms",
+        "abstract": "The cybersecurity concerns get increasingly intricate as the digital world progresses. In light of the increasing complexity of cyber threats, it is imperative to develop and implement advanced and flexible security strategies. Machine Learning (ML) has become a potent tool in strengthening cybersecurity, providing the capacity to scrutinise extensive information, recognise trends, and improve threat detection and defence methods. This paper examines the significance of ML in the field of cybersecurity, with a special emphasis on the identification of threats and the implementation of protective measures. By incorporating ML algorithms into cybersecurity frameworks, organisations may automate decision-making processes, facilitating prompt responses to ever-changing threats. The initial segment explores the terrain of cyber threats, highlighting the necessity for dynamic and aggressive security methods. Conventional solutions that rely on signatures are frequently inadequate when it comes to handling sophisticated, shape-shifting attacks. ML algorithms, in contrast, have exceptional proficiency in identifying nuanced patterns and irregularities within extensive datasets, therefore offering a more efficient method of detecting potential threats. The second section delves into several ML methodologies utilised in cybersecurity, including supervised and unsupervised learning, deep learning, and reinforcement learning. Every approach is assessed based on its suitability for threat detection, demonstrating its advantages and constraints. Furthermore, the relevance of feature engineering and data pretreatment in improving machine learning models for cybersecurity applications. The versatility of ML algorithms allows them to grow with emerging threats, making them a useful tool in the ever-changing arena of cyber warfare. The final segment focuses on real-world applications of machine learning in cybersecurity, presenting successful use cases across sectors. From anomaly detection to behavior analysis, ML algorithms contribute to the discovery of dangerous activity, lowering false positives and strengthening the overall security posture. Lastly, the paper covers the obstacles and ethical issues related to the adoption of ML in cybersecurity. Issues like as adversarial assaults, skewed datasets, and the interpretability of ML models are examined, highlighting the necessity for a holistic strategy that integrates modern technology with ethical considerations. The fusion of human expertise and machine intelligence offers a formidable defense against evolving cyber threats, paving the way for a more resilient and secure digital future.",
+        "url": "https://doi.org/10.30574/wjarr.2024.21.1.0315",
+        "published": "2024-01-27",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "World Journal of Advanced Research and Reviews",
+        "authors": [
+          "Ugochukwu Ikechukwu Okoli",
+          "Ogugua Chimezie Obi",
+          "Adebunmi Okechukwu Adewusi",
+          "Temitayo Oluwaseun Abrahams"
+        ],
+        "orgs": [
+          "University of Ilorin"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Анализируется значимость машинного обучения в кибербезопасности, особенно в обнаружении угроз и реализации защитных мер.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4405896723",
+        "title": "Navigating Emerging AI Technologies and Future Trends in Cybersecurity and Forensics",
+        "abstract": "Artificial Intelligence (AI) has transformed digital forensics and cybersecurity, enhancing efficiency and accuracy in combating cybercrime and analyzing evidence. This chapter will explore AI's capabilities in handling vast data, identifying patterns, reconstructing crime scenes, and detecting anomalies that have revolutionized investigations.. However, these technologies also pose challenges, including ethical concerns, algorithmic bias, privacy issues, and potential misuse. In cybersecurity, AI facilitates real-time threat detection, fraud prevention, and cross-border cooperation against cyberattacks. Despite these advancements, addressing challenges like international legal inconsistencies, transparency, and ethical implications is critical. As AI evolves, its integration into forensic science and cybersecurity holds immense potential to uphold justice and security, demanding balanced governance to ensure ethical and lawful applications.",
+        "url": "https://doi.org/10.4018/979-8-3373-0857-9.ch012",
+        "published": "2024-12-30",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Advances in digital crime, forensics, and cyber terrorism book series",
+        "authors": [
+          "Pranjal Khare",
+          "Vishambhar Raghuwanshi"
+        ],
+        "orgs": [
+          "O. P. Jindal Global University",
+          "Manipal Academy of Higher Education"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Обсуждаются возможности и вызовы использования ИИ в цифровой криминалистике и кибербезопасности, включая вопросы этики, предвзятости алгоритмов и международного законодательства.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 17,
+    "sources_shown": 5,
+    "docs_collected": 167,
+    "text_model": "GigaChat-2-Pro"
+  },
+  {
+    "technology": "Agent-Oriented AI Security - безопасность ориентированных на агентов ИИ",
+    "technology_original": "agent-oriented AI security",
+    "technology_language": "ru",
+    "area": "",
+    "score": 0.801,
+    "top_features": [
+      {
+        "name": "есть научные публикации",
+        "value": 0.0,
+        "direction": "+"
+      },
+      {
+        "name": "стадия развития",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "доля лидера",
+        "value": 0.0,
+        "direction": "+"
+      }
+    ],
+    "description": "Технология обеспечивает защиту автономных систем искусственного интеллекта, оснащенных инструментами, от рисков, связанных с несанкционированным использованием инструментов и атаками через непрямое внедрение подсказок.",
+    "advantage": "Позволяет динамически адаптироваться к изменяющимся условиям безопасности и обеспечивать более надежную защиту по сравнению со статическими политиками доступа.",
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "arxiv:2609.31039v1",
+        "title": "MetaPermit: Scalable and Auditable Access Control for AI Agents via LLM-Inferred Meta-Attributes",
+        "abstract": "The rise of autonomous AI agents equipped with tools has introduced significant security risks, ranging from unintended tool misuse to adversarial manipulation through Indirect Prompt Injection (IPI) attacks. In practice, deployed agent systems such as OpenAI Codex and Claude Code protect tool invocations through a combination of coarse-grained permission rules and LLM-based judgments about individual proposed actions. Both components, however, have important limitations: static policies must anticipate possible user intents and therefore do not scale to open-ended tasks, while LLM-driven authorization supports dynamic decisions but produces inconsistent outcomes and remains vulnerable to targeted IPI attacks. To provide scalable and more consistent authorization, we propose MetaPermit, a policy-based tool access-control framework that decouples semantic inference from security enforcement. By analyzing agent-user interactions, we derive a compact, task-independent set of meta-attributes that capture the relationships among the user's intent, the execution context, and the proposed tool call. These meta-attributes allow MetaPermit to authorize tool use without enumerating user intents. At runtime, an LLM infers the meta-attribute values for each proposed tool call, while a fixed policy evaluates these values to allow or deny the call, making each decision auditable through the inferred values and the applied policy rule. We evaluate MetaPermit on the AgentDojo and AgentDyn benchmarks, across seven task suites and five attack methods, using two widely deployed open-weight LLMs. The results show that MetaPermit produces 31% more consistent authorization decisions than LLM-driven authorization and outperforms the state-of-the-art defenses CaMeL and IPIGuard in both task completion, with improvements of up to 109%, and robustness to IPI attacks, with no malicious tool calls executed.",
+        "url": "https://arxiv.org/abs/2609.31039v1",
+        "published": "2026-09-25",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Hanzhang Ma",
+          "Ali Hariri",
+          "Tianxiang Shen",
+          "Bohua Zou",
+          "Qianjun Zheng",
+          "Ji Wang",
+          "Li Yi",
+          "Ning Jia",
+          "Yutao Liu",
+          "Haibo Chen",
+          "Lin Wang",
+          "Debayan Roy"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Статья описывает систему MetaPermit, обеспечивающую масштабируемый и проверяемый контроль доступа для автономных агентов ИИ посредством мета-характеристик, полученных с помощью языковых моделей.",
+        "collected_at": "2026-09-28T16:02:37+00:00"
+      },
+      {
+        "source_id": "arxiv:2609.22712v1",
+        "title": "Trustworthy Agentic AI: Failure Modes, Mitigation Strategies, and a Lifecycle Framework for Autonomous LLM Systems",
+        "abstract": "Agentic AI systems built on large language models can plan over multiple steps, use external tools, retain information in memory, and coordinate with other agents. These capabilities make them more useful than static language models, but they also introduce new security and operational risks. Untrusted content from websites, emails, documents, and databases can enter the same context as system instructions; persistent memory can carry compromised information across sessions; and access to external tools can turn an incorrect model response into a consequential real-world action. This article reviews the trustworthiness of agentic AI across five interconnected dimensions: safety and robustness, alignment and human oversight, transparency and auditability, privacy and data governance, and regulatory compliance. It organizes key failure modes, including indirect prompt injection, backdoor triggers, goal misgeneralization, memory contamination, and cross-session data leakage, into a unified taxonomy. It also examines major mitigation approaches, such as instruction hierarchies, context isolation, spotlighting, process-based supervision, constrained tool use, and privacy-preserving memory, while distinguishing techniques supported by empirical evidence from those that remain largely conceptual. Building on this analysis, we introduce the Trustworthy Agent Development Lifecycle (TADL), a six-phase framework covering specification, design, training, evaluation, deployment, and monitoring. For each phase, TADL identifies relevant trust activities, expected evidence, and risk-based decision gates. Although TADL has not yet been empirically validated, it provides a structured foundation for developing and evaluating more secure and accountable agentic systems. The article concludes by identifying gaps in current benchmarks and outlining priorities for future research.",
+        "url": "https://arxiv.org/abs/2609.22712v1",
+        "published": "2026-09-19",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Fayeq Jeelani Syed",
+          "Rehan Ahmad",
+          "Ali Al Bataineh",
+          "Aakriti Adhikari"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Рассматриваются риски и стратегии обеспечения надежности агентно-ориентированных систем ИИ, основанных на больших языковых моделях, а также предлагается жизненный цикл для таких систем.",
+        "collected_at": "2026-09-28T16:02:37+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 2,
+    "sources_shown": 2,
+    "docs_collected": 167,
+    "text_model": "GigaChat-2-Pro"
+  },
+  {
+    "technology": "Блокчейн для безопасного искусственного интеллекта",
+    "technology_original": "blockchain for secure AI",
+    "technology_language": "ru",
+    "area": "",
+    "score": 0.659,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "есть научные публикации",
+        "value": 0.0,
+        "direction": "+"
+      },
+      {
+        "name": "число организаций",
+        "value": 25.0,
+        "direction": "+"
+      }
+    ],
+    "description": "Технология блокчейна используется для повышения безопасности и децентрализации систем искусственного интеллекта, особенно в области кибербезопасности.",
+    "advantage": "Обеспечивает защищенное и неизменное хранение данных, повышая доверие к ИИ-системам.",
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "openalex:W4392303358",
+        "title": "Blockchain for secure and decentralized artificial intelligence in cybersecurity: A comprehensive review",
+        "abstract": "As the usage of artificial intelligence (AI) grows within the field of cybersecurity, so too does the demand for secure and decentralized AI systems to protect against potential cyber threats. Blockchain technology (BT) has emerged as the ideal approach for increasing both the security and privacy of AI systems since it provides decentralized and immutable data storage. This systematic literature review focuses on the integration of BT with decentralized AI within cybersecurity. It provides a comprehensive taxonomy of BT and decentralized AI for cybersecurity serving as the starting point for the study. This paper begins with an overview of BT and its possible uses in cybersecurity and also analyzes its challenges and opportunities. Decentralized AI is also covered in the study, along with its potential advantages and difficulties in decentralized AI cybersecurity. Building on that foundation, this study provides convincing findings highlighting the beneficial relationships between BT and decentralized AI for cybersecurity, contributing to a nuanced comprehension of their integration. Moreover, it offers real-world uses of blockchain-enabled decentralized AI to discuss its usefulness in tackling cybersecurity concerns. Finally, this paper discusses future research directions for blockchain-enabled decentralized AI in cybersecurity, including potential applications and implications of this technology in the field, emphasizing the potential of blockchain-enabled decentralized AI in cybersecurity to enhance security, privacy, and trust in AI systems.",
+        "url": "https://doi.org/10.1016/j.bcra.2024.100193",
+        "published": "2024-02-29",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Blockchain Research and Applications",
+        "authors": [
+          "Ahmed M. Shamsan Saleh"
+        ],
+        "orgs": [
+          "University of Tabuk"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Рассматривается интеграция блокчейна с искусственным интеллектом для улучшения безопасности и приватности в киберзащите.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4389132215",
+        "title": "Emerging Digital Technologies in Healthcare with a Spotlight on Cybersecurity: A Narrative Review",
+        "abstract": "Emerging digital technologies, such as telemedicine, artificial intelligence, the Internet of Medical Things, blockchain, and visual and augmented reality, have revolutionized the delivery of and access to healthcare services. Such technologies allow for real-time health monitoring, disease diagnosis, chronic disease management, outbreak surveillance, and rehabilitation. They help personalize treatment plans, identify trends, contribute to drug development, and enhance public health management. While emerging digital technologies have numerous benefits, they may also introduce new risks and vulnerabilities that can compromise the confidentiality, integrity, and availability of sensitive healthcare information. This review article discussed, in brief, the key emerging digital technologies in the health sector and the unique threats introduced by these technologies. We also highlighted the risks relevant to digital health cybersecurity, such as data breaches, medical device vulnerabilities, phishing, insider and third-party risks, and ransomware attacks. We suggest that the cybersecurity framework should include developing a comprehensive cybersecurity strategy, conducting regular risk assessments, implementing strong access control, encrypting data, educating staff, implementing secure network segmentation, backing up data regularly, monitoring and detecting anomalies, establishing an incident response plan, sharing threat intelligence, and auditing third-party vendors.",
+        "url": "https://doi.org/10.3390/info14120640",
+        "published": "2023-11-29",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Information",
+        "authors": [
+          "Ahmed Arafa",
+          "Haytham A. Sheerah",
+          "Shada Alsalamah"
+        ],
+        "orgs": [
+          "Beni-Suef University",
+          "National Cerebral and Cardiovascular Center",
+          "Ministry of Health",
+          "King Saud University",
+          "World Health Organization"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Анализируются цифровые технологии в здравоохранении, включая искусственный интеллект и блокчейн, их преимущества и риски для кибербезопасности.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4405709448",
+        "title": "Emerging Technologies for Cybersecurity in Healthcare: Evaluating Risks and Implementing Standards",
+        "abstract": "Emerging technologies in healthcare cybersecurity focus on addressing evolving threats to patient data and critical systems. AI and machine learning algorithms are being deployed for real-time threat detection and anomaly identification. Blockchain technology is utilized for secure, tamper-proof health record management. Zero-trust architectures are implemented to enhance access control and minimize breach impacts. Key challenges include securing IoT medical devices, protecting against ransomware attacks, and ensuring HIPAA compliance in cloud environments. Risk evaluation involves continuous vulnerability assessments and penetration testing. Implementation of standards like NIST Cybersecurity Framework and ISO 27001 is crucial. Advanced encryption methods, including homomorphic encryption, are being explored for secure data sharing. Biometric authentication and behavioral analytics are enhancing identity management. The integration of these technologies aims to create a robust, adaptive cybersecurity ecosystem in healthcare. This research paper proposes a framework that talks about the new emerging technologies and various aspects of cybersecurity and what responses can be proposed to avoid the attacks that have taken place in the healthcare sector till now. This is a qualitative study involving content analysis gathered from the transcript of the interview of industry experts. Experts from IoMT (Internet-of-medical-things), EHR (Electronic health records), Blockchain, Cloud computing and cyber-attack data analyst. The framework was corroborated by a few of industry experts.",
+        "url": "https://doi.org/10.1109/cybercom63683.2024.10803219",
+        "published": "2024-11-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Sparsh Jain",
+          "P Ashok",
+          "Sandeep Prabhu"
+        ],
+        "orgs": [
+          "Symbiosis International University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Исследуются технологии кибербезопасности в здравоохранении, такие как искусственный интеллект, блокчейн и архитектура нулевого доверия, а также связанные с ними вызовы.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4392230261",
+        "title": "Cybersecurity Audits for Emerging and Existing Cutting Edge Technologies",
+        "abstract": "The evolution of cybersecurity insurance is spurred by financial institutions aiming to manage costs from cyber incidents, particularly in the early stages like cloud-based services. Analyzing big data, secure assessments of cyber events are done, linking repository data for various risk scenarios. Challenges arise in securing cloud services offered by giants like Google, Amazon, and Microsoft, as control over security is ceded. Research develops models countering cloud attacks to boost security. The role of cybersecurity in cloud service and application development is stressed. A comprehensive approach addresses Distributed Denial of Service (DDoS) attacks, evaluating algorithms using metrics. Blockchain's integration with cybersecurity is explored via text mining, revealing themes, vulnerabilities, and risks. Businesses moving to the cloud raise security concerns. Data-driven methods identify cloud vulnerabilities and propose solutions. Blockchain's potential and challenges in cybersecurity are highlighted. AI-driven defenses for Big Data are crucial. AI, Big Data, and blockchain's synergy is examined for security implications. Blockchain bolsters Cyber-Physical Systems security and healthcare record integrity. AI eases cybersecurity with machine learning. Collaborative mechanisms for sharing threat information are discussed. The study explores AI-driven cybersecurity frameworks for autonomous threat detection, analyzing their defensive and offensive roles amidst evolving challenges. The complex interplay between AI, cyber warfare, and modern cybersecurity is emphasized.",
+        "url": "https://doi.org/10.1109/ised59382.2023.10444536",
+        "published": "2023-12-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "S. Saravanan",
+          "Anup Menon",
+          "Kavya Saravanan",
+          "Shanmugasundaram Hariharan",
+          "Leema Nelson",
+          "Jegadeesh Gopalakrishnan"
+        ],
+        "orgs": [
+          "Sri Sairam Engineering College",
+          "Vardhaman College of Engineering",
+          "Chitkara University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Описываются аудиты кибербезопасности для новых и существующих технологий, подчеркивая важность защиты облачных сервисов и анализа рисков.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4391706684",
+        "title": "Cybersecurity threats in the age of IoT: A review of protective measures",
+        "abstract": "The Internet of Things (IoT) heralds a new era of connectivity, transforming the way devices interact and share information. With this transformative potential comes a concomitant rise in cybersecurity threats that pose significant challenges to the integrity of the IoT ecosystem. This paper undertakes a comprehensive examination of cybersecurity threats in the age of IoT, categorizing them into data breaches, malware attacks, physical manipulation, and more. Counteracting these threats necessitates a multifaceted approach encompassing device-level security, network-level measures, and effective management practices. Protective measures discussed include secure boot processes, encryption protocols, and the implementation of intrusion detection systems. However, persistent challenges, such as device diversity and resource constraints, underscore the need for ongoing research and development. Emerging technologies like blockchain, edge computing, and artificial intelligence offer promising avenues to bolster IoT security. In the pursuit of a secure IoT future, this paper emphasizes the critical importance of collaboration and collective efforts. The key findings underscore the centrality of robust security measures in the IoT landscape. The call to action resonates throughout the paper, urging stakeholders to unite in addressing challenges, embracing emerging technologies, and ensuring the responsible growth of IoT. Together, through shared knowledge and collaborative endeavors, we can forge a secure foundation for the continued expansion of IoT technologies",
+        "url": "https://doi.org/10.30574/ijsra.2024.11.1.0217",
+        "published": "2024-02-09",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "International Journal of Science and Research Archive",
+        "authors": [
+          "Olukunle Oladipupo Amoo",
+          "Femi Osasona",
+          "Akoh Atadoga",
+          "Benjamin Samson Ayinla",
+          "Oluwatoyin Ajoke Farayola",
+          "Temitayo Oluwaseun Abrahams"
+        ],
+        "orgs": [
+          "University of Nebraska at Omaha",
+          "Scottish Water (United Kingdom)",
+          "The University of Law"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Изучаются угрозы кибербезопасности в эпоху Интернета вещей и меры защиты от них.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      }
+    ],
+    "verdict": "сигнал",
+    "reject_reason": null,
+    "doc_count": 12,
+    "sources_shown": 5,
+    "docs_collected": 167,
+    "text_model": "GigaChat-2-Pro"
+  },
+  {
+    "technology": "управление рисками ИИ с помощью квантовых вычислений",
+    "technology_original": "quantum computing for AI risk management",
+    "technology_language": "ru",
+    "area": "",
+    "score": 0.31,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "есть научные публикации",
+        "value": 0.0,
+        "direction": "+"
+      },
+      {
+        "name": "стадия развития",
+        "value": 0.0,
+        "direction": "-"
+      }
+    ],
+    "description": null,
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "arxiv:2606.00058v1",
+        "title": "A Survey on Security with Quantum Computing",
+        "abstract": "Quantum computing has emerged as a transformative computing paradigm capable of solving problems that remain computationally infeasible for classical systems; however, its rapid advancement also introduces significant security, privacy, and reliability concerns. In this context, this survey presents a comprehensive review of security challenges and mitigation strategies associated with quantum computing, focusing on security issues in quantum computers, security threats caused by quantum computers, and security mechanisms developed for quantum systems. The paper examines vulnerabilities in quantum hardware and software, the impact of quantum computing on existing cryptographic infrastructures and cybersecurity mechanisms, and the development of quantum-resilient solutions such as post-quantum cryptography, quantum-safe communication protocols, quantum intrusion detection systems, and quantum-aware software engineering techniques. In addition, the survey discusses emerging applications of quantum technologies in cybersecurity domains, including malware detection, network intrusion detection, Internet of Things (IoT) security, and secure communication systems. Furthermore, the paper analyzes existing quantum error mitigation and fault-tolerance approaches designed to improve the robustness and trustworthiness of quantum computation under realistic noisy conditions. By consolidating recent advances, open research challenges, and future directions, this survey provides a structured overview of the evolving intersection between quantum computing and cybersecurity, while serving as a reference for researchers and practitioners working toward secure, resilient, and quantum-ready computing infrastructures.",
+        "url": "https://arxiv.org/abs/2606.00058v1",
+        "published": "2026-05-19",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Manik Kumar Sangala",
+          "Robin Naira",
+          "Akhirul Islam",
+          "Sudip Biswas",
+          "Manojit Ghose"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-28T16:02:30+00:00"
+      },
+      {
+        "source_id": "openalex:W4406385285",
+        "title": "The Role of Zero Trust Architecture in Modern Cybersecurity: Integration with IAM and Emerging Technologies",
+        "abstract": "As cyber threats continue to evolve, organizations are increasingly adopting advanced security frameworks such as Zero Trust Architecture (ZTA) to protect their digital assets. ZTA operates under the principle of \"never trust, always verify,\" acknowledging that both internal and external networks may be compromised. Integrated with Identity and Access Management (IAM), ZTA offers a dynamic security model, requiring continuous authentication and authorization for every access request. This integration ensures that sensitive resources are protected by enforcing multifactor authentication, behavioral analysis, and micro-segmentation, which collectively reduce the risk of attacks. A critical aspect of ZTA is its focus on continuous authentication and the principle of least privilege. Unlike traditional IAM systems, which grant static access, ZTA dynamically adjusts access based on real-time conditions, such as user behavior, location, and the sensitivity of data. This reduces the attack surface and minimizes lateral movement within the network. Additionally, ZTA promotes network segmentation, using IAM frameworks to enforce strict access control for each network segment. This limits the potential damage if an attacker compromises one segment. Studies have shown that ZTA is highly effective in mitigating insider threats, reducing the attack surface, and enhancing the resilience of infrastructure. While challenges remain in terms of scalability and integration complexity, the security benefits are undeniable. The increasing use of AI, machine learning, and quantum computing is expected to further strengthen ZTA's security capabilities. As organizations face more sophisticated cyber threats, ZTA is likely to become a standard in cybersecurity strategies, providing a robust, adaptable solution to protect valuable digital assets.",
+        "url": "https://doi.org/10.34117/bjdv11n1-060",
+        "published": "2025-01-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "Brazilian Journal of Development",
+        "authors": [
+          "Wilson Leite Rebouças Filho"
+        ],
+        "orgs": [
+          "Military Institute of Engineering"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4405709448",
+        "title": "Emerging Technologies for Cybersecurity in Healthcare: Evaluating Risks and Implementing Standards",
+        "abstract": "Emerging technologies in healthcare cybersecurity focus on addressing evolving threats to patient data and critical systems. AI and machine learning algorithms are being deployed for real-time threat detection and anomaly identification. Blockchain technology is utilized for secure, tamper-proof health record management. Zero-trust architectures are implemented to enhance access control and minimize breach impacts. Key challenges include securing IoT medical devices, protecting against ransomware attacks, and ensuring HIPAA compliance in cloud environments. Risk evaluation involves continuous vulnerability assessments and penetration testing. Implementation of standards like NIST Cybersecurity Framework and ISO 27001 is crucial. Advanced encryption methods, including homomorphic encryption, are being explored for secure data sharing. Biometric authentication and behavioral analytics are enhancing identity management. The integration of these technologies aims to create a robust, adaptive cybersecurity ecosystem in healthcare. This research paper proposes a framework that talks about the new emerging technologies and various aspects of cybersecurity and what responses can be proposed to avoid the attacks that have taken place in the healthcare sector till now. This is a qualitative study involving content analysis gathered from the transcript of the interview of industry experts. Experts from IoMT (Internet-of-medical-things), EHR (Electronic health records), Blockchain, Cloud computing and cyber-attack data analyst. The framework was corroborated by a few of industry experts.",
+        "url": "https://doi.org/10.1109/cybercom63683.2024.10803219",
+        "published": "2024-11-15",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": null,
+        "authors": [
+          "Sparsh Jain",
+          "P Ashok",
+          "Sandeep Prabhu"
+        ],
+        "orgs": [
+          "Symbiosis International University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": true,
+        "ru_summary": "Исследуются технологии кибербезопасности в здравоохранении, такие как искусственный интеллект, блокчейн и архитектура нулевого доверия, а также связанные с ними вызовы.",
+        "collected_at": "2026-09-28T16:02:29+00:00"
+      },
+      {
+        "source_id": "openalex:W4404665195",
+        "title": "A governance framework model for cloud computing: role of AI, security, compliance, and management",
+        "abstract": "The rapid adoption of cloud computing has transformed how organizations manage their IT resources, necessitating robust governance frameworks to address the complexities and risks inherent in cloud environments. This review proposes a comprehensive governance framework model that integrates the roles of artificial intelligence (AI), security, compliance, and management to enhance the effectiveness of cloud operations. AI plays a critical role in optimizing resource allocation and improving decision-making processes within cloud governance. By leveraging machine learning algorithms, organizations can achieve dynamic resource management, predictive analytics, and automated compliance monitoring, which enhance operational efficiency and reduce human error. Furthermore, the integration of AI in security management facilitates real-time threat detection and response, allowing organizations to proactively mitigate risks associated with data breaches and cyberattacks. Security is a paramount concern in cloud governance, given the shared responsibility model between cloud providers and clients. This framework emphasizes the implementation of comprehensive security measures, including data encryption, identity management, and incident response protocols, to safeguard sensitive information and maintain customer trust. Compliance with regulatory requirements is essential in ensuring organizational accountability and minimizing legal risks. The proposed governance model incorporates automated compliance checks and reporting mechanisms, ensuring adherence to industry-specific regulations such as GDPR and HIPAA. Moreover, effective management of cloud resources is crucial for optimizing performance and controlling costs. The governance framework outlines best practices for lifecycle management, cost optimization, and resource allocation, enabling organizations to achieve their strategic objectives. This governance framework model underscores the importance of integrating AI, security, compliance, and management for a holistic approach to cloud governance, providing organizations with the necessary tools to navigate the complexities of cloud computing while maximizing its benefits.",
+        "url": "https://doi.org/10.30574/wjarr.2024.24.2.3513",
+        "published": "2024-11-24",
+        "source_type": "научная публикация",
+        "language": "en",
+        "venue": "World Journal of Advanced Research and Reviews",
+        "authors": [
+          "Adebola Folorunso",
+          "Adeola Adewa",
+          "Olufunbi Babalola",
+          "Chineme Edgar Nwatu"
+        ],
+        "orgs": [
+          "Capella University",
+          "Ohio University",
+          "Carnegie Mellon University",
+          "Western Illinois University"
+        ],
+        "domain": "doi.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-28T16:02:41+00:00"
+      },
+      {
+        "source_id": "arxiv:2508.21548v1",
+        "title": "Quantum Leap in Finance: Economic Advantages, Security, and Post-Quantum Readiness",
+        "abstract": "This paper provides an in-depth review of the evolving role of quantum computing in the financial sector, emphasizing both its computational potential and cybersecurity implications. Distinguishing itself from existing surveys, this work integrates classical quantum computing applications - such as portfolio optimization, risk analysis, derivative pricing, and Monte Carlo simulations with a thorough examination of blockchain technologies and post-quantum cryptography (PQC), which are crucial for maintaining secure financial operations in the emerging quantum era. We propose a structured four-step framework to assess the feasibility and expected benefits of implementing quantum solutions in finance, considering factors such as computational scalability, error tolerance, data complexity, and practical implementability. This framework is applied to a series of representative financial scenarios to identify domains where quantum approaches can surpass classical techniques. Furthermore, the paper explores the vulnerabilities quantum computing introduces to digital finance-related applications and blockchain security, including risks to digital signatures, hash functions, and randomness generation, and discusses mitigation strategies through PQC and quantum-resilient alternatives of classical digital finance tools and blockchain architectures. By addressing both quantum blockchain, quantum key distribution (QKD) as well as quantum communication networks, his review presents a more holistic perspective than prior studies, offering actionable insights for researchers, financial practitioners, and policymakers navigating the intersection of quantum computing, blockchain, and secure financial systems.",
+        "url": "https://arxiv.org/abs/2508.21548v1",
+        "published": "2025-08-29",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Gerhard Hellstern",
+          "Esra Yeniaras"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-28T16:02:30+00:00"
+      }
+    ],
+    "verdict": "отклонено",
+    "reject_reason": "шум",
+    "doc_count": 5,
+    "sources_shown": 5,
+    "docs_collected": 167
+  },
+  {
+    "technology": "нейроаудио водяная метка",
+    "technology_original": "neural audio watermark",
+    "technology_language": "ru",
+    "area": "",
+    "score": 0.306,
+    "top_features": [
+      {
+        "name": "динамика упоминаний",
+        "value": 0.0,
+        "direction": "-"
+      },
+      {
+        "name": "есть научные публикации",
+        "value": 0.0,
+        "direction": "+"
+      },
+      {
+        "name": "стадия развития",
+        "value": 0.0,
+        "direction": "-"
+      }
+    ],
+    "description": null,
+    "advantage": null,
+    "case_example": null,
+    "sources": [
+      {
+        "source_id": "arxiv:2609.29040v1",
+        "title": "The Vulnerability of Neural Audio Watermarks under Speech Enhancement",
+        "abstract": "Neural audio watermarks are increasingly deployed in commercial speech generation systems to make AI-generated speech traceable, yet their robustness has been studied mainly under conventional signal distortions. Since a watermark can be regarded as imperceptible noise added to the speech signal, a natural question is whether speech enhancement (SE), as a denoising model, can remove it. In this paper, we cascade Gaussian noise with SE models as a black-box watermark removal attack, covering both discriminative and generative SE paradigms, against six neural watermarks: AudioSeal, WavMark, SilentCipher, Timbre, Perth, and AlignMark. Experimental results show that the proposed attack significantly outperforms existing neural re-synthesis methods in watermark removal. In particular, we find that generative SE, which reconstructs the harmonic regions of speech while denoising, is highly destructive to watermarks. These findings show that SE poses a serious threat to current audio watermarking methods, and we call for SE-aware robustness evaluation in watermark design.",
+        "url": "https://arxiv.org/abs/2609.29040v1",
+        "published": "2026-09-24",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Xincong Zhong",
+          "Shengyao Wang",
+          "Lingfeng Yao",
+          "Yihang Bao",
+          "Jinze Yu",
+          "Miao Pan",
+          "Jiang Liu"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-28T16:02:37+00:00"
+      },
+      {
+        "source_id": "arxiv:2509.18461v1",
+        "title": "Zero-Shot Visual Deepfake Detection: Can AI Predict and Prevent Fake Content Before It's Created?",
+        "abstract": "Generative adversarial networks (GANs) and diffusion models have dramatically advanced deepfake technology, and its threats to digital security, media integrity, and public trust have increased rapidly. This research explored zero-shot deepfake detection, an emerging method even when the models have never seen a particular deepfake variation. In this work, we studied self-supervised learning, transformer-based zero-shot classifier, generative model fingerprinting, and meta-learning techniques that better adapt to the ever-evolving deepfake threat. In addition, we suggested AI-driven prevention strategies that mitigated the underlying generation pipeline of the deepfakes before they occurred. They consisted of adversarial perturbations for creating deepfake generators, digital watermarking for content authenticity verification, real-time AI monitoring for content creation pipelines, and blockchain-based content verification frameworks. Despite these advancements, zero-shot detection and prevention faced critical challenges such as adversarial attacks, scalability constraints, ethical dilemmas, and the absence of standardized evaluation benchmarks. These limitations were addressed by discussing future research directions on explainable AI for deepfake detection, multimodal fusion based on image, audio, and text analysis, quantum AI for enhanced security, and federated learning for privacy-preserving deepfake detection. This further highlighted the need for an integrated defense framework for digital authenticity that utilized zero-shot learning in combination with preventive deepfake mechanisms. Finally, we highlighted the important role of interdisciplinary collaboration between AI researchers, cybersecurity experts, and policymakers to create resilient defenses against the rising tide of deepfake attacks.",
+        "url": "https://arxiv.org/abs/2509.18461v1",
+        "published": "2025-09-22",
+        "source_type": "препринт",
+        "language": "en",
+        "venue": "arXiv",
+        "authors": [
+          "Ayan Sar",
+          "Sampurna Roy",
+          "Tanupriya Choudhury",
+          "Ajith Abraham"
+        ],
+        "orgs": [],
+        "domain": "arxiv.org",
+        "trust": "высокий",
+        "translated": false,
+        "ru_summary": null,
+        "collected_at": "2026-09-28T16:02:30+00:00"
+      }
+    ],
+    "verdict": "отклонено",
+    "reject_reason": "шум",
+    "doc_count": 2,
+    "sources_shown": 2,
+    "docs_collected": 167
+  }
+]

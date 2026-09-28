@@ -24,6 +24,8 @@ from typing import Any, Callable
 
 from src.collect import arxiv, openalex
 from src.collect.normalize import prepare
+from src.collect.candidates import extract as extract_by_model
+from src.collect.query import search_queries
 from src.features.build import profile_from_docs
 from src.model.predict import load_model, reject_reason, score
 from src.storage import db
@@ -34,8 +36,14 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 CACHE_DIR = ROOT / "data" / "cache"
 
 TOP_N = 15
-MIN_DOCS_PER_CANDIDATE = 2   # фраза из одного документа — это не тренд
-MAX_DOC_SHARE = 0.4          # фраза почти в каждом документе — это сам запрос
+# Два документа — это совпадение, а не тренд: в первом живом прогоне
+# тринадцать сигналов из пятнадцати держались ровно на двух. Три — минимум,
+# при котором фраза повторяется у разных авторов.
+MIN_DOCS_PER_CANDIDATE = 3
+# Фраза, которая встречается в каждой седьмой работе выборки, описывает саму
+# область, а не зарождающуюся технологию. Порог был 0.4 — с ним в ТОП-15
+# попадали «artificial intelligence» и «cyber security».
+MAX_DOC_SHARE = 0.15
 NGRAM_SIZES = (2, 3)
 MAX_CANDIDATES = 60
 
@@ -53,6 +61,42 @@ STOPWORDS = {
     "deployment", "demonstrated", "evaluation", "framework", "case",
     "early", "stage", "first", "initial", "towards", "part",
 }
+
+# Академические обороты. В живом прогоне из-за них в ТОП-15 попали
+# «consistently outperforms», «has been observed» и «root mean square» —
+# это язык статьи, а не название технологии.
+BOILERPLATE = {
+    "outperforms", "state", "art", "baseline", "baselines", "benchmark",
+    "benchmarks", "dataset", "datasets", "accuracy", "performance",
+    "experiments", "experiment", "observed", "consistently", "significantly",
+    "compared", "comparison", "improvement", "improvements", "error",
+    "errors", "mean", "square", "root", "average", "values", "value",
+    "international", "scientific", "conference", "journal", "review",
+    "survey", "overview", "introduction", "conclusion", "discussion",
+    # Обороты обзорных статей: в прогоне по кибербезопасности в кандидаты
+    # попал «систематический обзор литературы».
+    "systematic", "literature", "empirical", "evaluation", "taxonomy",
+    "mapping", "study", "studies", "novel", "towards", "case", "cases",
+    "insights", "perspective", "perspectives", "trends", "trend",
+    "recent", "advances", "future", "challenges", "opportunities",
+    "problem", "problems", "solution", "solutions", "application",
+    "applications", "research", "work", "works", "data",
+    # Названия организаций. OpenAlex затягивает аффилиации в текст, и без
+    # этого списка в кандидаты попадают вузы: в первом прогоне во вкладке
+    # «Отклонено» оказались «южно-уральский государственный университет»
+    # и «федеральное государственное автономное образовательное учреждение».
+    "university", "universities", "institute", "institution", "faculty",
+    "department", "laboratory", "laboratories", "center", "centre",
+    "academy", "college", "school",
+    "университет", "университета", "институт", "института", "учреждение",
+    "учреждения", "образовательное", "государственное", "государственный",
+    "федеральное", "федеральный", "автономное", "кафедра", "кафедры",
+    "лаборатория", "лаборатории", "академия", "факультет",
+}
+
+# Зонтичные термины лежат в отдельном модуле: их же проверяет разбор
+# названий от языковой модели.
+from src.collect.vocab import GENERIC  # noqa: E402
 
 _WORD = re.compile(r"[a-zA-Zа-яА-ЯёЁ][\w\-]+", re.UNICODE)
 
@@ -82,55 +126,113 @@ def save_cache(query: str, candidates: list[dict[str, Any]]) -> None:
     )
 
 
+_ПОСЛЕДНИЕ_СТРОКИ: list[str] = []
+_КИРИЛЛИЦА = re.compile(r"[а-яА-ЯёЁ]")
+
+
 def collect(query: str, limit_per_source: int = 100) -> list[dict[str, Any]]:
-    """Собирает документы из всех источников. Падение одного не ломает остальные."""
+    """Собирает документы из всех источников. Падение одного не ломает остальные.
+
+    Русский запрос сначала превращается в английские поисковые строки:
+    OpenAlex и arXiv индексируют англоязычные тексты и по кириллице
+    возвращают документы не по теме.
+    """
+    строки = search_queries(query)
+    log.info("Поисковые строки: %s", строки)
+    # Запоминаем: те же строки нужны при выделении кандидатов, а повторный
+    # вызов модели дал бы другие.
+    global _ПОСЛЕДНИЕ_СТРОКИ
+    _ПОСЛЕДНИЕ_СТРОКИ = list(строки)
+
     documents: list[dict[str, Any]] = []
     источники: list[tuple[str, Callable[..., list[dict[str, Any]]]]] = [
         ("OpenAlex", openalex.search),
         ("arXiv", arxiv.search),
     ]
-    for name, search_fn in источники:
-        try:
-            batch = search_fn(query, limit=limit_per_source)
-            log.info("%s: %s документов", name, len(batch))
-            documents.extend(batch)
-        except Exception as error:  # источник не должен ронять пайплайн
-            log.warning("%s недоступен: %s", name, error)
+    на_строку = max(limit_per_source // max(len(строки), 1), 20)
+
+    for строка in строки:
+        for name, search_fn in источники:
+            try:
+                batch = search_fn(строка, limit=на_строку)
+                log.info("%s по %r: %s документов", name, строка, len(batch))
+                documents.extend(batch)
+            except Exception as error:  # источник не должен ронять пайплайн
+                log.warning("%s недоступен: %s", name, error)
     return prepare(documents)
 
 
 def _phrases(text: str) -> set[str]:
-    """Осмысленные словосочетания из текста."""
+    """Осмысленные словосочетания из текста.
+
+    Фраза принимается, только если в ней есть хотя бы одно содержательное
+    слово: иначе в кандидаты лезут обороты вроде «consistently outperforms».
+    """
     words = [w.lower() for w in _WORD.findall(text or "")]
     words = [w for w in words if w not in STOPWORDS and len(w) > 2]
     found: set[str] = set()
     for size in NGRAM_SIZES:
         for i in range(len(words) - size + 1):
-            found.add(" ".join(words[i : i + size]))
+            кусок = words[i : i + size]
+            if all(w in BOILERPLATE for w in кусок):
+                continue
+            if кусок[0] in BOILERPLATE or кусок[-1] in BOILERPLATE:
+                continue
+            found.add(" ".join(кусок))
     return found
 
 
-def extract_candidates(documents: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+def _content_words(phrase: str, query_words: set[str]) -> int:
+    """Сколько в фразе слов, которые не являются ни темой запроса, ни водой."""
+    return sum(
+        1 for w in phrase.split()
+        if w not in query_words and w not in GENERIC and w not in BOILERPLATE
+    )
+
+
+def extract_candidates(
+    documents: list[dict[str, Any]],
+    query_words: set[str] | None = None,
+    min_docs: int = MIN_DOCS_PER_CANDIDATE,
+    max_share: float = MAX_DOC_SHARE,
+) -> dict[str, list[dict[str, Any]]]:
     """Группирует документы по повторяющимся фразам.
 
     Возвращает словарь «фраза -> документы, где она встречается».
+
+    Слова самого запроса исключаются: по запросу про кибербезопасность
+    кандидат «cyber security» — это название области, а не сигнал внутри неё.
     """
+    query_words = query_words or set()
     if not documents:
         return {}
 
+    # Названия технологий живут в заголовках. Аннотации дают язык статьи —
+    # в первом живом прогоне именно из них полезли обрывки вроде
+    # «has been observed». Поэтому кандидатов берём только из заголовков,
+    # а аннотации остаются для признаков.
     по_документам: list[set[str]] = []
     счётчик: collections.Counter[str] = collections.Counter()
     for doc in documents:
-        текст = f"{doc.get('title') or ''} {doc.get('abstract') or ''}"
-        фразы = _phrases(текст)
+        фразы = _phrases(doc.get("title") or "")
         по_документам.append(фразы)
         счётчик.update(фразы)
 
-    предел = max(int(len(documents) * MAX_DOC_SHARE), MIN_DOCS_PER_CANDIDATE + 1)
+    предел = max(int(len(documents) * max_share), min_docs + 1)
     отобранные = [
         фраза for фраза, количество in счётчик.most_common()
-        if MIN_DOCS_PER_CANDIDATE <= количество <= предел
+        if min_docs <= количество <= предел
+        and _content_words(фраза, query_words) >= 1
     ]
+
+    # «privacy security» и «security privacy» — одно и то же. Схлопываем по
+    # набору слов, оставляя тот вариант, что встретился чаще.
+    по_набору: dict[frozenset[str], str] = {}
+    for фраза in отобранные:
+        ключ = frozenset(фраза.split())
+        if ключ not in по_набору:
+            по_набору[ключ] = фраза
+    отобранные = list(по_набору.values())
 
     группы_всех: dict[str, list[dict[str, Any]]] = {
         фраза: [doc for doc, фразы in zip(documents, по_документам) if фраза in фразы]
@@ -162,6 +264,8 @@ def _card(
     docs: list[dict[str, Any]],
     model: Any,
     docs_collected: int = 0,
+    name_en: str | None = None,
+    language: str = "en",
 ) -> dict[str, Any]:
     """Карточка кандидата в формате, о котором договорились с интерфейсом.
 
@@ -178,8 +282,8 @@ def _card(
 
     return {
         "technology": technology,
-        "technology_original": technology,
-        "technology_language": "en",
+        "technology_original": name_en or technology,
+        "technology_language": language,
         "area": "",  # область проставляется по запросу, если он её называет
         "score": оценка["score"],
         "top_features": [
@@ -231,14 +335,48 @@ def run(
     if save_to_db:
         db.save_docs(документы, query=query)
 
-    группы = extract_candidates(документы)
-    log.info("Кандидатов до отбора: %s", len(группы))
-
     model = load_model()
-    карточки = [
-        _card(фраза, docs, model, docs_collected=len(документы))
-        for фраза, docs in группы.items()
-    ]
+
+    # Сначала пробуем выделить кандидатов языковой моделью: она называет
+    # технологии, а частотный способ — только частые пары слов. Если модель
+    # не настроена или ответила негодно, откатываемся на частотный способ.
+    от_модели = extract_by_model(документы, query, directions=_ПОСЛЕДНИЕ_СТРОКИ)
+    if от_модели:
+        log.info("Кандидатов от модели: %s", len(от_модели))
+        карточки = [
+            _card(
+                c["name_ru"], c["docs"], model,
+                docs_collected=len(документы),
+                name_en=c["name_en"],
+                # GigaChat иногда оставляет русское название по-английски.
+                # Тогда честно пишем en — интерфейс покажет пометку.
+                language="ru" if _КИРИЛЛИЦА.search(c["name_ru"]) else "en",
+            )
+            for c in от_модели
+        ]
+    else:
+        # Слова поисковых строк — это тема, а не кандидаты в сигналы.
+        слова_запроса = {
+            w.lower()
+            for строка in (_ПОСЛЕДНИЕ_СТРОКИ or search_queries(query))
+            for w in _WORD.findall(строка)
+        }
+        группы = extract_candidates(документы, query_words=слова_запроса)
+
+        # Если по узкому запросу документов мало, строгие пороги оставляют
+        # два-три кандидата. Тогда ослабляем и честно пишем об этом в лог:
+        # лучше показать жюри десяток кандидатов с оговоркой, чем пустой экран.
+        if len(группы) < 8:
+            log.info("Кандидатов мало (%s), ослабляю пороги", len(группы))
+            группы = extract_candidates(
+                документы, query_words=слова_запроса, min_docs=2, max_share=0.30
+            )
+        log.info("Кандидатов до отбора: %s", len(группы))
+
+        карточки = [
+            _card(фраза, docs, model, docs_collected=len(документы))
+            for фраза, docs in группы.items()
+        ]
 
     сигналы = sorted(
         (c for c in карточки if c["verdict"] == "сигнал"),
@@ -257,11 +395,70 @@ def run(
         from src.texts.generate import describe_all
 
         describe_all(сигналы)
+        сигналы = _dedup_translated(сигналы)
+        результат = сигналы + отклонённые
 
     if save_to_db:
         db.save_candidates(результат, query=query)
     save_cache(query, результат)
     return результат
+
+
+_СЛУЖЕБНЫЕ_РУ = {
+    "с", "и", "в", "на", "для", "по", "использованием", "помощью",
+    "применением", "основе", "технологии", "технология", "системы", "система",
+    "методы", "метод", "подход", "подходы",
+}
+
+
+def _ключ_названия(название: str) -> frozenset[str]:
+    """Название без служебных слов и без порядка слов.
+
+    Нужно потому, что перевод сглаживает разницу: «threat detection and
+    response with AI» и «AI-based threat detection and response» после
+    перевода превращаются в «обнаружение угроз и реагирование с
+    использованием искусственного интеллекта» и «...с помощью...» —
+    для пользователя это одна и та же строка дважды.
+    """
+    слова = {w.lower() for w in _WORD.findall(название or "")}
+    return frozenset(слова - _СЛУЖЕБНЫЕ_РУ)
+
+
+def _dedup_translated(cards: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Убирает карточки, у которых после перевода совпало название.
+
+    Оставляем ту, у которой выше уверенность: карточки уже отсортированы.
+    Документы потерянной карточки дописываем к оставшейся, иначе счётчик
+    источников у неё выйдет заниженным.
+    """
+    итог: list[dict[str, Any]] = []
+    по_ключу: dict[frozenset[str], dict[str, Any]] = {}
+
+    for карточка in cards:
+        ключ = _ключ_названия(карточка.get("technology", ""))
+        if not ключ:
+            итог.append(карточка)
+            continue
+        первая = по_ключу.get(ключ)
+        if первая is None:
+            по_ключу[ключ] = карточка
+            итог.append(карточка)
+            continue
+
+        известные = {s.get("url") for s in первая.get("sources", [])}
+        for источник in карточка.get("sources", []):
+            if источник.get("url") not in известные:
+                первая.setdefault("sources", []).append(источник)
+        первая["doc_count"] = max(
+            первая.get("doc_count", 0), карточка.get("doc_count", 0)
+        )
+        первая["sources_shown"] = len(первая.get("sources", []))
+        log.info(
+            "Карточка %r совпала по названию с %r после перевода, склеиваю",
+            карточка.get("technology"), первая.get("technology"),
+        )
+
+    return итог
 
 
 def stats(candidates: list[dict[str, Any]]) -> dict[str, int]:
@@ -298,8 +495,14 @@ if __name__ == "__main__":
     import sys
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-    запрос = sys.argv[1] if len(sys.argv) > 1 else "слабые сигналы в кибербезопасности"
-    карточки = run(запрос)
+
+    аргументы = [a for a in sys.argv[1:] if not a.startswith("--")]
+    флаги = {a for a in sys.argv[1:] if a.startswith("--")}
+
+    запрос = аргументы[0] if аргументы else "слабые сигналы в кибербезопасности"
+    # --no-cache нужен при проверках: иначе после правки кода прогон молча
+    # возвращает старый ответ из кеша и кажется, что ничего не изменилось.
+    карточки = run(запрос, use_cache="--no-cache" not in флаги)
     print(json.dumps(stats(карточки), ensure_ascii=False, indent=2))
     for card in карточки[:TOP_N]:
         предикторы = ", ".join(

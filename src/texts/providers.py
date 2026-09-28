@@ -51,6 +51,7 @@ class MockProvider:
     """Заглушка для тестов: возвращает заранее заданный ответ, в сеть не ходит."""
 
     name = "mock"
+    unavailable: str | None = None
 
     def __init__(self, canned: str = "{}") -> None:
         self.canned = canned
@@ -62,31 +63,69 @@ class MockProvider:
 
 
 class GigaChatProvider:
-    """GigaChat 2. Ключ авторизации в GIGACHAT_AUTH_KEY, модель в GIGACHAT_MODEL."""
+    """GigaChat 2. Ключ авторизации в GIGACHAT_AUTH_KEY, модель в GIGACHAT_MODEL.
+
+    Домены Сбера подписаны корневым сертификатом НУЦ Минцифры, которого нет
+    в системном хранилище. Путь к нему даёт `src.texts.certs.ca_bundle()` —
+    подробности там же. Проверка TLS не отключается ни при каких условиях.
+    """
 
     name = "gigachat"
     AUTH_URL = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
     CHAT_URL = "https://gigachat.devices.sberbank.ru/api/v1/chat/completions"
 
     def __init__(self) -> None:
+        from src.texts.certs import ca_bundle
+
         self.auth_key = os.environ["GIGACHAT_AUTH_KEY"]
         self.model = os.getenv("GIGACHAT_MODEL", "GigaChat-2-Pro")
+        self.verify: str | bool = ca_bundle() or True
+        self.unavailable: str | None = None
         self._token: str | None = None
         self._expires: float = 0.0
 
+    def _выключить(self, причина: str) -> None:
+        """Больше не ходим в сеть до конца прогона.
+
+        Без этого одна и та же ошибка авторизации повторяется на каждом из
+        полутора десятков обращений к модели за прогон, по две попытки на
+        каждое: лог превращается в простыню, а запрос — в минуты ожидания.
+        """
+        if self.unavailable is None:
+            self.unavailable = причина
+            log.error("GigaChat отключён до конца прогона: %s", причина)
+
     def _access_token(self) -> str:
+        if self.unavailable:
+            raise RuntimeError(self.unavailable)
         if self._token and time.time() < self._expires - 60:
             return self._token
-        response = requests.post(
-            self.AUTH_URL,
-            headers={
-                "Authorization": f"Basic {self.auth_key}",
-                "RqUID": os.getenv("GIGACHAT_RQUID", "00000000-0000-0000-0000-000000000001"),
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            data={"scope": os.getenv("GIGACHAT_SCOPE", "GIGACHAT_API_PERS")},
-            timeout=TIMEOUT,
-        )
+        try:
+            response = requests.post(
+                self.AUTH_URL,
+                headers={
+                    "Authorization": f"Basic {self.auth_key}",
+                    "RqUID": os.getenv(
+                        "GIGACHAT_RQUID", "00000000-0000-0000-0000-000000000001"
+                    ),
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                data={"scope": os.getenv("GIGACHAT_SCOPE", "GIGACHAT_API_PERS")},
+                timeout=TIMEOUT,
+                verify=self.verify,
+            )
+        except requests.exceptions.SSLError as error:
+            self._выключить(
+                "не проходит проверка сертификата. Нужен корневой сертификат НУЦ "
+                "Минцифры: bash scripts/install_ru_certs.sh. "
+                f"Исходная ошибка: {error}"
+            )
+            raise
+        if response.status_code in (401, 403):
+            self._выключить(
+                f"ключ авторизации не принят (код {response.status_code}). "
+                "Проверьте GIGACHAT_AUTH_KEY и GIGACHAT_SCOPE."
+            )
         response.raise_for_status()
         payload = response.json()
         self._token = payload["access_token"]
@@ -97,9 +136,13 @@ class GigaChatProvider:
         response = requests.post(
             self.CHAT_URL,
             headers={"Authorization": f"Bearer {self._access_token()}"},
+            verify=self.verify,
             json={
                 "model": self.model,
                 "temperature": 0.2,
+                # Без этого ответ обрезается на значении по умолчанию, и список
+                # кандидатов приходит незакрытым JSON.
+                "max_tokens": int(os.getenv("GIGACHAT_MAX_TOKENS", "2000")),
                 "messages": [
                     {"role": "system", "content": system},
                     {"role": "user", "content": prompt},
@@ -108,7 +151,17 @@ class GigaChatProvider:
             timeout=TIMEOUT,
         )
         response.raise_for_status()
-        text = response.json()["choices"][0]["message"]["content"]
+        payload = response.json()
+        выбор = payload["choices"][0]
+        # GigaChat сообщает причину остановки: length означает, что ответ
+        # оборван по лимиту и разбирать его как JSON бессмысленно.
+        if выбор.get("finish_reason") == "length":
+            log.warning(
+                "Ответ модели оборван по лимиту токенов. Увеличьте "
+                "GIGACHAT_MAX_TOKENS (сейчас %s)",
+                os.getenv("GIGACHAT_MAX_TOKENS", "2000"),
+            )
+        text = выбор["message"]["content"]
         return Answer(text=text, model=self.model)
 
 
@@ -116,6 +169,7 @@ class YandexGPTProvider:
     """YandexGPT. Ключ в YANDEX_API_KEY, каталог в YANDEX_FOLDER_ID."""
 
     name = "yandex"
+    unavailable: str | None = None
     URL = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion"
 
     def __init__(self) -> None:
@@ -147,6 +201,7 @@ class OpenAIProvider:
     """gpt-4.1. Ключ в OPENAI_API_KEY."""
 
     name = "openai"
+    unavailable: str | None = None
     URL = "https://api.openai.com/v1/chat/completions"
 
     def __init__(self) -> None:
@@ -198,29 +253,79 @@ def get_provider() -> Provider | None:
         return None
 
 
-def ask_json(provider: Provider, system: str, prompt: str) -> tuple[dict, str]:
+def ask_json(
+    provider: Provider,
+    system: str,
+    prompt: str,
+    raw_out: list[str] | None = None,
+) -> tuple[dict, str]:
     """Спрашивает модель и разбирает ответ как JSON.
 
     Модели любят обрамлять JSON пояснениями, поэтому вырезаем фигурные скобки.
     При неудаче возвращаем пустой словарь — тексты просто не заполнятся,
     но выдача не сломается.
+
+    В `raw_out`, если он передан, складывается сырой текст ответа. Нужно для
+    разбора случаев «модель ответила, но не то»: без сырого текста непонятно,
+    ошиблись мы в запросе или модель отказалась отвечать.
     """
+    # Поставщик мог отключить себя из-за ошибки, которая от повтора не пройдёт
+    # (сертификат, неверный ключ). Тогда молча работаем без модели.
+    if getattr(provider, "unavailable", None):
+        return {}, getattr(provider, "name", "unknown")
+
+    последняя: Exception | None = None
     for attempt in range(1, RETRIES + 1):
         try:
             answer = provider.complete(system, prompt)
         except Exception as error:  # сеть, лимиты, отказ поставщика
+            if getattr(provider, "unavailable", None):
+                return {}, getattr(provider, "name", "unknown")
+            последняя = error
             log.warning("Модель недоступна (%s), попытка %s из %s", error, attempt, RETRIES)
             time.sleep(2 * attempt)
             continue
 
         text = answer.text.strip()
+        if raw_out is not None:
+            raw_out.append(text)
+        log.debug("Ответ модели (%s символов): %s", len(text), text[:500])
         начало, конец = text.find("{"), text.rfind("}")
         if начало == -1 or конец == -1:
-            log.warning("Модель вернула не JSON, попытка %s из %s", attempt, RETRIES)
+            log.warning(
+                "Модель вернула не JSON, попытка %s из %s. Ответ: %.200s",
+                attempt, RETRIES, text,
+            )
             continue
         try:
             return json.loads(text[начало : конец + 1]), answer.model
-        except json.JSONDecodeError:
-            log.warning("JSON не разобрался, попытка %s из %s", attempt, RETRIES)
+        except json.JSONDecodeError as error:
+            log.warning(
+                "JSON не разобрался (%s), попытка %s из %s. Ответ: %.200s",
+                error, attempt, RETRIES, text,
+            )
+
+    if последняя is not None:
+        # Все попытки упали на сети. Одну случайную неудачу терпим, вторую
+        # подряд — уже нет: за прогон модель спрашивают полтора десятка раз,
+        # и повторять безнадёжный запрос значит только тянуть время.
+        подряд = getattr(provider, "_подряд_упало", 0) + 1
+        try:
+            provider._подряд_упало = подряд  # type: ignore[attr-defined]
+            if подряд >= 2 and getattr(provider, "unavailable", "нет") is None:
+                provider.unavailable = (  # type: ignore[attr-defined]
+                    f"сеть недоступна ({последняя})"
+                )
+                log.error(
+                    "Модель не отвечает второй запрос подряд, отключаем её "
+                    "до конца прогона: %s", последняя,
+                )
+        except AttributeError:
+            pass
+    else:
+        try:
+            provider._подряд_упало = 0  # type: ignore[attr-defined]
+        except AttributeError:
+            pass
 
     return {}, getattr(provider, "name", "unknown")

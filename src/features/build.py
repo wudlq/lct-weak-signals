@@ -50,7 +50,10 @@ FEATURE_LABELS = {
 
 EARLY_WORDS = (
     "prototype", "proof of concept", "poc", "pilot", "early stage", "preclinical",
-    "proof-of-concept", "experimental", "prelimin", "feasibility", "stealth",
+    # «stealth» здесь был, но убран: «вышел из stealth» — это про деньги и
+    # маркетинг стартапа, а не про стадию технологии. В разметке такие
+    # формулировки встречаются почти только у хайпа.
+    "proof-of-concept", "experimental", "prelimin", "feasibility",
     "прототип", "пилот", "концепц", "исследован", "раннее внедрение", "испытан",
 )
 
@@ -146,11 +149,14 @@ def profile_from_row(row: dict[str, Any]) -> Profile:
     return Profile(
         technology=str(row.get("technology") or "").strip(),
         area=str(row.get("area") or "").strip(),
+        # Поля stage и trend сюда не кладём: они уже дают два своих признака
+        # через stage_hint и trend_hint. Если добавить их и в тексты, слова
+        # «Пилот», «Прототип», «стандарт» из разметки попадут ещё и в признаки
+        # слов — модель выучит словарь разметчика, а не описание технологии.
+        # На живом запросе таких полей нет, там тексты — только документы.
         texts=[
             str(row.get("technology") or ""),
             str(row.get("why") or ""),
-            str(row.get("stage") or ""),
-            str(row.get("trend") or ""),
         ],
         dates=[],
         orgs=companies,

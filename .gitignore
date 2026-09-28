@@ -14,4 +14,9 @@ venv/
 
 # Системное
 .DS_Store
-.streamlit/secrets.toml
+
+# Кеш кладём в репозиторий только намеренно, командой git add -f
+data/cache/*.json
+
+# Склеенный бандл сертификатов собирается на месте из certifi и certs/russian_trusted_ca.pem
+certs/_bundle.pem
