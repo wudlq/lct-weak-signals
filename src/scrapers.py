@@ -5,7 +5,7 @@ from datetime import datetime
 # ЕДИНЫЙ ФОРМАТ ЗАПИСИ ДЛЯ ВСЕХ ПАРСЕРОВ 
 def create_document_structure(title, url, date, source_type, language, trust_level, content="", is_translated=False):
     """
-    Формирует структуру из 6 обязательных полей по ТЗ + контент для Лины.
+    Формирует структуру из 6 обязательных полей по ТЗ
     """
     return {
         "title": title,                # Наименование
