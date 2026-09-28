@@ -56,12 +56,14 @@ def contributions(model: Any, values: dict[str, float]) -> list[dict[str, Any]]:
         # «Только медиа» — признак-флаг. Когда он равен нулю, плюс к сигналу
         # даёт как раз наличие науки, а подпись «+только медиа, без науки»
         # читалась бы наоборот. Называем то, что есть на самом деле.
+        значение = round(float(values[name]), 3)
         if name == "media_only" and float(values[name]) == 0.0:
             подпись = "есть научные публикации"
+            значение = 1.0  # иначе рядом с «есть научные публикации» стоит 0.0
         items.append({
             "name": подпись,
             "key": name,
-            "value": round(float(values[name]), 3),
+            "value": значение,
             "contribution": round(вклад, 3),
             "direction": "+" if вклад >= 0 else "-",
         })
