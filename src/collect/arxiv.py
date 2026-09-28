@@ -13,6 +13,7 @@ arXiv отдаёт Atom XML и просит не бить чаще одного 
 from __future__ import annotations
 
 import logging
+import re
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
@@ -117,6 +118,23 @@ def parse_feed(xml_text: str) -> list[dict[str, Any]]:
     return [_entry_to_common_format(entry) for entry in root.findall("atom:entry", NS)]
 
 
+_СЛУЖЕБНЫЕ = {"and", "or", "of", "the", "for", "with", "in", "on", "to", "a", "an", "via", "based"}
+
+
+def _arxiv_query(query: str) -> str:
+    """Строка для arXiv, где обязательны все слова.
+
+    `all:AI-driven threat modeling` arXiv понимает как «хотя бы одно слово»,
+    а выдача отсортирована по дате — и сверху оказываются вчерашние статьи
+    с одним словом AI, например про ИИ в здравоохранении. Поэтому соединяем
+    слова через AND, а слова с дефисом берём в кавычки.
+    """
+    слова = [w for w in re.findall(r"[\w\-]+", query or "") if w.lower() not in _СЛУЖЕБНЫЕ]
+    if not слова:
+        return f"all:{query}"
+    return " AND ".join(f'all:"{w}"' if "-" in w else f"all:{w}" for w in слова)
+
+
 def search(query: str, limit: int = 100) -> list[dict[str, Any]]:
     """Ищет препринты по свободному запросу.
 
@@ -129,7 +147,7 @@ def search(query: str, limit: int = 100) -> list[dict[str, Any]]:
 
     while len(collected) < limit:
         params = {
-            "search_query": f"all:{query}",
+            "search_query": _arxiv_query(query),
             "start": start,
             "max_results": min(PAGE_SIZE, limit - len(collected)),
             "sortBy": "submittedDate",

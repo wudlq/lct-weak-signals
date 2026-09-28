@@ -29,6 +29,13 @@ GENERIC = {
     "attacks", "cyberattack", "cyberattacks", "intrusion", "anomaly",
     "anomalies", "monitoring", "response", "defense", "defence",
     "real", "time", "enhancing", "improving", "leveraging",
+    # Добавлено после прогона с GigaChat 28.09: такие названия проходили.
+    "weak", "signal", "signals", "data", "cloud", "environment",
+    "environments", "iot", "internet", "things", "countermeasures",
+    "processing", "natural", "optimization", "driven", "methods",
+    "applications", "application", "medical", "healthcare", "practice",
+    "architecture", "architectures", "review", "survey", "systematic",
+    "comprehensive", "solutions", "solution", "efficient", "effective",
     # Те же слова по-русски: названия от модели приходят на русском, и без
     # них «искусственный интеллект в кибербезопасности» проходит фильтр.
     "искусственный", "интеллект", "интеллекта", "машинное", "обучение",
@@ -44,4 +51,11 @@ GENERIC = {
     "оценка", "оценки", "угроза", "угрозы", "угроз", "данные", "данных",
     "система", "системы", "решение", "решения", "подход", "подходы",
     "метод", "методы", "реальном", "времени",
+    "слабые", "сигналы", "сигналов", "сигнал", "ии", "облачных", "облачные",
+    "сред", "среды", "обработка", "обработки", "естественного", "языка",
+    "меры", "противодействия", "методы", "оптимизация", "оптимизации",
+    "медицине", "применение", "применения", "iot",
+    "архитектура", "архитектуры", "обзор", "эффективного", "эффективная",
+    "использованием", "использования", "основе", "помощью", "ai-driven",
+    "ai-based", "ai-powered", "ml-based",
 }

@@ -126,6 +126,10 @@ def save_cache(query: str, candidates: list[dict[str, Any]]) -> None:
     )
 
 
+_ПОСЛЕДНИЕ_СТРОКИ: list[str] = []
+_КИРИЛЛИЦА = re.compile(r"[а-яА-ЯёЁ]")
+
+
 def collect(query: str, limit_per_source: int = 100) -> list[dict[str, Any]]:
     """Собирает документы из всех источников. Падение одного не ломает остальные.
 
@@ -135,6 +139,10 @@ def collect(query: str, limit_per_source: int = 100) -> list[dict[str, Any]]:
     """
     строки = search_queries(query)
     log.info("Поисковые строки: %s", строки)
+    # Запоминаем: те же строки нужны при выделении кандидатов, а повторный
+    # вызов модели дал бы другие.
+    global _ПОСЛЕДНИЕ_СТРОКИ
+    _ПОСЛЕДНИЕ_СТРОКИ = list(строки)
 
     documents: list[dict[str, Any]] = []
     источники: list[tuple[str, Callable[..., list[dict[str, Any]]]]] = [
@@ -332,14 +340,17 @@ def run(
     # Сначала пробуем выделить кандидатов языковой моделью: она называет
     # технологии, а частотный способ — только частые пары слов. Если модель
     # не настроена или ответила негодно, откатываемся на частотный способ.
-    от_модели = extract_by_model(документы, query)
+    от_модели = extract_by_model(документы, query, directions=_ПОСЛЕДНИЕ_СТРОКИ)
     if от_модели:
         log.info("Кандидатов от модели: %s", len(от_модели))
         карточки = [
             _card(
                 c["name_ru"], c["docs"], model,
                 docs_collected=len(документы),
-                name_en=c["name_en"], language="ru",
+                name_en=c["name_en"],
+                # GigaChat иногда оставляет русское название по-английски.
+                # Тогда честно пишем en — интерфейс покажет пометку.
+                language="ru" if _КИРИЛЛИЦА.search(c["name_ru"]) else "en",
             )
             for c in от_модели
         ]
@@ -347,7 +358,7 @@ def run(
         # Слова поисковых строк — это тема, а не кандидаты в сигналы.
         слова_запроса = {
             w.lower()
-            for строка in search_queries(query)
+            for строка in (_ПОСЛЕДНИЕ_СТРОКИ or search_queries(query))
             for w in _WORD.findall(строка)
         }
         группы = extract_candidates(документы, query_words=слова_запроса)
