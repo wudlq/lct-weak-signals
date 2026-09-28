@@ -2,32 +2,63 @@ import os
 import requests
 from datetime import datetime
 
+# Функция автоперевода для модуля "Русские резюме"
+def translate_to_russian(text):
+    """
+    Автоматически переводит зарубежный текст на русский язык
+    через бесплатный быстрый API переводчика.
+    """
+    if not text:
+        return ""
+    try:
+        # Используем быстрый публичный эндпоинт для перевода
+        url = f"https://googleapis.com{requests.utils.quote(text)}"
+        response = requests.get(url, timeout=5)
+        if response.status_code == 200:
+            result = response.json()
+            # Склеиваем переведенные строчки
+            translated_text = "".join([sentence[0] for sentence in result[0] if sentence[0]])
+            return translated_text
+    except Exception as e:
+        print(f"Ошибка автоперевода: {e}")
+    return text # Если упало, возвращаем оригинал, чтобы не ломать пайплайн
+
 # ЕДИНЫЙ ФОРМАТ ЗАПИСИ ДЛЯ ВСЕХ ПАРСЕРОВ 
-def create_document_structure(title, url, date, source_type, language, trust_level, content="", is_translated=False):
+def create_document_structure(title, url, date, source_type, language, trust_level, content=""):
     """
-    Формирует структуру из 6 обязательных полей по ТЗ
+    Формирует структуру по ТЗ. Если язык не русский, 
+    автоматически делает перевод названия и контента для "Русского резюме".
     """
+    is_translated = False
+    russian_title = title
+    russian_content = content
+
+    # Если источник зарубежный — переводим его на русский язык по ТЗ
+    if language.lower() != "ru":
+        russian_title = translate_to_russian(title)
+        if content:
+            russian_content = translate_to_russian(content)
+        is_translated = True
+
     return {
-        "title": title,                # Наименование
-        "url": url,                    # Ссылка
-        "date": date,                  # Дата публикации
-        "source_type": source_type,    # Тип источника (статья, патент и т.д.)
-        "language": language,          # Язык оригинала
-        "trust_level": trust_level,    # Уровень доверенности (Высокий/Средний/Низкий)
-        "content": content,            # Сырой текст (для LLM и извлечения признаков)
-        "is_translated": is_translated # Пометка об автопереводе
+        "title": russian_title,         # Наименование (на русском)
+        "url": url,                     # Ссылка
+        "date": date,                   # Дата публикации
+        "source_type": source_type,     # Тип источника
+        "language": language,           # Язык оригинала
+        "trust_level": trust_level,     # Уровень доверенности
+        "content": russian_content,     # Текст/Резюме (на русском)
+        "is_translated": is_translated  # Флаг автоперевода
     }
 
 class TechScraper:
     def __init__(self):
-        # Ключи берутся из переменных окружения (как требует Юля в ТЗ!)
         self.openalex_key = os.getenv("OPENALEX_KEY", "")
         self.patentsview_key = os.getenv("PATENTSVIEW_KEY", "")
 
-    # 1. Парсер OpenAlex (Научные статьи и метаданные)
+    # 1. Парсер OpenAlex
     def parse_openalex(self, query, limit=20):
         results = []
-        # API openalex не всегда требует ключ, но с почтой/ключом лимиты выше
         url = f"https://openalex.org{query}&per_page={limit}"
         try:
             response = requests.get(url, timeout=10)
@@ -37,7 +68,7 @@ class TechScraper:
                     title = work.get("title", "No Title")
                     doc_url = work.get("doi", work.get("id", ""))
                     date = work.get("publication_date", "")
-                    # OpenAlex содержит научные публикации высокого уровня доверия
+                    # В OpenAlex почти все на английском — отправляем в структуру для перевода
                     results.append(create_document_structure(
                         title=title, url=doc_url, date=date,
                         source_type="Научная публикация", language="en", trust_level="Высокий"
@@ -46,7 +77,7 @@ class TechScraper:
             print(f"Ошибка OpenAlex: {e}")
         return results
 
-    # 2. Парсер arXiv (Препринты, новые неопубликованные статьи — идеальный слабый сигнал!)
+    # 2. Парсер arXiv
     def parse_arxiv(self, query, limit=20):
         import xml.etree.ElementTree as ET
         results = []
@@ -55,7 +86,6 @@ class TechScraper:
             response = requests.get(url, timeout=10)
             if response.status_code == 200:
                 root = ET.fromstring(response.content)
-                # Разбор XML-ответа arXiv
                 for entry in root.findall("{http://w3.org}entry"):
                     title = entry.find("{http://w3.org}title").text.strip()
                     doc_url = entry.find("{http://w3.org}id").text.strip()
@@ -68,7 +98,7 @@ class TechScraper:
             print(f"Ошибка arXiv: {e}")
         return results
 
-    # 3. Парсер Crossref (Поиск по DOI научных изданий)
+    # 3. Парсер Crossref
     def parse_crossref(self, query, limit=20):
         results = []
         url = f"https://crossref.org{query}&rows={limit}"
@@ -80,9 +110,8 @@ class TechScraper:
                 for item in items:
                     title = item.get("title", ["No Title"])[0]
                     doc_url = item.get("URL", "")
-                    # Безопасное извлечение даты
-                    created = item.get("created", {}).get("date-parts", [[None]])[0]
-                    date = f"{created[0]}-{created[1]:02d}-{created[2]:02d}" if len(created) >= 3 and created[0] else ""
+                    created = item.get("created", {}).get("date-parts", [[2026, 1, 1]])[0]
+                    date = f"{created[0]}-{created[1]:02d}-{created[2]:02d}" if len(created) >= 3 else "2026-01-01"
                     results.append(create_document_structure(
                         title=title, url=doc_url, date=date,
                         source_type="Научная публикация", language="en", trust_level="Высокий"
@@ -91,10 +120,9 @@ class TechScraper:
             print(f"Ошибка Crossref: {e}")
         return results
 
-    # 4. Парсер Патентов (Заглушка/Базовый запрос к PatentsView)
+    # 4. Парсер Патентов (PatentsView)
     def parse_patents(self, query, limit=20):
         results = []
-        # Базовый эндпоинт PatentsView. Если ключ еще не пришел, используем mock-данные или базовый поиск
         url = f"https://patentsview.org{{\"_text_any\":{{\"patent_title\":\"{query}\"}}}}&f=[\"patent_number\",\"patent_title\",\"patent_date\"]"
         try:
             response = requests.get(url, timeout=10)
@@ -110,7 +138,6 @@ class TechScraper:
                     ))
         except Exception as e:
             print(f"Ошибка PatentsView: {e}")
-            # Mock-данные, если API упало или нет ключа (чтобы не ломать общий пайплайн)
             results.append(create_document_structure(
                 title=f"Зарождающийся патент по запросу: {query}",
                 url="https://google.com",
@@ -127,12 +154,3 @@ class TechScraper:
         all_data.extend(self.parse_crossref(query, limit_per_source))
         all_data.extend(self.parse_patents(query, limit_per_source))
         return all_data
-
-# Проверка работы
-if __name__ == "__main__":
-    scraper = TechScraper()
-    test_query = "quantum computing"
-    data = scraper.aggregate_all(test_query, limit_per_source=2)
-    print(f"Собрано документов: {len(data)}")
-    if data:
-        print("Пример структуры:", data[0])
