@@ -27,6 +27,8 @@ log = logging.getLogger(__name__)
 
 MAX_TITLES = 60          # больше в запрос не влезет без потери внимания модели
 MAX_CANDIDATES = 25
+TARGET_CANDIDATES = 25   # сколько хотим после фильтров, чтобы набрался ТОП-15
+MAX_PASSES = 3           # сколько порций заголовков показать модели
 MIN_DOCS_PER_CANDIDATE = 2
 MIN_TOKEN_SHARE = 0.6    # какая доля слов названия должна найтись в документе
 # Слабый сигнал по определению редок. Если название подтверждается большой
@@ -102,7 +104,11 @@ SKIP = {
 }
 
 
-def _sample(documents: list[dict[str, Any]], limit: int = MAX_TITLES) -> list[dict[str, Any]]:
+def _sample(
+    documents: list[dict[str, Any]],
+    limit: int = MAX_TITLES,
+    offset: float = 0.0,
+) -> list[dict[str, Any]]:
     """Ровный срез по всему набору, а не первые N.
 
     Документы приходят сгруппированными по поисковым строкам, и первые
@@ -112,7 +118,8 @@ def _sample(documents: list[dict[str, Any]], limit: int = MAX_TITLES) -> list[di
     if len(documents) <= limit:
         return list(documents)
     шаг = len(documents) / limit
-    return [documents[int(i * шаг)] for i in range(limit)]
+    # offset в долях шага: 0, 1/3, 2/3 дают три разных среза одного набора.
+    return [documents[min(int((i + offset) * шаг), len(documents) - 1)] for i in range(limit)]
 
 
 def _format_titles(documents: list[dict[str, Any]]) -> str:
@@ -284,119 +291,142 @@ def extract(
 
     from src.texts.providers import ask_json
 
-    показанные = _sample(documents)
-
-    сырой: list[str] = []
-    ответ, модель = ask_json(
-        provider,
-        SYSTEM,
-        PROMPT.format(
-            query=query,
-            directions="; ".join(directions or []) or "не заданы",
-            titles=_format_titles(показанные),
-            limit=MAX_CANDIDATES,
-        ),
-        raw_out=сырой,
-    )
-
-    сырые, ключ = _найти_список(ответ)
-    if ключ not in ("candidates", ""):
-        # GigaChat переводит и сам ключ: приходило и "технологии",
-        # и " кандидатов" с пробелом в начале. Поэтому список ищется
-        # по строению ответа, а не по имени ключа.
-        log.info("Модель назвала список %r вместо candidates", ключ)
-
-    if not сырые:
-        # Без сырого ответа непонятно, кто виноват: ответ оборвался, модель
-        # отказалась или вернула структуру не того вида. Печатаем начало.
-        log.warning(
-            "Модель не вернула кандидатов, откатываемся на частотный способ. "
-            "Ключи ответа: %s. Начало ответа: %.300s",
-            list(ответ)[:6] or "нет",
-            (сырой[-1] if сырой else "ответа не было"),
-        )
-        return []
-
+    # За один вызов модель видит 60 заголовков и называет около десяти
+    # кандидатов, половину из которых отсеивают фильтры. ТОП-15 так не
+    # набирается. Поэтому, если кандидатов мало, даём модели следующую
+    # порцию заголовков — не больше MAX_PASSES раз.
     кандидаты: list[dict[str, Any]] = []
     видели: set[str] = set()
     без_подтверждения = 0
     зонтичных = 0
+    всего_предложено = 0
+    модель = ""
 
-    for item in сырые:
-        name_ru = str(item.get("name_ru") or "").strip()
-        name_en = str(item.get("name_en") or "").strip()
-        if not name_ru and not name_en:
-            continue
+    for проход in range(MAX_PASSES):
+        показанные = _sample(documents, offset=проход / MAX_PASSES)
+        уже = "; ".join(c["name_ru"] for c in кандидаты)
+        дополнение = (
+            f"\n\nУже названы, не повторяй их: {уже}." if уже else ""
+        )
 
-        name_en = _укоротить(name_en)
-        ключ = (name_ru or name_en).lower()
-        if ключ in видели:
-            continue
+        сырой: list[str] = []
+        ответ, модель = ask_json(
+            provider,
+            SYSTEM,
+            PROMPT.format(
+                query=query,
+                directions="; ".join(directions or []) or "не заданы",
+                titles=_format_titles(показанные),
+                limit=MAX_CANDIDATES,
+            ) + дополнение,
+            raw_out=сырой,
+        )
 
-        # Достаточно, чтобы зонтичным оказалось одно из двух названий: раньше
-        # требовали оба, и «weak signal analysis» проходил за счёт русского
-        # варианта, а «генеративные модели ИИ» — за счёт падежа.
-        if (name_ru and _зонтичное(name_ru, query)) or (name_en and _зонтичное(name_en, query)):
-            зонтичных += 1
-            log.debug("Кандидат %r — название области, отброшен", name_ru or name_en)
-            continue
+        сырые, ключ = _найти_список(ответ)
+        if ключ not in ("candidates", ""):
+            # GigaChat переводит и сам ключ: приходило и "технологии",
+            # и " кандидатов" с пробелом в начале. Поэтому список ищется
+            # по строению ответа, а не по имени ключа.
+            log.info("Модель назвала список %r вместо candidates", ключ)
 
-        if _повтор_направления(name_en, directions):
-            зонтичных += 1
-            log.debug("Кандидат %r повторяет поисковое направление", name_en)
-            continue
+        if not сырые:
+            if проход > 0:
+                break  # первые проходы уже что-то дали — работаем с этим
+            # Без сырого ответа непонятно, кто виноват: ответ оборвался, модель
+            # отказалась или вернула структуру не того вида. Печатаем начало.
+            log.warning(
+                "Модель не вернула кандидатов, откатываемся на частотный способ. "
+                "Ключи ответа: %s. Начало ответа: %.300s",
+                list(ответ)[:6] or "нет",
+                (сырой[-1] if сырой else "ответа не было"),
+            )
+            return []
+        всего_предложено += len(сырые)
 
-        # Номера от модели — только одна из двух опор. Вторая, основная:
-        # поиск слов названия по всем собранным документам.
-        связанные: list[dict[str, Any]] = []
-        адреса: set[str] = set()
-        for номер in item.get("docs") or []:
-            try:
-                индекс = int(номер) - 1
-            except (TypeError, ValueError):
+        for item in сырые:
+            name_ru = str(item.get("name_ru") or "").strip()
+            name_en = str(item.get("name_en") or "").strip()
+            if not name_ru and not name_en:
                 continue
-            if 0 <= индекс < len(показанные):
-                doc = показанные[индекс]
+
+            name_en = _укоротить(name_en)
+            ключ = (name_ru or name_en).lower()
+            if ключ in видели:
+                continue
+
+            # Достаточно, чтобы зонтичным оказалось одно из двух названий: раньше
+            # требовали оба, и «weak signal analysis» проходил за счёт русского
+            # варианта, а «генеративные модели ИИ» — за счёт падежа.
+            if (name_ru and _зонтичное(name_ru, query)) or (name_en and _зонтичное(name_en, query)):
+                зонтичных += 1
+                log.debug("Кандидат %r — название области, отброшен", name_ru or name_en)
+                continue
+
+            if _повтор_направления(name_en, directions):
+                зонтичных += 1
+                log.debug("Кандидат %r повторяет поисковое направление", name_en)
+                continue
+
+            # Номера от модели — только одна из двух опор. Вторая, основная:
+            # поиск слов названия по всем собранным документам.
+            связанные: list[dict[str, Any]] = []
+            адреса: set[str] = set()
+            for номер in item.get("docs") or []:
+                try:
+                    индекс = int(номер) - 1
+                except (TypeError, ValueError):
+                    continue
+                if 0 <= индекс < len(показанные):
+                    doc = показанные[индекс]
+                    if doc.get("url") not in адреса:
+                        адреса.add(doc.get("url"))
+                        связанные.append(doc)
+
+            for doc in match_documents(name_en or name_ru, documents):
                 if doc.get("url") not in адреса:
                     адреса.add(doc.get("url"))
                     связанные.append(doc)
 
-        for doc in match_documents(name_en or name_ru, documents):
-            if doc.get("url") not in адреса:
-                адреса.add(doc.get("url"))
-                связанные.append(doc)
+            # Кандидат без подтверждённых документов — это ровно то, что ТЗ
+            # запрещает: выдача на знаниях модели, а не на найденных публикациях.
+            if len(связанные) < MIN_DOCS_PER_CANDIDATE:
+                без_подтверждения += 1
+                log.debug("Кандидат %r подтверждён %s документами, отброшен",
+                          name_en or name_ru, len(связанные))
+                continue
 
-        # Кандидат без подтверждённых документов — это ровно то, что ТЗ
-        # запрещает: выдача на знаниях модели, а не на найденных публикациях.
-        if len(связанные) < MIN_DOCS_PER_CANDIDATE:
-            без_подтверждения += 1
-            log.debug("Кандидат %r подтверждён %s документами, отброшен",
-                      name_en or name_ru, len(связанные))
-            continue
+            if (
+                len(documents) >= MIN_DOCS_FOR_SHARE_CHECK
+                and len(связанные) > MAX_DOC_SHARE * len(documents)
+            ):
+                зонтичных += 1
+                log.debug("Кандидат %r встречается в %s из %s документов — это область",
+                          name_en or name_ru, len(связанные), len(documents))
+                continue
 
-        if (
-            len(documents) >= MIN_DOCS_FOR_SHARE_CHECK
-            and len(связанные) > MAX_DOC_SHARE * len(documents)
-        ):
-            зонтичных += 1
-            log.debug("Кандидат %r встречается в %s из %s документов — это область",
-                      name_en or name_ru, len(связанные), len(documents))
-            continue
+            видели.add(ключ)
+            кандидаты.append({
+                "name_ru": name_ru or name_en,
+                "name_en": name_en or name_ru,
+                "docs": связанные,
+                "model": модель,
+            })
 
-        видели.add(ключ)
-        кандидаты.append({
-            "name_ru": name_ru or name_en,
-            "name_en": name_en or name_ru,
-            "docs": связанные,
-            "model": модель,
-        })
+        if len(кандидаты) >= TARGET_CANDIDATES:
+            break
+        if len(documents) <= MAX_TITLES * (проход + 1):
+            break  # все заголовки модель уже видела
+        if проход + 1 < MAX_PASSES:
+            log.info("Кандидатов пока %s, даю модели следующую порцию заголовков",
+                     len(кандидаты))
+
 
     кандидаты = _drop_subsumed(кандидаты)
 
     log.info(
         "Модель %s выделила кандидатов: %s из %s предложенных "
         "(без подтверждения документами: %s, названий области: %s)",
-        модель, len(кандидаты), len(сырые), без_подтверждения, зонтичных,
+        модель, len(кандидаты), всего_предложено, без_подтверждения, зонтичных,
     )
     return кандидаты
 
