@@ -191,19 +191,24 @@ ARROW = {"+": "↑", "-": "↓"}
 
 
 def _original_line(c):
-    """Оригинальное название зарубежного материала — требование ТЗ.
+    """Строка под заголовком карточки.
 
-    Показываем, когда есть исходная фраза и она не совпадает с русской.
-    Если перевод ещё не дошёл, помечаем — это видно сразу, а не на демо.
+    Требование ТЗ: у зарубежного материала сохраняется оригинальное название.
+    Три случая:
+      перевод есть  -> показываем оригинал мелким шрифтом;
+      перевода нет  -> честно пишем, что название оригинальное;
+      всё на русском -> строки нет.
     """
     original = c.get("technology_original")
-    if not original or original == c.get("technology"):
-        return ""
-    mark = ""
-    if c.get("technology_language") == "en":
-        mark = ' · <span style="color:#9A6700">перевод не получен</span>'
-    return (f'<div style="font-size:.78rem;color:#98A2B3;margin:.2rem 0 0 2.15rem">'
-            f'оригинал: {esc(original)}{mark}</div>')
+    lang = c.get("technology_language")
+    style = ('font-size:.78rem;color:#98A2B3;margin:.2rem 0 0 2.15rem')
+
+    if lang == "en":
+        return (f'<div style="{style}">оригинальное название, '
+                f'<span style="color:#9A6700">перевод недоступен</span></div>')
+    if original and original != c.get("technology"):
+        return f'<div style="{style}">оригинал: {esc(original)}</div>'
+    return ""
 
 
 def signal_card_html(rank, c):
