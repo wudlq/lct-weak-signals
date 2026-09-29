@@ -29,37 +29,28 @@ html, body, [class*="css"], .stMarkdown, .stTextInput input, .stButton button {
 
 /* убираем фирменные элементы Streamlit, чтобы страница не выглядела шаблонной */
 #MainMenu, footer, header [data-testid="stToolbar"] { visibility: hidden; }
-/* служебная полоса Streamlit прозрачная и не перекрывает шапку при прокрутке */
-[data-testid="stHeader"] { background: transparent; height: 2.5rem; }
 [data-testid="stDecoration"] { display: none; }
 .block-container { padding-top: 2.2rem; padding-bottom: 4rem; max-width: 1180px; }
 
 /* ---------------------------------------------------------------- шапка */
 .hz-brand {
-    display: flex; align-items: center; flex-wrap: wrap; gap: .25rem .7rem;
-    margin: 0;
+    display: flex; align-items: baseline; gap: .6rem; margin-bottom: .15rem;
 }
 .hz-brand .mark {
     font-size: 1.45rem; font-weight: 700; letter-spacing: -.02em; color: #0B3B6F;
 }
 .hz-brand .mark::before {
     content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%;
-    background: #0B3B6F; margin-right: .55rem; position: relative; top: -.12em;
+    background: #0B3B6F; margin-right: .5rem; vertical-align: middle;
     box-shadow: 0 0 0 4px rgba(11,59,111,.13);
 }
-.hz-brand .mark { line-height: 1.2; white-space: nowrap; }
 .hz-brand .sub {
     font-size: .8rem; color: #667085; font-weight: 500; letter-spacing: .01em;
 }
 .hz-lede {
-    color: #475467; font-size: .93rem; line-height: 1.55; max-width: 90ch;
-    margin: .2rem 0 1.2rem 0;
+    color: #475467; font-size: .93rem; line-height: 1.55; max-width: 74ch;
+    margin: .35rem 0 1.5rem 0;
 }
-/* длинные названия готовых запросов переносятся, а не обрезаются многоточием */
-.stButton button p { white-space: normal; line-height: 1.25; }
-.stButton button { min-height: 2.6rem; height: auto; }
-/* форма поиска без лишних отступов */
-[data-testid="stForm"] { padding: 0; border: none; }
 
 /* ------------------------------------------------------------- плашки */
 .hz-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; margin: .2rem 0 1.6rem 0; }
@@ -175,16 +166,9 @@ def header_html():
     return (
         '<div class="hz-brand"><span class="mark">ГОРИЗОНТ</span>'
         '<span class="sub">раннее обнаружение технологических трендов</span></div>'
-    )
-
-
-def lede_html():
-    return (
         '<div class="hz-lede">Сервис находит слабые сигналы — технологии на ранней стадии, '
         'о которых ещё не говорят массово. Зрелые решения, отраслевые стандарты '
-        'и маркетинговый хайп отсеиваются, причина исключения видна по каждому кандидату. '
-        'Готовые направления открываются сразу, живой поиск по новому запросу '
-        'занимает 2–3 минуты.</div>'
+        'и маркетинговый хайп отсеиваются, причина исключения видна по каждому кандидату.</div>'
     )
 
 

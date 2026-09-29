@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
 
 MAX_TITLES = 60          # больше в запрос не влезет без потери внимания модели
 MAX_CANDIDATES = 25
-TARGET_CANDIDATES = 20   # сколько хотим после фильтров, чтобы набрался ТОП-15
+TARGET_CANDIDATES = 25   # сколько хотим после фильтров, чтобы набрался ТОП-15
 MAX_PASSES = 3           # сколько порций заголовков показать модели
 MIN_DOCS_PER_CANDIDATE = 2
 MIN_TOKEN_SHARE = 0.6    # какая доля слов названия должна найтись в документе

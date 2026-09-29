@@ -145,7 +145,6 @@ def describe_all(
     cards: list[dict[str, Any]],
     limit: int | None = None,
     provider: Provider | None = None,
-    progress: Any = None,
 ) -> list[dict[str, Any]]:
     """Тексты для списка карточек.
 
@@ -155,11 +154,7 @@ def describe_all(
     provider = provider or get_provider()
     сигналы = [c for c in cards if c.get("verdict") == "сигнал"]
     цель = сигналы[: limit] if limit else сигналы
-    # Карточки идут по одной: у GigaChat для физлиц один поток на аккаунт,
-    # параллельные запросы получили бы отказ.
-    for номер, card in enumerate(цель, 1):
-        if progress:
-            progress(f"Готовим описания на русском: {номер} из {len(цель)}…")
+    for card in цель:
         try:
             describe(card, provider=provider)
         except Exception as error:  # одна неудачная карточка не ломает выдачу
