@@ -28,7 +28,9 @@ st.set_page_config(
     page_title="Горизонт — поиск слабых сигналов",
     page_icon="📡",
     layout="wide",
-    initial_sidebar_state="expanded",
+    # auto: на компьютере панель фильтров открыта, на телефоне свёрнута
+    # и не закрывает страницу.
+    initial_sidebar_state="auto",
 )
 st.markdown(ui.CSS, unsafe_allow_html=True)
 
@@ -44,6 +46,22 @@ if "query" not in st.session_state:
     st.session_state.query = ""
 if "error" not in st.session_state:
     st.session_state.error = None
+if "q_input" not in st.session_state:
+    st.session_state.q_input = ""
+
+
+def _reset():
+    """Кнопка «Новый поиск»: чистая страница без перезагрузки."""
+    st.session_state.result = None
+    st.session_state.error = None
+    st.session_state.query = ""
+    st.session_state.q_input = ""
+
+
+def _preset(text):
+    """Готовый запрос: подставляем в поле и запускаем поиск на этом же проходе."""
+    st.session_state.q_input = text
+    st.session_state.pending = text
 
 
 # Разные пайплайны называют счётчики по-разному. Приводим к одному виду,
@@ -107,18 +125,22 @@ def search(q):
     if not q:
         st.warning("Введите технологическое направление.")
         return
-    with st.spinner("Собираем и проверяем источники…"):
-        started = time.perf_counter()
+    started = time.perf_counter()
+    # Живой поиск идёт пару минут: показываем, на каком он этапе.
+    with st.status("Проверяем, есть ли готовый ответ…", expanded=False) as status:
         try:
-            raw = pipeline.run(q)
+            raw = pipeline.run(q, progress=lambda текст: status.update(label=текст))
         except Exception as error:
+            status.update(label="Поиск не удался", state="error")
             st.session_state.result = None
             st.session_state.error = str(error)
             st.session_state.query = q
             return
-        st.session_state.error = None
-        st.session_state.result = normalize(raw, time.perf_counter() - started)
-        st.session_state.query = q
+        прошло = time.perf_counter() - started
+        status.update(label=f"Готово за {прошло:.0f} с", state="complete")
+    st.session_state.error = None
+    st.session_state.result = normalize(raw, прошло)
+    st.session_state.query = q
 
 
 # ------------------------------------------------------------------ боковая
@@ -148,25 +170,38 @@ with st.sidebar:
     )
 
 # ------------------------------------------------------------------ шапка
-st.markdown(ui.header_html(), unsafe_allow_html=True)
+col_brand, col_new = st.columns([5, 1], vertical_alignment="center")
+with col_brand:
+    st.markdown(ui.header_html(), unsafe_allow_html=True)
+with col_new:
+    if st.session_state.result is not None or st.session_state.error:
+        st.button("Новый поиск", on_click=_reset, use_container_width=True,
+                  type="secondary")
+st.markdown(ui.lede_html(), unsafe_allow_html=True)
 
-col_in, col_go = st.columns([6, 1])
-with col_in:
-    q = st.text_input(
-        "Запрос", value=st.session_state.query,
-        placeholder="Введите технологическое направление в свободной форме",
-        label_visibility="collapsed",
-    )
-with col_go:
-    go = st.button("Найти", use_container_width=True)
+# Форма: поиск запускается и кнопкой, и клавишей Enter. Раньше Enter только
+# перерисовывал страницу со старой выдачей, и казалось, что поиск сломан.
+with st.form("search_form", border=False):
+    col_in, col_go = st.columns([6, 1])
+    with col_in:
+        st.text_input(
+            "Запрос", key="q_input",
+            placeholder="Введите технологическое направление в свободной форме",
+            label_visibility="collapsed",
+        )
+    with col_go:
+        go = st.form_submit_button("Найти", use_container_width=True, type="primary")
 
 for col, preset in zip(st.columns(len(PRESETS)), PRESETS):
-    if col.button(preset, key=f"p_{preset}", use_container_width=True):
-        search(preset)
-        st.rerun()
+    col.button(preset, key=f"p_{preset}", use_container_width=True,
+               on_click=_preset, args=(preset,))
 
-if go:
-    search(q)
+pending = st.session_state.pop("pending", None)
+if go or pending:
+    search(st.session_state.q_input if go else pending)
+    # Перерисовываем страницу уже с результатом, чтобы в шапке сразу
+    # появилась кнопка «Новый поиск».
+    st.rerun()
 
 if st.session_state.error:
     st.error(

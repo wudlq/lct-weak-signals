@@ -20,6 +20,7 @@ import json
 import logging
 import pathlib
 import re
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Callable
 
 from src.collect import arxiv, openalex
@@ -151,14 +152,30 @@ def collect(query: str, limit_per_source: int = 100) -> list[dict[str, Any]]:
     ]
     на_строку = max(limit_per_source // max(len(строки), 1), 20)
 
-    for строка in строки:
-        for name, search_fn in источники:
+    def по_источнику(name: str, search_fn: Callable[..., list[dict[str, Any]]]) -> list[list[dict[str, Any]]]:
+        """Все строки подряд по одному источнику: внутри источника запросы
+        идут последовательно, чтобы не ловить 429 и соблюдать паузы arXiv."""
+        пачки = []
+        for строка in строки:
             try:
                 batch = search_fn(строка, limit=на_строку)
                 log.info("%s по %r: %s документов", name, строка, len(batch))
-                documents.extend(batch)
             except Exception as error:  # источник не должен ронять пайплайн
                 log.warning("%s недоступен: %s", name, error)
+                batch = []
+            пачки.append(batch)
+        return пачки
+
+    # OpenAlex и arXiv опрашиваются одновременно: раньше второй источник ждал
+    # первый, и сбор занимал сумму их времени, а не максимум.
+    with ThreadPoolExecutor(max_workers=len(источники)) as pool:
+        будущие = [pool.submit(по_источнику, name, fn) for name, fn in источники]
+        результаты = [f.result() for f in будущие]
+
+    # Порядок как раньше: по каждой строке сначала OpenAlex, потом arXiv.
+    for i in range(len(строки)):
+        for пачки in результаты:
+            documents.extend(пачки[i])
     return prepare(documents)
 
 
@@ -315,6 +332,7 @@ def run(
     limit_per_source: int = 100,
     save_to_db: bool = True,
     with_texts: bool = True,
+    progress: Callable[[str], None] | None = None,
 ) -> list[dict[str, Any]]:
     """Главная функция. Интерфейс вызывает только её.
 
@@ -327,6 +345,16 @@ def run(
             log.info("Ответ из кеша: %s карточек", len(кеш))
             return кеш
 
+    def этап(текст: str) -> None:
+        """Сообщаем интерфейсу, что сейчас происходит: живой поиск идёт
+        минуты, и без этого пользователь видит только крутящийся значок."""
+        if progress:
+            try:
+                progress(текст)
+            except Exception:  # интерфейс не должен ронять пайплайн
+                pass
+
+    этап("Формулируем поисковые направления и собираем публикации из OpenAlex и arXiv…")
     документы = collect(query, limit_per_source=limit_per_source)
     if not документы:
         log.warning("По запросу %r ничего не собрано", query)
@@ -336,6 +364,7 @@ def run(
         db.save_docs(документы, query=query)
 
     model = load_model()
+    этап(f"Собрано {len(документы)} документов. Выделяем технологии-кандидаты…")
 
     # Сначала пробуем выделить кандидатов языковой моделью: она называет
     # технологии, а частотный способ — только частые пары слов. Если модель
@@ -394,7 +423,8 @@ def run(
     if with_texts and сигналы:
         from src.texts.generate import describe_all
 
-        describe_all(сигналы)
+        этап(f"Готовим описания на русском для {len(сигналы)} сигналов…")
+        describe_all(сигналы, progress=этап)
         сигналы = _dedup_translated(сигналы)
         результат = сигналы + отклонённые
 
